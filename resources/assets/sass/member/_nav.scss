@@ -1,0 +1,10 @@
+.navbar-nav{
+  .dropdown-menu{
+    box-shadow: 1px 3px 4px rgba(0, 0, 0, 0.18);
+    border: none;
+    -webkit-animation-name: dropdownSlideInDown;
+    animation-name: dropdownSlideInDown;
+    -webkit-animation-duration: .3s;
+    animation-duration: .3s;
+  }
+}
