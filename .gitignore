@@ -13,3 +13,4 @@ storage/
 .env
 .env.example
 /.idea
+/bootstrap/cache/services.php

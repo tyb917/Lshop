@@ -148,7 +148,6 @@
     </div>
     @endif
 @stop
-{{ Helper::model('catalog/image') }}
 <link rel="stylesheet" href="/plugins/cropper/cropper.min.css">
 <link rel="stylesheet" href="/plugins/cropper/main.css">
 @section('js')
