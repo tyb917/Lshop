@@ -165,27 +165,4 @@ trait UserAttribute
         $this->getConfirmedButtonAttribute() .
         $this->getDeleteButtonAttribute();
     }
-
-    /**
-     * @return string
-     */
-    public function avatarImage($size)
-    {
-        $filepath = Config::get('image.images.avatar.paths.input') . $this->avatar;
-        $newfile = Config::get('image.images.avatar.paths.output').'/'. $size . $this->avatar;
-        $file = str_replace( strrchr($newfile,'/') , '' , $newfile);
-        $size = explode('x', $size);
-        if(!file_exists($newfile)){
-            if(!file_exists($file)){
-                mkdir($file,0777,true);
-            }
-            if(count($size)>1){
-                $img = Image::make($filepath)->resize($size[0], $size[1]);
-            }else{
-                $img = Image::make($filepath)->resize($size, $size);
-            }
-            $img->save($newfile,90);
-        }
-        return '/'.$newfile;
-    }
 }

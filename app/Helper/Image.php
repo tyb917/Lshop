@@ -2,7 +2,9 @@
 
 namespace App\Helper;
 
+use File;
 use Config;
+use App\Exceptions\GeneralException;
 use Intervention\Image\Facades\Image as Images;
 use App\Repositories\Backend\User\UserContract;
 
@@ -139,6 +141,26 @@ class Image extends Images
         $this->setWidth($width)->setHeight($height);
 
         return $this;
+    }
+
+    protected function checkDirectory($path)
+    {
+        if (File::isDirectory($path) && File::isWritable($path))
+        {
+            return true;
+        }
+        else
+        {
+            try
+            {
+                @File::makeDirectory($path, 0777, true);
+                return true;
+            }
+            catch (\Exception $e)
+            {
+                throw new GeneralException('Image upload found'. $e->getMessage());
+            }
+        }
     }
 
     protected function checkMemory($file = null)
@@ -296,25 +318,31 @@ class Image extends Images
         return $this->imageFile;
     }
 
-    function resize($width, $height=null)
-    {
-        $this->setWidth($width);
-        $this->setHeight($height);
-        $this->newFile = public_path($this->outDir.DS.$this->getDestinationSubdir().DS.$this->width.'x'.$this->height.$this->getImageFile());
-        if(!file_exists($this->newFile)){
-            if(!file_exists(dirname($this->newFile))){
-                mkdir(dirname($this->newFile),0777,true);
-            }
-           Image::make($this->getBaseFile())->resize($this->width, $this->height)->save($this->newFile,$this->quality);
-        }
+    public function crop($width=0, $height=0, $top=0, $right=0){
+        $this->checkDirectory(dirname($this->newFile));
+        Image::make($this->baseFile)
+            ->crop((int)$width, (int)$height, (int)$top,(int)$right)
+            ->save($this->newFile,$this->quality);
+        return $this;
+    }
 
-        return $this->getUrl();
+    public function resize($width, $height=null)
+    {
+        $this->width = $width;
+        $this->height = $height;
+        $this->checkDirectory(dirname($this->newFile));
+        Image::make($this->baseFile)
+            ->resize($this->width, $this->height)
+            ->save($this->newFile,$this->quality);
+        return $this;
     }
 
     public function rotate($angle)
     {
         $angle = intval($angle);
-        $this->getImageProcessor()->rotate($angle);
+        Image::make($this->baseFile)
+            ->rotate($angle)
+            ->save($this->newFile,$this->quality);
         return $this;
     }
 
@@ -369,9 +397,10 @@ class Image extends Images
 
     public function saveFile()
     {
-        $filename = $this->getNewFile();
-        $this->getImageProcessor()->save($filename);
-        Mage::helper('core/file_storage_database')->saveFile($filename);
+        $baseFile = $this->getBaseFile();
+        $newFile = $this->getNewFile();
+        Image::make($baseFile)
+            ->save($newFile);
         return $this;
     }
 

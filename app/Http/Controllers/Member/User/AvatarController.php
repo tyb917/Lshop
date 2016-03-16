@@ -38,9 +38,9 @@ class AvatarController extends Controller
      * @param  UpdateProfileRequest $request
      * @return mixed
      */
-    public function update(UserContract $user, AvatarRequest $request)
+    public function update(UserContract $user, AvatarRequest $request,Image $image)
     {
-        dd($request);
+        dd($image->upload($request['avatar_file'],$request['avatar_data']));
         $src = isset($request['avatar_src']) ? $request['avatar_src'] : null;
         $data = isset($request['avatar_data']) ? $request['avatar_data'] : null;
         $file = isset($request['avatar_file']) ? $request['avatar_file'] : null;

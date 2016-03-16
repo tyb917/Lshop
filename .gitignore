@@ -14,3 +14,4 @@ storage/
 .env.example
 /.idea
 /bootstrap/cache/services.php
+/public/media/avatar/data

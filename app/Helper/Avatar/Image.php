@@ -2,42 +2,54 @@
 
 namespace App\Helper\Avatar;
 
+use File;
 use Config;
 use App\Helper\Image as AvatarImages;
 use App\Exceptions\GeneralException;
-use File;
 
 class Image extends AvatarImages
 {
-    protected $inDri;
-    protected $outDri;
-    protected $placeholderDri;
-    protected $baseFile;
+    private $msg;
 
-    function reset(){
-        $this->inDir = Config::get('image.avatar.paths');
-        $this->baseFile = null;
-        return $this;
+    function __construct()
+    {
+        $this->inDir = public_path(Config::get('avatar.upload').DS.access()->id());
+        $this->medium = Config::get('avatar.medium.size');
+        $this->small = Config::get('avatar.small.size');
+        $this->large = Config::get('avatar.large.size');
     }
 
-    public function init($imageFile,$attributeName='medium')
-    {
-        $this->reset();
-        $this->setDestinationSubdir($attributeName);
-        $this->setBaseFile($imageFile);
-
-        return $this;
-    }
-
-    public function size($file=null,$attributeName='medium')
-    {
-        $this->reset();
-        if($file){
-            $baseFile = public_path($this->inDir.$file);
-        }else{
-            $file = DS .$attributeName.'.jpg';
-            $baseFile = public_path($this->placeholderDir.$file);
+    function upload($file,$data){
+        if($file->isValid()){
+            $type = $file->getMimeType();
+            if ($type) {
+                $clientName = $file->getClientOriginalName();
+                $extension = $file->getClientOriginalExtension();
+                if ($type == 'image/jpeg' || $type == 'image/png' || $type == 'image/gif') {
+                    $this->baseFile = $this->inDir.DS.md5($clientName).".".$extension;
+                    $result = $file->move($this->inDir, $this->baseFile);
+                    if ($result) {
+                        $data = json_decode(stripslashes($data));
+                        $this->crop($data->width,$data->height,$data->x,$data->y);
+                        if($data->rotate){
+                            $this->rotate($data->rotate);
+                        }
+                        $this->newFile = $this->inDir.DS.md5($clientName).'_'.$this->medium.".".$extension;
+                        $this->resize($this->medium,$this->medium);
+                        $this->newFile = $this->inDir.DS.md5($clientName).'_'.$this->small.".".$extension;
+                        $this->resize($this->small,$this->small);
+                        $this->newFile = $this->inDir.DS.md5($clientName).'_'.$this->large.".".$extension;
+                        $this->resize($this->large,$this->large);
+                    } else {
+                        $this->msg = '保存失败！';
+                    }
+                }else{
+                    $this->msg = '允许上传的图片格式为JPG, PNG, GIF';
+                }
+            }else{
+                $this->msg = '请上传图片';
+            }
         }
-        return $baseFile;
     }
+
 }

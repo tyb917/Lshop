@@ -9,7 +9,7 @@
  * Good because you don't have to dirty your HTML with delete forms everywhere.
  */
 function addDeleteForms() {
-    $('[data-method]').append(function () {
+    $('[data-method="delete"]').append(function () {
         if (! $(this).find('form').length > 0)
             return "\n" +
                 "<form action='" + $(this).attr('href') + "' method='POST' name='delete_item' style='display:none'>\n" +
