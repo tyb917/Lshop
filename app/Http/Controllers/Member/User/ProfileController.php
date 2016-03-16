@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Member\Auth;
+namespace App\Http\Controllers\Member\User;
 
 use App\Http\Controllers\Controller;
 use App\Repositories\Frontend\User\UserContract;

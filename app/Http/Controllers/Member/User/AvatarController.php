@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Member;
+namespace App\Http\Controllers\Member\User;
 
 use Config;
 use Image;
 use Illuminate\Support\Facades\File;
-use App\Models\Avatar;
 use App\Repositories\Frontend\User\UserContract;
 use App\Http\Requests\AvatarRequest;
 
@@ -43,6 +42,7 @@ class AvatarController extends Controller
      */
     public function update(UserContract $user, AvatarRequest $request)
     {
+        dd($request);
         $src = isset($request['avatar_src']) ? $request['avatar_src'] : null;
         $data = isset($request['avatar_data']) ? $request['avatar_data'] : null;
         $file = isset($request['avatar_file']) ? $request['avatar_file'] : null;
