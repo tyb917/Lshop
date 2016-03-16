@@ -3,13 +3,11 @@
 namespace App\Http\Controllers\Member\User;
 
 use Config;
-use Image;
 use Illuminate\Support\Facades\File;
-use App\Repositories\Frontend\User\UserContract;
 use App\Http\Requests\AvatarRequest;
-
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Helper\Avatar\Image;
+use App\Repositories\Frontend\User\UserContract;
 
 class AvatarController extends Controller
 {

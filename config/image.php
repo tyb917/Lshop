@@ -16,48 +16,48 @@ return array(
     */
 
     'driver' => 'gd',
-    'images' => array(
-        'avatar' => array(
-            'paths' => array(
-                'input'  => 'uploads/avatar/data',
-                'output' => 'uploads/avatar/cache',
-                'tmp'    => 'uploads/avatar/data/tmp'
+    'tmp' => 'media/tmp',
+    'avatar' => array(
+        'paths' => array(
+            'input'  => 'media/avatar/data',
+        ),
+        'sizes' => array(
+            'small' => array(
+                'width'  => 30,
+                'height' => 30
             ),
-            'sizes' => array(
-                'small' => array(
-                    'width'  => 30,
-                    'height' => 30
-                ),
-                'medium' => array(
-                    'width'  => 65,
-                    'height' => 65
-                ),
-                'large' => array(
-                    'width'  => 180,
-                    'height' => 180
-                )
+            'medium' => array(
+                'width'  => 65,
+                'height' => 65
+            ),
+            'large' => array(
+                'width'  => 180,
+                'height' => 180
             )
         ),
-        'product' => array(
-            'paths' => array(
-                'input'  => '/uploads/product/data',
-                'output' => '/uploads/product/cache',
-                'tmp'    => '/uploads/avatar/data/tmp'
-            ),
-            'sizes' => array(
-                'small' => array(
-                    'width'  => 30,
-                    'height' => 30
-                ),
-                'medium' => array(
-                    'width'  => 65,
-                    'height' => 65
-                ),
-                'large' => array(
-                    'width'  => 180,
-                    'height' => 180
-                )
-            )
+        'placeholder' => 'media/avatar/placeholder'
+    ),
+    'product' => array(
+        'paths' => array(
+            'input'  => 'media/catalog/product/data',
+            'output' => 'media/catalog/product/cache',
+        ),
+        'attributename' => array(
+            'small_image',
+            'thumbnail',
+            'image'
+        ),
+        'placeholder' => 'media/catalog/product/placeholder'
+    ),
+    'category' => array(
+        'paths' => array(
+            'input'  => 'media/catalog/category/data',
+            'output' => 'media/catalog/category/cache',
+        ),
+        'attributename' => array(
+            'small_image',
+            'thumbnail',
+            'image'
         )
     )
 );

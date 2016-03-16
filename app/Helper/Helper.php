@@ -4,18 +4,13 @@ namespace App\Helper;
 
 class Helper
 {
-    public $app;
-
-    protected $namespace = 'Helper';
-
-    public function __construct($app)
-    {
-        $this->app = $app;
-    }
+    protected $namespace = 'App\Helper';
 
     public function model($name)
     {
-        $path = app_path($this->namespace.'/'.$name.'.php');
-        if(file_exists($path)) require $path;
+        $name = ucwords(str_replace('/',' ',$name));
+        $name = str_replace(' ',DS,$name);
+        $provider = DS.$this->namespace.DS.$name;
+        return new $provider;
     }
 }
