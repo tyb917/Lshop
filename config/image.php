@@ -18,9 +18,7 @@ return array(
     'driver' => 'gd',
     'tmp' => 'media/tmp',
     'avatar' => array(
-        'paths' => array(
-            'input'  => 'media/avatar/data',
-        ),
+        'paths' => 'media/avatar/data',
         'sizes' => array(
             'small' => array(
                 'width'  => 30,

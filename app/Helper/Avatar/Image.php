@@ -15,8 +15,7 @@ class Image extends AvatarImages
     protected $baseFile;
 
     function reset(){
-        $this->inDir = Config::get('image.avatar.paths.input');
-        $this->placeholderDir = Config::get('image.avatar.placeholder');
+        $this->inDir = Config::get('image.avatar.paths');
         $this->baseFile = null;
         return $this;
     }
