@@ -15,7 +15,7 @@
                 <div class="form-group">
                     <div class="pull-left col-xs-offset-2">
                         <div class="avatar-view" title="上传头像">
-                            <img src="{!! $user->avatar !!}" class="user-profile-image" />
+                            <img src="{{url('avatar/'.$user->id.'/large')}}" class="user-profile-image" />
                         </div>
                     </div>
                 </div>
@@ -81,13 +81,13 @@
                             <div class="row avatar-btns">
                                 <div class="col-md-9">
                                     <button type="button" class="btn btn-primary" data-method="rotate" data-option="-5" title="向左旋转">
-                                        <span class="docs-tooltip" data-toggle="tooltip" title="" data-original-title="向左旋转">
-                                          <span class="fa fa-rotate-left"></span>
+                                        <span class="docs-tooltip" data-toggle="tooltip" data-method="rotate" data-option="-5" title="" data-original-title="向左旋转">
+                                            <span class="fa fa-rotate-left" data-method="rotate" data-option="-5"></span>
                                         </span>
                                     </button>
                                     <button type="button" class="btn btn-primary" data-method="rotate" data-option="5" title="向右旋转">
-                                        <span class="docs-tooltip" data-toggle="tooltip" title="" data-original-title="向右旋转">
-                                          <span class="fa fa-rotate-right"></span>
+                                        <span class="docs-tooltip" data-toggle="tooltip" data-method="rotate" data-option="5" title="" data-original-title="向右旋转">
+                                            <span class="fa fa-rotate-right" data-method="rotate" data-option="5"></span>
                                         </span>
                                     </button>
                                 </div>

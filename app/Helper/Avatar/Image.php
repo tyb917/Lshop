@@ -5,12 +5,11 @@ namespace App\Helper\Avatar;
 use File;
 use Config;
 use App\Helper\Image as AvatarImages;
+use App\Models\Access\User\User;
 use App\Exceptions\GeneralException;
 
 class Image extends AvatarImages
 {
-    private $msg;
-
     function __construct()
     {
         $this->inDir = public_path(Config::get('avatar.upload').DS.access()->id());
@@ -30,26 +29,43 @@ class Image extends AvatarImages
                     $result = $file->move($this->inDir, $this->baseFile);
                     if ($result) {
                         $data = json_decode(stripslashes($data));
-                        $this->crop($data->width,$data->height,$data->x,$data->y);
                         if($data->rotate){
-                            $this->rotate($data->rotate);
+                            $this->rotate(-($data->rotate));
                         }
+                        $this->crop($data->width,$data->height,$data->x,$data->y);
                         $this->newFile = $this->inDir.DS.md5($clientName).'_'.$this->medium.".".$extension;
                         $this->resize($this->medium,$this->medium);
                         $this->newFile = $this->inDir.DS.md5($clientName).'_'.$this->small.".".$extension;
                         $this->resize($this->small,$this->small);
                         $this->newFile = $this->inDir.DS.md5($clientName).'_'.$this->large.".".$extension;
                         $this->resize($this->large,$this->large);
+                        File::delete($this->baseFile);
+                        $this->avatar = str_replace($this->inDir.DS,'',$this->baseFile);
+                        $this->state = 200;
+                        $this->msg = '保存成功！';
                     } else {
+                        $this->state = 401;
                         $this->msg = '保存失败！';
                     }
                 }else{
+                    $this->state = 401;
                     $this->msg = '允许上传的图片格式为JPG, PNG, GIF';
                 }
             }else{
+                $this->state = 401;
                 $this->msg = '请上传图片';
             }
+            return $this;
         }
+    }
+
+    function getAvatar($userid,$size)
+    {
+        $user = User::find($userid);
+        $avatar = $user->avatar;
+        $file = explode('.',$avatar);
+        $this->newFile = public_path(Config::get('avatar.upload').DS.access()->id().DS.$file[0].'_'.Config::get('avatar.'.$size.'.size').'.'.$file[1]);
+        return Image::make($this->newFile)->response('jpg');
     }
 
 }

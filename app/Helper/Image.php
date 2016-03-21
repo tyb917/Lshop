@@ -23,6 +23,7 @@ class Image extends Images
     protected $baseFile;
     protected $isBaseFilePlaceholder;
     protected $newFile;
+    protected $msg;
     protected $processor;
     protected $destinationSubdir;
     protected $angle;
@@ -299,6 +300,17 @@ class Image extends Images
     public function setNewFile($filePath)
     {
         $this->newFile = $filePath;
+        return $this;
+    }
+
+    public function getMsg()
+    {
+        return $this->msg;
+    }
+
+    public function setMsg($msg)
+    {
+        $this->msg = $msg;
         return $this;
     }
 
