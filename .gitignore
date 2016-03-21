@@ -15,3 +15,8 @@ storage/
 /.idea
 /bootstrap/cache/services.php
 /public/media/avatar/data
+/storage/app/public
+/public/build
+/public/css/*.map
+/public/css/*.map
+/public/css/*.map

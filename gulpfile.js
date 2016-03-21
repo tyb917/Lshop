@@ -90,29 +90,28 @@ elixir(function (mix) {
 
     /**
      * Combine pre-processed backend CSS files
-     */
-        .styles([
-            'backend/app.css',
-        ], 'public/css/backend.css')
-
-    /**
-     * Combine backend scripts
-     */
-        .scripts([
-            'plugins.js',
-            'plugin/icheck/icheck.min.js',
-            'plugin/toastr/toastr.min.js',
+     */str.min.js',
             'plugin/select2/select2.min.js',
             'plugin/sweetalert/sweetalert.min.js',
             'plugin/datatables/jquery.dataTables.min.js',
-            'plugin/datapicker/bootstrap-datepicker.min.js',
+            'plugi
+                .styles([
+                    'backend/app.css',
+                ], 'public/css/backend.css')
+
+                /**
+                 * Combine backend scripts
+                 */
+                .scripts([
+                    'plugins.js',
+                    'plugin/icheck/icheck.min.js',
+                    'plugin/toastr/toan/datapicker/bootstrap-datepicker.min.js',
             'plugin/datapicker/bootstrap-datepicker.zh-CN.min.js',
             'backend/app.js',
             'backend/custom.js'
         ], 'public/js/backend.js')
 
-    /**
-     * Apply version control
+    /**DFcontrol
      */
         .version(["public/css/frontend.css", "public/js/frontend.js", "public/css/member.css", "public/js/member.js", "public/css/backend.css", "public/js/backend.js"]);
 });
