@@ -20,7 +20,7 @@ class AvatarController extends Controller
     public function index(UserContract $user, $userid , $size,Image $image)
     {
         $img = $image->getAvatar($userid,$size);
-        return $img;
+        return $img->response('jpeg');
     }
 
     /**

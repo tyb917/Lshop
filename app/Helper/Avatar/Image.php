@@ -64,8 +64,10 @@ class Image extends AvatarImages
         $user = User::find($userid);
         $avatar = $user->avatar;
         $file = explode('.',$avatar);
-        $this->newFile = public_path(Config::get('avatar.upload').DS.access()->id().DS.$file[0].'_'.Config::get('avatar.'.$size.'.size').'.'.$file[1]);
-        return Image::make($this->newFile)->response('jpg');
+        $newFile = public_path(Config::get('avatar.upload').DS.access()->id().DS.$file[0].'_'.Config::get('avatar.'.$size.'.size').'.'.$file[1]);
+        return Image::cache(function($image) use ($newFile) {
+           $image->make($newFile)->greyscale();
+        }, 10, true);
     }
 
     public function deleteAvatar($avatar)
