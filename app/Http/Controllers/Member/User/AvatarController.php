@@ -19,8 +19,8 @@ class AvatarController extends Controller
      */
     public function index(UserContract $user, $userid , $size,Image $image)
     {
-        $url = $image->getAvatar($userid,$size);
-        return $url;
+        $img = $image->getAvatar($userid,$size);
+        return $img;
     }
 
     /**
@@ -33,12 +33,9 @@ class AvatarController extends Controller
         $avatar = $image->upload($request['avatar_file'],$request['avatar_data']);
         if($avatar->state=='200'){
             $oldavatar = access()->user()->avatar;
-            $file = explode('.',$oldavatar);
             $updateavatar = $user->updateAvatar(access()->id(), ['avatar'=>$avatar->avatar]);
             if($updateavatar){
-                File::delete(public_path(Config::get('avatar.upload').DS.access()->id().DS.$file[0].'_'.Config::get('avatar.small.size').'.'.$file[1]));
-                File::delete(public_path(Config::get('avatar.upload').DS.access()->id().DS.$file[0].'_'.Config::get('avatar.medium.size').'.'.$file[1]));
-                File::delete(public_path(Config::get('avatar.upload').DS.access()->id().DS.$file[0].'_'.Config::get('avatar.large.size').'.'.$file[1]));
+                $image->deleteAvatar($oldavatar);
             }
         }
         $response = array(

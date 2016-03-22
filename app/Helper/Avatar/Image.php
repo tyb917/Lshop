@@ -10,7 +10,7 @@ use App\Exceptions\GeneralException;
 
 class Image extends AvatarImages
 {
-    function __construct()
+    public function __construct()
     {
         $this->inDir = public_path(Config::get('avatar.upload').DS.access()->id());
         $this->medium = Config::get('avatar.medium.size');
@@ -18,7 +18,7 @@ class Image extends AvatarImages
         $this->large = Config::get('avatar.large.size');
     }
 
-    function upload($file,$data){
+    public function upload($file,$data){
         if($file->isValid()){
             $type = $file->getMimeType();
             if ($type) {
@@ -33,10 +33,10 @@ class Image extends AvatarImages
                             $this->rotate(-($data->rotate));
                         }
                         $this->crop($data->width,$data->height,$data->x,$data->y);
-                        $this->newFile = $this->inDir.DS.md5($clientName).'_'.$this->medium.".".$extension;
-                        $this->resize($this->medium,$this->medium);
                         $this->newFile = $this->inDir.DS.md5($clientName).'_'.$this->small.".".$extension;
                         $this->resize($this->small,$this->small);
+                        $this->newFile = $this->inDir.DS.md5($clientName).'_'.$this->medium.".".$extension;
+                        $this->resize($this->medium,$this->medium);
                         $this->newFile = $this->inDir.DS.md5($clientName).'_'.$this->large.".".$extension;
                         $this->resize($this->large,$this->large);
                         File::delete($this->baseFile);
@@ -59,13 +59,21 @@ class Image extends AvatarImages
         }
     }
 
-    function getAvatar($userid,$size)
+    public function getAvatar($userid,$size)
     {
         $user = User::find($userid);
         $avatar = $user->avatar;
         $file = explode('.',$avatar);
         $this->newFile = public_path(Config::get('avatar.upload').DS.access()->id().DS.$file[0].'_'.Config::get('avatar.'.$size.'.size').'.'.$file[1]);
         return Image::make($this->newFile)->response('jpg');
+    }
+
+    public function deleteAvatar($avatar)
+    {
+        $file = explode('.',$avatar);
+        File::delete(public_path(Config::get('avatar.upload').DS.access()->id().DS.$file[0].'_'.Config::get('avatar.small.size').'.'.$file[1]));
+        File::delete(public_path(Config::get('avatar.upload').DS.access()->id().DS.$file[0].'_'.Config::get('avatar.medium.size').'.'.$file[1]));
+        File::delete(public_path(Config::get('avatar.upload').DS.access()->id().DS.$file[0].'_'.Config::get('avatar.large.size').'.'.$file[1]));
     }
 
 }
