@@ -188,7 +188,7 @@ return [
         App\Providers\MacroServiceProvider::class,
         Yajra\Datatables\DatatablesServiceProvider::class,
         /*MongonDB*/
-        Jenssegers\Mongodb\MongodbServiceProvider::class,
+        //Jenssegers\Mongodb\MongodbServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         /*product categories*/
         'Baum\Providers\BaumServiceProvider',
@@ -249,7 +249,7 @@ return [
         'Html'        => Collective\Html\HtmlFacade::class,
         'Socialite'   => Laravel\Socialite\Facades\Socialite::class,
         /*MongonDB*/
-        'Moloquent' => 'Jenssegers\Mongodb\Eloquent\Model',
+       // 'Moloquent' => 'Jenssegers\Mongodb\Eloquent\Model',
         'Image' => Intervention\Image\Facades\Image::class,
         'Helper' => App\Helper\Facades\Helper::class
     ],
