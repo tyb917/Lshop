@@ -4700,6 +4700,18 @@ namespace {
         }
         
         /**
+         * Insert or update a record matching the attributes, and fill it with values.
+         *
+         * @param array $attributes
+         * @param array $values
+         * @return bool 
+         * @static 
+         */
+        public static function updateOrInsert($attributes, $values = array()){
+            return \Illuminate\Database\Query\Builder::updateOrInsert($attributes, $values);
+        }
+        
+        /**
          * Run a truncate statement on the table.
          *
          * @return void 
@@ -5026,12 +5038,24 @@ namespace {
          * Get the contents of a file.
          *
          * @param string $path
+         * @param bool $lock
          * @return string 
          * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
          * @static 
          */
-        public static function get($path){
-            return \Illuminate\Filesystem\Filesystem::get($path);
+        public static function get($path, $lock = false){
+            return \Illuminate\Filesystem\Filesystem::get($path, $lock);
+        }
+        
+        /**
+         * Get contents of a file with shared access.
+         *
+         * @param string $path
+         * @return string 
+         * @static 
+         */
+        public static function sharedGet($path){
+            return \Illuminate\Filesystem\Filesystem::sharedGet($path);
         }
         
         /**
@@ -5138,6 +5162,28 @@ namespace {
          */
         public static function name($path){
             return \Illuminate\Filesystem\Filesystem::name($path);
+        }
+        
+        /**
+         * Extract the trailing name component from a file path.
+         *
+         * @param string $path
+         * @return string 
+         * @static 
+         */
+        public static function basename($path){
+            return \Illuminate\Filesystem\Filesystem::basename($path);
+        }
+        
+        /**
+         * Extract the parent directory from a file path.
+         *
+         * @param string $path
+         * @return string 
+         * @static 
+         */
+        public static function dirname($path){
+            return \Illuminate\Filesystem\Filesystem::dirname($path);
         }
         
         /**
@@ -6737,6 +6783,17 @@ namespace {
          */
         public static function fullUrl(){
             return \Illuminate\Http\Request::fullUrl();
+        }
+        
+        /**
+         * Get the full URL for the request with the added query string parameters.
+         *
+         * @param array $query
+         * @return string 
+         * @static 
+         */
+        public static function fullUrlWithQuery($query){
+            return \Illuminate\Http\Request::fullUrlWithQuery($query);
         }
         
         /**
