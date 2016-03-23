@@ -31,7 +31,7 @@ return array(
     */
     
     'paths' => array(
-        public_path('uploads/avatar/image/20160226'),
+        public_path('media/avatar/data/1'),
         public_path('images')
     ),
 

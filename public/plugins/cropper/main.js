@@ -136,7 +136,7 @@
         change: function () {
             var files;
             var file;
-
+console.log(this.support.datauri);
             if (this.support.datauri) {
                 files = this.$avatarInput.prop('files');
 
@@ -289,12 +289,16 @@
                         this.startCropper();
                     }
 
+                    swal({
+                        title:data.message,
+                        type:'success',
+                    })
                     this.$avatarInput.val('');
                 } else if (data.message) {
                     this.alert(data.message);
                 }
             } else {
-                this.alert('Failed to response');
+                this.alert(data.message);
             }
         },
 
@@ -303,8 +307,6 @@
         },
 
         submitEnd: function () {
-            var html = '<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>头像更新成功。</div>';
-            $('.content').prepend(html);
             this.$loading.fadeOut();
         },
 
@@ -316,14 +318,10 @@
         },
 
         alert: function (msg) {
-            var $alert = [
-                '<div class="alert alert-danger avatar-alert alert-dismissable">',
-                '<button type="button" class="close" data-dismiss="alert">&times;</button>',
-                msg,
-                '</div>'
-            ].join('');
-
-            this.$avatarUpload.after($alert);
+            swal({
+                title:msg,
+                type:'error',
+            })
         }
     };
 

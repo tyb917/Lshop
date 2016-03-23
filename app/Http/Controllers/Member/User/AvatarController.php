@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Member\User;
 
 use Config;
+use Response;
 use Illuminate\Support\Facades\File;
 use App\Http\Requests\AvatarRequest;
 use App\Http\Controllers\Controller;
@@ -20,7 +21,7 @@ class AvatarController extends Controller
     public function index(UserContract $user, $userid , $size,Image $image)
     {
         $img = $image->getAvatar($userid,$size);
-        return $img->response('jpeg');
+        return $img->response('jpg')->header('Cache-Control','max-age=31536000, public');
     }
 
     /**
