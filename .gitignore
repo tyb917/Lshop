@@ -20,3 +20,8 @@ storage/
 /public/css/*.map
 /public/css/*.map
 /public/css/*.map
+/public/css/backend.css
+/public/css/frontend.css
+/public/css/member.css
+/public/uploads
+/resources/assets/css
