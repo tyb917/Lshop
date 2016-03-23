@@ -136,7 +136,7 @@
         change: function () {
             var files;
             var file;
-console.log(this.support.datauri);
+
             if (this.support.datauri) {
                 files = this.$avatarInput.prop('files');
 
@@ -186,6 +186,8 @@ console.log(this.support.datauri);
         },
 
         isImageFile: function (file) {
+            console.log(file.type)
+            
             if (file.type) {
                 return /^image\/\w+$/.test(file.type);
             } else {

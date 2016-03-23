@@ -10,10 +10,10 @@
         </div>
         <div class="box-body form-group">
                 <!-- Current avatar -->
-                {!! Form::model($user, ['route' => 'member.user.profile.update', 'class' => 'form-horizontal col-xs-5', 'method' => 'PATCH']) !!}
+                {!! Form::model($user, ['route' => 'member.user.profile.update', 'class' => 'form-horizontal col-xs-6', 'method' => 'PATCH']) !!}
 
                 <div class="form-group">
-                    <div class="pull-left col-xs-offset-2">
+                    <div class="pull-left col-xs-offset-3">
                         <div class="avatar-view" title="上传头像">
                             <img src="{{url('avatar/'.$user->id.'/large')}}" class="user-profile-image" />
                         </div>
@@ -21,23 +21,23 @@
                 </div>
 
                 <div class="form-group">
-                    {!! Form::label('name', trans('validation.attributes.frontend.name'), ['class' => 'col-xs-2 control-label']) !!}
-                    <div class="col-xs-5">
+                    {!! Form::label('name', trans('validation.attributes.frontend.name'), ['class' => 'col-xs-3 control-label']) !!}
+                    <div class="col-xs-6">
                         {!! Form::input('text', 'name', null, ['class' => 'form-control', 'placeholder' => trans('validation.attributes.frontend.name')]) !!}
                     </div>
                 </div>
 
                 @if ($user->canChangeEmail())
                     <div class="form-group">
-                        {!! Form::label('email', trans('validation.attributes.frontend.email'), ['class' => 'col-xs-2 control-label']) !!}
-                        <div class="col-xs-5">
+                        {!! Form::label('email', trans('validation.attributes.frontend.email'), ['class' => 'col-xs-3 control-label']) !!}
+                        <div class="col-xs-6">
                             {!! Form::input('email', 'email', null, ['class' => 'form-control', 'placeholder' => trans('validation.attributes.frontend.email')]) !!}
                         </div>
                     </div>
                 @endif
 
                 <div class="form-group">
-                    <div class="col-xs-5 col-xs-offset-2">
+                    <div class="col-xs-6 col-xs-offset-3">
                         {!! Form::submit(trans('labels.general.buttons.save'), ['class' => 'btn btn-primary']) !!}
                     </div>
                 </div>
@@ -114,31 +114,31 @@
             </div>
         </div>
         <div class="box-body">
-            {!! Form::open(['route' => ['auth.password.update'], 'class' => 'form-horizontal col-xs-5']) !!}
+            {!! Form::open(['route' => ['auth.password.update'], 'class' => 'form-horizontal col-xs-6']) !!}
 
             <div class="form-group">
-                {!! Form::label('old_password', trans('validation.attributes.frontend.old_password'), ['class' => 'col-xs-2 control-label']) !!}
-                <div class="col-xs-5">
+                {!! Form::label('old_password', trans('validation.attributes.frontend.old_password'), ['class' => 'col-xs-3 control-label']) !!}
+                <div class="col-xs-6">
                     {!! Form::input('password', 'old_password', null, ['class' => 'form-control', 'placeholder' => trans('validation.attributes.frontend.old_password')]) !!}
                 </div>
             </div>
 
             <div class="form-group">
-                {!! Form::label('password', trans('validation.attributes.frontend.new_password'), ['class' => 'col-xs-2 control-label']) !!}
-                <div class="col-xs-5">
+                {!! Form::label('password', trans('validation.attributes.frontend.new_password'), ['class' => 'col-xs-3 control-label']) !!}
+                <div class="col-xs-6">
                     {!! Form::input('password', 'password', null, ['class' => 'form-control', 'placeholder' => trans('validation.attributes.frontend.new_password')]) !!}
                 </div>
             </div>
 
             <div class="form-group">
-                {!! Form::label('password_confirmation', trans('validation.attributes.frontend.new_password_confirmation'), ['class' => 'col-xs-2 control-label']) !!}
-                <div class="col-xs-5">
+                {!! Form::label('password_confirmation', trans('validation.attributes.frontend.new_password_confirmation'), ['class' => 'col-xs-3 control-label']) !!}
+                <div class="col-xs-6">
                     {!! Form::input('password', 'password_confirmation', null, ['class' => 'form-control', 'placeholder' => trans('validation.attributes.frontend.new_password_confirmation')]) !!}
                 </div>
             </div>
 
             <div class="form-group">
-                <div class="col-xs-5 col-xs-offset-2">
+                <div class="col-xs-6 col-xs-offset-3">
                     {!! Form::submit(trans('labels.general.buttons.update'), ['class' => 'btn btn-primary']) !!}
                 </div>
             </div>
