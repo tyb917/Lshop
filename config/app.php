@@ -192,6 +192,8 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         /*product categories*/
         'Baum\Providers\BaumServiceProvider',
+        /*百度UEditor*/
+        Stevenyangecho\UEditor\UEditorServiceProvider::class,
     ],
 
     /*

@@ -27,7 +27,11 @@
     appearance: none;
   }
 }
-
+.form-control.edui-default{
+  height: auto;
+  padding: 0;
+  border: none;
+}
 .form-group {
   &.has-success {
     label {

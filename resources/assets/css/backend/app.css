@@ -8888,6 +8888,11 @@ $-webkit-keyframes flipInX {
     -moz-appearance: none;
     appearance: none; }
 
+.form-control.edui-default {
+  height: auto;
+  padding: 0;
+  border: none; }
+
 .form-group.has-success label {
   color: #00a65a; }
 

@@ -61,7 +61,7 @@
                     <div class="form-group">
                         <label class="col-xs-2 control-label">描述</label>
                         <div class="col-xs-7">
-                            {!! Form::textarea('description', $categories->description, ['class' => 'form-control','placeholder'=>'描述','rows'=>'4']) !!}
+                            {!! Form::textarea('description', $categories->description, ['class' => 'form-control','id' => 'editor','placeholder'=>'描述','rows'=>'4']) !!}
                         </div>
                     </div>
                     <div class="form-group">
@@ -108,6 +108,7 @@
 @stop
 
 @section('js')
+    @include('UEditor::head');
     <script src="{{asset('plugins/jstree/dist/jstree.min.js')}}"></script>
     <script>
         $(function () {
@@ -207,5 +208,11 @@
                 }
             })
         })
+
+        /*实例化编辑器*/
+        var ue = UE.getEditor('editor');
+        ue.ready(function() {
+            ue.execCommand('serverparam', '_token', '{{ csrf_token() }}');//此处为支持laravel5 csrf ,根据实际情况修改,目的就是设置 _token 值.
+        });
     </script>
 @stop
