@@ -150,6 +150,8 @@
 
                         this.url = URL.createObjectURL(file);
                         this.startCropper();
+                    }else{
+                        this.alert('请选择一张正确的图片上传！');
                     }
                 }
             } else {
@@ -157,6 +159,8 @@
 
                 if (this.isImageFile(file)) {
                     this.syncUpload();
+                }else{
+                    this.alert('请选择一张正确的图片上传！');
                 }
             }
         },
@@ -187,7 +191,7 @@
 
         isImageFile: function (file) {
             console.log(file.type)
-            
+
             if (file.type) {
                 return /^image\/\w+$/.test(file.type);
             } else {
@@ -276,7 +280,6 @@
         },
 
         submitDone: function (data) {
-            console.log(data);
 
             if ($.isPlainObject(data) && data.state === 200) {
                 if (data.result) {
@@ -291,11 +294,11 @@
                         this.startCropper();
                     }
 
+                    this.$avatarInput.val('');
                     swal({
                         title:data.message,
                         type:'success',
                     })
-                    this.$avatarInput.val('');
                 } else if (data.message) {
                     this.alert(data.message);
                 }

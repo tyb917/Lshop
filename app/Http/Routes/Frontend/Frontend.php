@@ -5,6 +5,6 @@
  */
 Route::get('/', 'FrontendController@index')->name('frontend.index');
 
-/**
- * These frontend controllers require the user to be logged in
- */
+Route::get('img/{path}' ,function(League\Glide\Server $server, Illuminate\Http\Request $request){
+    $server->outputImage($request->path(), $request->all());
+})->where('path','.+');

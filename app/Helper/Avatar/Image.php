@@ -44,18 +44,21 @@ class Image extends AvatarImages
                         $this->state = 200;
                         $this->msg = '保存成功！';
                     } else {
-                        $this->state = 401;
+                        $this->state = 400;
                         $this->msg = '保存失败！';
                     }
                 }else{
-                    $this->state = 401;
+                    $this->state = 400;
                     $this->msg = '允许上传的图片格式为JPG, PNG, GIF';
                 }
             }else{
-                $this->state = 401;
+                $this->state = 400;
                 $this->msg = '请上传图片';
             }
             return $this;
+        }else{
+            $this->state = 599;
+            return $this->msg = $file->getErrorMessage();
         }
     }
 

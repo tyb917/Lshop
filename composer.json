@@ -19,7 +19,8 @@
         "dompdf/dompdf": "^0.6.1",
         "intervention/image": "^2.3",
         "intervention/imagecache": "^2.3",
-        "baum/baum": "^1.1"
+        "baum/baum": "^1.1",
+        "league/glide": "^1.0"
 
     },
     "require-dev": {
