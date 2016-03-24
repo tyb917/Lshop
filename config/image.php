@@ -16,5 +16,6 @@ return array(
     */
 
     'driver' => 'gd',
-    'tmp' => 'media/tmp'
+    'tmp' => 'media/tmp',
+    'category' => 'media/catalog/category/data'
 );

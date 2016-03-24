@@ -32,6 +32,12 @@ class EloquentCategoryRepository implements CategoryContract
         }
 
         $category = Category::findOrFail($id);
+        if(isset($input['general']['image']['delete'])){
+            $input['image'] = '';
+        }
+        if(isset($input['general']['image']['value']) && !isset($input['general']['image']['delete'])){
+            $input['image'] = $input['general']['image']['value'];
+        }
         if ($category->update($input)) {
             $category->save();
             return true;

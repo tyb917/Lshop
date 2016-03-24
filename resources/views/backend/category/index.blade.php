@@ -39,7 +39,7 @@
             </ul><!-- Tab panes -->
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="roles_1">
-                    {!! Form::model($categories,['route' => ['admin.categories.update', $categories->id], 'id' => 'category','class'=>'form-horizontal','method' => 'PATCH']) !!}
+                    {!! Form::model($categories,['route' => ['admin.categories.update', $categories->id], 'id' => 'category','class'=>'form-horizontal','method' => 'PATCH','enctype'=>'multipart/form-data']) !!}
                     <div class="form-group">
                         <label class="col-xs-2 control-label">名称</label>
                         <div class="col-xs-7">
@@ -67,7 +67,18 @@
                     <div class="form-group">
                         <label class="col-xs-2 control-label">图像</label>
                         <div class="col-xs-7">
-                            {!! Form::file('image', ['class' => 'form-control','placeholder'=>'图像']) !!}
+                            @if($categories->image)
+                                <a href="http://www.testmagento.com/media/catalog/category/d38b5d479d2ff00dd23714e1793f6a0b.png" onclick="imagePreview('group_4image_image'); return false;"><img src="http://www.testmagento.com/media/catalog/category/d38b5d479d2ff00dd23714e1793f6a0b.png" id="group_4image_image" title="d38b5d479d2ff00dd23714e1793f6a0b.png" alt="d38b5d479d2ff00dd23714e1793f6a0b.png" height="22" width="22" class="small-image-preview v-middle"></a>
+                            @endif
+                            {!! Form::file('image', ['class' => 'category-img','placeholder'=>'图像']) !!}
+                            @if($categories->image)
+                                {!! Form::hidden('general[image][value]',$categories->image) !!}
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="general[image][delete]" value="1"> 删除图像
+                                    </label>
+                                </div>
+                            @endif
                         </div>
                     </div>
                     <div class="form-group">
@@ -210,7 +221,10 @@
         })
 
         /*实例化编辑器*/
-        var ue = UE.getEditor('editor');
+        var ue = UE.getEditor('editor',{
+            initialFrameHeight:350,//设置编辑器高度
+            scaleEnabled:true
+        });
         ue.ready(function() {
             ue.execCommand('serverparam', '_token', '{{ csrf_token() }}');//此处为支持laravel5 csrf ,根据实际情况修改,目的就是设置 _token 值.
         });

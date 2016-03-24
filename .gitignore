@@ -25,3 +25,7 @@ storage/
 /public/css/member.css
 /public/uploads
 /resources/assets/css
+/public/media/catalog/category/cache
+/public/media/catalog/category/data
+/public/media/catalog/product/data
+/public/media/catalog/product/cache
