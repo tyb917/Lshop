@@ -68,7 +68,6 @@
                         <label class="col-xs-2 control-label">图像</label>
                         <div class="col-xs-7">
                             @if($categories->image)
-                                <a href="http://www.testmagento.com/media/catalog/category/d38b5d479d2ff00dd23714e1793f6a0b.png" onclick="imagePreview('group_4image_image'); return false;"><img src="http://www.testmagento.com/media/catalog/category/d38b5d479d2ff00dd23714e1793f6a0b.png" id="group_4image_image" title="d38b5d479d2ff00dd23714e1793f6a0b.png" alt="d38b5d479d2ff00dd23714e1793f6a0b.png" height="22" width="22" class="small-image-preview v-middle"></a>
                             @endif
                             {!! Form::file('image', ['class' => 'category-img','placeholder'=>'图像']) !!}
                             @if($categories->image)

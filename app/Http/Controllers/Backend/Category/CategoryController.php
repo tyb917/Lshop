@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend\Category;
 
 use File;
+use Config;
 use App\Http\Requests;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -118,9 +119,11 @@ class CategoryController extends Controller
             if($file->isValid()){
                 $type = $file->getMimeType();
                 $clientName = $file->getClientOriginalName();
+                $extension = $file->getClientOriginalExtension();
                 $dir = public_path(Config::get('image.category'));
+                $newName = md5($clientName).'.'.$extension;
                 if($type == 'image/jpeg' || $type == 'image/png' || $type == 'image/gif'){
-                    $file->move($dir.DS.date('Ymdhis'),$clientName);
+                    $file->move($dir.DS.$id,$newName);
                 }else{
                     throw new GeneralException('允许上传的图片格式为JPG, PNG, GIF');
                 }
@@ -128,7 +131,9 @@ class CategoryController extends Controller
                 throw new GeneralException($file->getErrorMessage());
             }
         }
+        //$request['image'] = $newName;
         $this->categories->update($id,$request->except('_token'));
+        //$this->categories->update($id,['image'=>$newName]);
         return redirect()->route('admin.categories.index')->withFlashSuccess(trans('alerts.backend.categories.updated'));
     }
 

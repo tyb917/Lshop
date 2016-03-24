@@ -35,7 +35,7 @@ class EloquentCategoryRepository implements CategoryContract
         if(isset($input['general']['image']['delete'])){
             $input['image'] = '';
         }
-        if(isset($input['general']['image']['value']) && !isset($input['general']['image']['delete'])){
+        if(!isset($input['image']) && isset($input['general']['image']['value']) && !isset($input['general']['image']['delete'])){
             $input['image'] = $input['general']['image']['value'];
         }
         if ($category->update($input)) {
