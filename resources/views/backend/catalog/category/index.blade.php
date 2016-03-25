@@ -39,7 +39,7 @@
             </ul><!-- Tab panes -->
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="roles_1">
-                    {!! Form::model($categories,['route' => ['admin.categories.update', $categories->id], 'id' => 'category','class'=>'form-horizontal','method' => 'PATCH','enctype'=>'multipart/form-data']) !!}
+                    {!! Form::model($categories,['route' => ['admin.catalog.categories.update', $categories->id], 'id' => 'category','class'=>'form-horizontal','method' => 'PATCH','enctype'=>'multipart/form-data']) !!}
                     <div class="form-group">
                         <label class="col-xs-2 control-label">名称</label>
                         <div class="col-xs-7">
@@ -68,6 +68,7 @@
                         <label class="col-xs-2 control-label">图像</label>
                         <div class="col-xs-7">
                             @if($categories->image)
+                                <img src="{{$categories->imageUrl}}" alt="" width="22" height="22">
                             @endif
                             {!! Form::file('image', ['class' => 'category-img','placeholder'=>'图像']) !!}
                             @if($categories->image)
@@ -100,7 +101,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-xs-7 col-xs-offset-2">
-                        <button href="{{route('admin.categories.destroy', $categories->id)}}" data-method="delete" class="btn btn-danger" data-toggle="tooltip" data-placement="top" type="button">
+                        <button href="{{route('admin.catalog.categories.destroy', $categories->id)}}" data-method="delete" class="btn btn-danger" data-toggle="tooltip" data-placement="top" type="button">
                             {{trans('buttons.general.crud.delete')}}
                         </button>
                         <input class="btn btn-primary" value="确认" type="submit">
@@ -130,7 +131,7 @@
                     check_callback: !0,
                     data: {
                         url: function(e) {
-                            return "{{ route('admin.categories.children') }}"
+                            return "{{ route('admin.catalog.categories.children') }}"
                         },
                         data: function(e) {
                             return {
@@ -183,13 +184,13 @@
                 }
             })
             .on('delete_node.jstree', function (e, data) {
-                $.post("/admin/categories/"+data.node.id, { '_method' : 'delete', '_token' : '{{ csrf_token() }}' })
+                $.post("/admin/catalog/categories/"+data.node.id, { '_method' : 'delete', '_token' : '{{ csrf_token() }}' })
                         .fail(function () {
                             data.instance.refresh();
                         });
             })
             .on('create_node.jstree', function (e, data) {
-                $.post("{{ route('admin.categories.store') }}", { 'id' : data.node.parent, 'name' : data.node.text, '_token' : '{{ csrf_token() }}' })
+                $.post("{{ route('admin.catalog.categories.store') }}", { 'id' : data.node.parent, 'name' : data.node.text, '_token' : '{{ csrf_token() }}' })
                         .done(function (d) {
                             data.instance.set_id(data.node, d.id);
                         })
@@ -198,13 +199,13 @@
                         });
             })
             .on('rename_node.jstree', function (e, data) {
-                $.post("/admin/categories/"+data.node.id, { 'name' : data.text, '_token' : '{{ csrf_token() }}','_method':'PATCH' })
+                $.post("/admin/catalog/categories/"+data.node.id, { 'name' : data.text, '_token' : '{{ csrf_token() }}','_method':'PATCH' })
                         .fail(function () {
                             data.instance.refresh();
                         });
             })
             .on('move_node.jstree', function (e, data) {
-                $.post("{{ route('admin.categories.move') }}", { 'id' : data.node.id, 'parent' : data.parent, '_token' : '{{ csrf_token() }}' })
+                $.post("{{ route('admin.catalog.categories.move') }}", { 'id' : data.node.id, 'parent' : data.parent, '_token' : '{{ csrf_token() }}' })
                         .fail(function () {
                             data.instance.refresh();
                         });
@@ -214,18 +215,11 @@
                     $.get('?id=' + data.selected.join(':'), function (d) {
                         $('.category-product').html($(d).find('.category-product').html());
                         addDeleteForms();
+                        Ueditor();
                     });
                 }
             })
         })
-
-        /*实例化编辑器*/
-        var ue = UE.getEditor('editor',{
-            initialFrameHeight:350,//设置编辑器高度
-            scaleEnabled:true
-        });
-        ue.ready(function() {
-            ue.execCommand('serverparam', '_token', '{{ csrf_token() }}');//此处为支持laravel5 csrf ,根据实际情况修改,目的就是设置 _token 值.
-        });
+        Ueditor();
     </script>
 @stop

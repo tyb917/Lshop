@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Repositories\Backend\Category;
+namespace App\Repositories\Backend\Catalog;
 
+use File;
 use App\Models\Category;
 use App\Exceptions\GeneralException;
+use App\Helper\Catalog\Image;
 
 /**
  * Class EloquentUserRepository
@@ -32,14 +34,28 @@ class EloquentCategoryRepository implements CategoryContract
         }
 
         $category = Category::findOrFail($id);
-        if(isset($input['general']['image']['delete'])){
-            $input['image'] = '';
+
+        if($input->hasFile('image')){
+            $img = new Image();
+            $file = $img->uploadCategoryImage($id,$input->file('image'));
+            if($file && $category->image){
+                $img->deleteCategoryImage($id,$category->image);
+            }
+        }else{
+            if(isset($input['general']['image']['delete'])){
+                $input['image'] = '';
+            }
+            if(!isset($input['image']) && isset($input['general']['image']['value']) && !isset($input['general']['image']['delete'])){
+                $input['image'] = $input['general']['image']['value'];
+            }
         }
-        if(!isset($input['image']) && isset($input['general']['image']['value']) && !isset($input['general']['image']['delete'])){
-            $input['image'] = $input['general']['image']['value'];
-        }
-        if ($category->update($input)) {
+
+        if ($category->update($input->except('_token'))) {
+            if(isset($file)){
+                $category->image = $file;
+            }
             $category->save();
+
             return true;
         }
 

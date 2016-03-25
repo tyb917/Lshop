@@ -163,7 +163,7 @@ return [
         App\Providers\AccessServiceProvider::class,
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
-        App\Providers\CategoryServiceProvider::class,
+        App\Providers\CatalogServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         /*helper*/

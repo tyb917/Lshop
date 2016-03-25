@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend\Category;
+namespace App\Http\Controllers\Backend\Catalog;
 
 use File;
 use Config;
@@ -8,8 +8,7 @@ use App\Http\Requests;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Exceptions\GeneralException;
-use App\Repositories\Backend\Category\CategoryContract;
+use App\Repositories\Backend\Catalog\CategoryContract;
 
 class CategoryController extends Controller
 {
@@ -54,7 +53,10 @@ class CategoryController extends Controller
         }else{
             $categories = Category::root();
         }
-        return view('backend.category.index',compact('categories'));
+        if($categories->image){
+            $categories->imageUrl = asset(Config::get('image.category').DS.$categories->id.DS.$categories->image);
+        }
+        return view('backend.catalog.category.index',compact('categories'));
     }
 
     /**
@@ -114,27 +116,8 @@ class CategoryController extends Controller
      */
     public function update($id, Request $request)
     {
-        if($request->hasFile('image')){
-            $file = $request->file('image');
-            if($file->isValid()){
-                $type = $file->getMimeType();
-                $clientName = $file->getClientOriginalName();
-                $extension = $file->getClientOriginalExtension();
-                $dir = public_path(Config::get('image.category'));
-                $newName = md5($clientName).'.'.$extension;
-                if($type == 'image/jpeg' || $type == 'image/png' || $type == 'image/gif'){
-                    $file->move($dir.DS.$id,$newName);
-                }else{
-                    throw new GeneralException('允许上传的图片格式为JPG, PNG, GIF');
-                }
-            }else{
-                throw new GeneralException($file->getErrorMessage());
-            }
-        }
-        //$request['image'] = $newName;
-        $this->categories->update($id,$request->except('_token'));
-        //$this->categories->update($id,['image'=>$newName]);
-        return redirect()->route('admin.categories.index')->withFlashSuccess(trans('alerts.backend.categories.updated'));
+        $this->categories->update($id,$request);
+        return redirect()->route('admin.catalog.categories.index')->withFlashSuccess(trans('alerts.backend.catalog.categories.updated'));
     }
 
     /**
@@ -146,7 +129,7 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         $this->categories->delete($id);
-        return redirect()->route('admin.categories.index')->withFlashSuccess(trans('alerts.backend.categories.deleted'));
+        return redirect()->route('admin.catalog.categories.index')->withFlashSuccess(trans('alerts.backend.catalog.categories.deleted'));
     }
 
     /**

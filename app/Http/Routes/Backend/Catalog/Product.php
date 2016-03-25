@@ -1,8 +1,8 @@
 <?php
 
 Route::group([
-    'namespace'  => 'Product',
+    'namespace'  => 'Catalog',
     'middleware' => 'access.routeNeedsPermission:view-access-management',
 ], function() {
-    Route::resource('products', 'ProductController');
+    Route::resource('catalog/products', 'ProductController');
 });

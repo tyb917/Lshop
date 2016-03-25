@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repositories\Backend\Category;
+namespace App\Repositories\Backend\Catalog;
 
-interface CategoryContract
+interface ProductContract
 {
     /**
      * @param $id

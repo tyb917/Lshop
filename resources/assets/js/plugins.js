@@ -24,6 +24,18 @@ function addDeleteForms() {
         .attr('onclick', '$(this).find("form").submit();');
 }
 
+function Ueditor(){
+    /*实例化编辑器*/
+    UE.delEditor('editor');
+    var ue = UE.getEditor('editor',{
+        initialFrameHeight:350,//设置编辑器高度
+        scaleEnabled:true
+    });
+    ue.ready(function() {
+        ue.execCommand('serverparam', '_token', '{{ csrf_token() }}');//此处为支持laravel5 csrf ,根据实际情况修改,目的就是设置 _token 值.
+    });
+}
+
 /**
  * Place any jQuery/helper plugins in here.
  */

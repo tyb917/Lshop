@@ -43,9 +43,11 @@ return [
             'updated_password' => "用户的密码已更新成功。",
         ],
 
-        'categories' => [
-            'updated' => '分类更新成功。',
-            'deleted' => '分类删除成功。'
-        ]
+        'catalog' => [
+            'categories' => [
+                'updated' => '分类更新成功。',
+                'deleted' => '分类删除成功。'
+            ]
+        ],
     ],
 ];

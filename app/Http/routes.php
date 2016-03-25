@@ -41,8 +41,8 @@ Route::group(['middleware' => 'web'], function() {
                 require (__DIR__ . '/Routes/Backend/Dashboard.php');
                 require (__DIR__ . '/Routes/Backend/Access.php');
                 require (__DIR__ . '/Routes/Backend/LogViewer.php');
-                require (__DIR__ . '/Routes/Backend/Category.php');
-                require (__DIR__ . '/Routes/Backend/Product.php');
+                require (__DIR__ . '/Routes/Backend/Catalog/Category.php');
+                require (__DIR__ . '/Routes/Backend/Catalog/Product.php');
             });
         });
     });

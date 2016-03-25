@@ -49,14 +49,16 @@ return [
                 'main' => '用户',
             ],
         ],
-        'products' => [
-            'title' => '产品管理',
-            'all' => '所有产品',
-            'deactivated' => '下架产品',
-        ],
-        'category' => [
-            'management' => '分类管理',
-            'create' => '添加分类',
+        'catalog' => [
+            'products' => [
+                'title' => '产品管理',
+                'all' => '所有产品',
+                'deactivated' => '下架产品',
+            ],
+            'category' => [
+                'management' => '分类管理',
+                'create' => '添加分类',
+            ],
         ],
         'system' => [
             'title' => '系统设置'

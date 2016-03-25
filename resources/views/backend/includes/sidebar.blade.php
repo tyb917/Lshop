@@ -39,20 +39,20 @@
                 </li>
             @endauth
             @permission(['view-access-management'])
-            <li class="{{ Active::pattern(['admin/products*','admin/categories*']) }} treeview">
+            <li class="{{ Active::pattern(['admin/catalog/products*','admin/catalog/categories*']) }} treeview">
                 <a href="#">
-                    <i class="fa fa-users"></i><span>{{ trans('menus.backend.products.title') }}</span>
+                    <i class="fa fa-users"></i><span>{{ trans('menus.backend.catalog.products.title') }}</span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
-                <ul class="treeview-menu {{ Active::pattern(['admin/products*','admin/categories*'], 'menu-open') }}" style="display: none; {{ Active::pattern(['admin/products*','admin/categories*'], 'display: block;') }}">
-                    <li class="{{ Active::pattern(['admin/products/','admin/products/create','admin/products/*/edit']) }}">
-                        <a href="{!!url('admin/products')!!}"><span>{{ trans('menus.backend.products.all') }}</span></a>
+                <ul class="treeview-menu {{ Active::pattern(['admin/catalog/products*','admin/catalog/categories*'], 'menu-open') }}" style="display: none; {{ Active::pattern(['admin/products*','admin/categories*'], 'display: block;') }}">
+                    <li class="{{ Active::pattern(['admin/catalog/products/','admin/catalog/products/create','admin/catalog/products/*/edit']) }}">
+                        <a href="{!!url('admin/catalog/products')!!}"><span>{{ trans('menus.backend.catalog.products.all') }}</span></a>
                     </li>
-                    <li class="{{ Active::pattern('admin/products/deactivated') }}">
-                        <a href="{!!url('admin/products/deactivated')!!}"><span>{{ trans('menus.backend.products.deactivated') }}</span></a>
+                    <li class="{{ Active::pattern('admin/catalog/products/deactivated') }}">
+                        <a href="{!!url('admin/catalog/products/deactivated')!!}"><span>{{ trans('menus.backend.catalog.products.deactivated') }}</span></a>
                     </li>
-                    <li class="{{ Active::pattern('admin/categories*') }}">
-                        <a href="{!!url('admin/categories')!!}"><span>{{ trans('menus.backend.category.management') }}</span></a>
+                    <li class="{{ Active::pattern('admin/catalog/categories*') }}">
+                        <a href="{!!url('admin/catalog/categories')!!}"><span>{{ trans('menus.backend.catalog.category.management') }}</span></a>
                     </li>
                 </ul>
             </li>

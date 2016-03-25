@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Backend\Product;
-
-use Illuminate\Http\Request;
+namespace App\Http\Controllers\Backend\Catalog;
 
 use App\Http\Requests;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class ProductController extends Controller
@@ -14,9 +13,9 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        dd($request);
     }
 
     /**
