@@ -1357,6 +1357,7 @@ class EavAttributeTableSeeder extends Seeder
                 'created_at'=>Carbon::now(),
                 'updated_at'=>Carbon::now()
             ]
+
         ];
 
         DB::table('eav_attribute')->insert($eav);
