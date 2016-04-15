@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Backend\Catalog;
 use File;
 use Config;
 use App\Http\Requests;
-use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Models\Catalog\Category;
 use App\Http\Controllers\Controller;
 use App\Repositories\Backend\Catalog\CategoryContract;
 

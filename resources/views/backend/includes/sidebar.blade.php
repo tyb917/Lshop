@@ -57,6 +57,22 @@
                 </ul>
             </li>
             @endauth
+            @permission(['view-attribute-management'])
+            <li class="{{ Active::pattern(['admin/catalog/product_attribute*']) }} treeview">
+                <a href="#">
+                    <i class="fa fa-users"></i><span>{{ trans('menus.backend.catalog.product_attribute.management') }}</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu {{ Active::pattern(['admin/catalog/product_attribute*'], 'menu-open') }}" style="display: none; {{ Active::pattern(['admin/products*','admin/categories*'], 'display: block;') }}">
+                    <li class="{{ Active::pattern(['admin/catalog/product_attribute/']) }}">
+                        <a href="{!!url('admin/catalog/product_attribute')!!}"><span>{{ trans('menus.backend.catalog.product_attribute.all') }}</span></a>
+                    </li>
+                    <li class="{{ Active::pattern(['admin/catalog/product_attribute/set']) }}">
+                        <a href="{!!url('admin/catalog/product_attribute/set')!!}"><span>{{ trans('menus.backend.catalog.product_attribute.set') }}</span></a>
+                    </li>
+                </ul>
+            </li>
+            @endauth
             @role('1')
             <li class="{{ Active::pattern('admin/log-viewer*') }} treeview">
                 <a href="#">

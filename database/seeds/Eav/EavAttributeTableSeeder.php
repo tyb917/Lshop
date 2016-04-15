@@ -50,7 +50,7 @@ class EavAttributeTableSeeder extends Seeder
             [
                 'entity_type_id'=>'1',
                 'attribute_code'=>'created_in',
-                'backend_type'=>'varchar',
+                'backend_type'=>'static',
                 'frontend_input'=>'text',
                 'frontend_label'=>'Created From',
                 'is_required'=>'0',
@@ -60,7 +60,7 @@ class EavAttributeTableSeeder extends Seeder
             [
                 'entity_type_id'=>'1',
                 'attribute_code'=>'prefix',
-                'backend_type'=>'varchar',
+                'backend_type'=>'static',
                 'frontend_input'=>'text',
                 'frontend_label'=>'Prefix',
                 'is_required'=>'0',
@@ -70,7 +70,7 @@ class EavAttributeTableSeeder extends Seeder
             [
                 'entity_type_id'=>'1',
                 'attribute_code'=>'firstname',
-                'backend_type'=>'varchar',
+                'backend_type'=>'static',
                 'frontend_input'=>'text',
                 'frontend_label'=>'First Name',
                 'is_required'=>'1',
@@ -80,7 +80,7 @@ class EavAttributeTableSeeder extends Seeder
             [
                 'entity_type_id'=>'1',
                 'attribute_code'=>'middlename',
-                'backend_type'=>'varchar',
+                'backend_type'=>'static',
                 'frontend_input'=>'text',
                 'frontend_label'=>'Middle Name/Initial',
                 'is_required'=>'0',
@@ -90,7 +90,7 @@ class EavAttributeTableSeeder extends Seeder
             [
                 'entity_type_id'=>'1',
                 'attribute_code'=>'lastname',
-                'backend_type'=>'varchar',
+                'backend_type'=>'static',
                 'frontend_input'=>'text',
                 'frontend_label'=>'Last Name',
                 'is_required'=>'1',
@@ -100,7 +100,7 @@ class EavAttributeTableSeeder extends Seeder
             [
                 'entity_type_id'=>'1',
                 'attribute_code'=>'suffix',
-                'backend_type'=>'varchar',
+                'backend_type'=>'static',
                 'frontend_input'=>'text',
                 'frontend_label'=>'Suffix',
                 'is_required'=>'0',
@@ -130,9 +130,9 @@ class EavAttributeTableSeeder extends Seeder
             [
                 'entity_type_id'=>'1',
                 'attribute_code'=>'dob',
-                'backend_type'=>'datetime',
+                'backend_type'=>'static',
                 'frontend_input'=>'date',
-                'frontend_label'=>'Date Of Birth',
+                'frontend_label'=>'Date of Birth',
                 'is_required'=>'0',
                 'created_at'=>Carbon::now(),
                 'updated_at'=>Carbon::now()
@@ -140,17 +140,34 @@ class EavAttributeTableSeeder extends Seeder
             [
                 'entity_type_id'=>'1',
                 'attribute_code'=>'password_hash',
-                'backend_type'=>'varchar',
+                'backend_type'=>'static',
                 'frontend_input'=>'hidden',
-                'frontend_label'=>'',
-                'is_required'=>'0',
+                'frontend_label'=>null,'is_required'=>'0',
+                'created_at'=>Carbon::now(),
+                'updated_at'=>Carbon::now()
+            ],
+            [
+                'entity_type_id'=>'1',
+                'attribute_code'=>'rp_token',
+                'backend_type'=>'static',
+                'frontend_input'=>'hidden',
+                'frontend_label'=>null,'is_required'=>'0',
+                'created_at'=>Carbon::now(),
+                'updated_at'=>Carbon::now()
+            ],
+            [
+                'entity_type_id'=>'1',
+                'attribute_code'=>'rp_token_created_at',
+                'backend_type'=>'static',
+                'frontend_input'=>'date',
+                'frontend_label'=>null,'is_required'=>'0',
                 'created_at'=>Carbon::now(),
                 'updated_at'=>Carbon::now()
             ],
             [
                 'entity_type_id'=>'1',
                 'attribute_code'=>'default_billing',
-                'backend_type'=>'int',
+                'backend_type'=>'static',
                 'frontend_input'=>'text',
                 'frontend_label'=>'Default Billing Address',
                 'is_required'=>'0',
@@ -160,7 +177,7 @@ class EavAttributeTableSeeder extends Seeder
             [
                 'entity_type_id'=>'1',
                 'attribute_code'=>'default_shipping',
-                'backend_type'=>'int',
+                'backend_type'=>'static',
                 'frontend_input'=>'text',
                 'frontend_label'=>'Default Shipping Address',
                 'is_required'=>'0',
@@ -170,7 +187,7 @@ class EavAttributeTableSeeder extends Seeder
             [
                 'entity_type_id'=>'1',
                 'attribute_code'=>'taxvat',
-                'backend_type'=>'varchar',
+                'backend_type'=>'static',
                 'frontend_input'=>'text',
                 'frontend_label'=>'Tax/VAT Number',
                 'is_required'=>'0',
@@ -180,7 +197,7 @@ class EavAttributeTableSeeder extends Seeder
             [
                 'entity_type_id'=>'1',
                 'attribute_code'=>'confirmation',
-                'backend_type'=>'varchar',
+                'backend_type'=>'static',
                 'frontend_input'=>'text',
                 'frontend_label'=>'Is Confirmed',
                 'is_required'=>'0',
@@ -191,7 +208,7 @@ class EavAttributeTableSeeder extends Seeder
                 'entity_type_id'=>'1',
                 'attribute_code'=>'created_at',
                 'backend_type'=>'static',
-                'frontend_input'=>'datetime',
+                'frontend_input'=>'date',
                 'frontend_label'=>'Created At',
                 'is_required'=>'0',
                 'created_at'=>Carbon::now(),
@@ -200,169 +217,9 @@ class EavAttributeTableSeeder extends Seeder
             [
                 'entity_type_id'=>'1',
                 'attribute_code'=>'gender',
-                'backend_type'=>'int',
+                'backend_type'=>'static',
                 'frontend_input'=>'select',
                 'frontend_label'=>'Gender',
-                'is_required'=>'0',
-                'created_at'=>Carbon::now(),
-                'updated_at'=>Carbon::now()
-            ],
-            [
-                'entity_type_id'=>'2',
-                'attribute_code'=>'prefix',
-                'backend_type'=>'varchar',
-                'frontend_input'=>'text',
-                'frontend_label'=>'Prefix',
-                'is_required'=>'0',
-                'created_at'=>Carbon::now(),
-                'updated_at'=>Carbon::now()
-            ],
-            [
-                'entity_type_id'=>'2',
-                'attribute_code'=>'firstname',
-                'backend_type'=>'varchar',
-                'frontend_input'=>'text',
-                'frontend_label'=>'First Name',
-                'is_required'=>'1',
-                'created_at'=>Carbon::now(),
-                'updated_at'=>Carbon::now()
-            ],
-            [
-                'entity_type_id'=>'2',
-                'attribute_code'=>'middlename',
-                'backend_type'=>'varchar',
-                'frontend_input'=>'text',
-                'frontend_label'=>'Middle Name/Initial',
-                'is_required'=>'0',
-                'created_at'=>Carbon::now(),
-                'updated_at'=>Carbon::now()
-            ],
-            [
-                'entity_type_id'=>'2',
-                'attribute_code'=>'lastname',
-                'backend_type'=>'varchar',
-                'frontend_input'=>'text',
-                'frontend_label'=>'Last Name',
-                'is_required'=>'1',
-                'created_at'=>Carbon::now(),
-                'updated_at'=>Carbon::now()
-            ],
-            [
-                'entity_type_id'=>'2',
-                'attribute_code'=>'suffix',
-                'backend_type'=>'varchar',
-                'frontend_input'=>'text',
-                'frontend_label'=>'Suffix',
-                'is_required'=>'0',
-                'created_at'=>Carbon::now(),
-                'updated_at'=>Carbon::now()
-            ],
-            [
-                'entity_type_id'=>'2',
-                'attribute_code'=>'company',
-                'backend_type'=>'varchar',
-                'frontend_input'=>'text',
-                'frontend_label'=>'Company',
-                'is_required'=>'0',
-                'created_at'=>Carbon::now(),
-                'updated_at'=>Carbon::now()
-            ],
-            [
-                'entity_type_id'=>'2',
-                'attribute_code'=>'street',
-                'backend_type'=>'text',
-                'frontend_input'=>'multiline',
-                'frontend_label'=>'Street Address',
-                'is_required'=>'1',
-                'created_at'=>Carbon::now(),
-                'updated_at'=>Carbon::now()
-            ],
-            [
-                'entity_type_id'=>'2',
-                'attribute_code'=>'city',
-                'backend_type'=>'varchar',
-                'frontend_input'=>'text',
-                'frontend_label'=>'City',
-                'is_required'=>'1',
-                'created_at'=>Carbon::now(),
-                'updated_at'=>Carbon::now()
-            ],
-            [
-                'entity_type_id'=>'2',
-                'attribute_code'=>'country_id',
-                'backend_type'=>'varchar',
-                'frontend_input'=>'select',
-                'frontend_label'=>'Country',
-                'is_required'=>'1',
-                'created_at'=>Carbon::now(),
-                'updated_at'=>Carbon::now()
-            ],
-            [
-                'entity_type_id'=>'2',
-                'attribute_code'=>'region',
-                'backend_type'=>'varchar',
-                'frontend_input'=>'text',
-                'frontend_label'=>'State/Province',
-                'is_required'=>'0',
-                'created_at'=>Carbon::now(),
-                'updated_at'=>Carbon::now()
-            ],
-            [
-                'entity_type_id'=>'2',
-                'attribute_code'=>'region_id',
-                'backend_type'=>'int',
-                'frontend_input'=>'hidden',
-                'frontend_label'=>'State/Province',
-                'is_required'=>'0',
-                'created_at'=>Carbon::now(),
-                'updated_at'=>Carbon::now()
-            ],
-            [
-                'entity_type_id'=>'2',
-                'attribute_code'=>'postcode',
-                'backend_type'=>'varchar',
-                'frontend_input'=>'text',
-                'frontend_label'=>'Zip/Postal Code',
-                'is_required'=>'1',
-                'created_at'=>Carbon::now(),
-                'updated_at'=>Carbon::now()
-            ],
-            [
-                'entity_type_id'=>'2',
-                'attribute_code'=>'telephone',
-                'backend_type'=>'varchar',
-                'frontend_input'=>'text',
-                'frontend_label'=>'Telephone',
-                'is_required'=>'1',
-                'created_at'=>Carbon::now(),
-                'updated_at'=>Carbon::now()
-            ],
-            [
-                'entity_type_id'=>'2',
-                'attribute_code'=>'fax',
-                'backend_type'=>'varchar',
-                'frontend_input'=>'text',
-                'frontend_label'=>'Fax',
-                'is_required'=>'0',
-                'created_at'=>Carbon::now(),
-                'updated_at'=>Carbon::now()
-            ],
-            [
-                'entity_type_id'=>'1',
-                'attribute_code'=>'rp_token',
-                'backend_type'=>'varchar',
-                'frontend_input'=>'hidden',
-                'frontend_label'=>'',
-                'is_required'=>'0',
-                'created_at'=>Carbon::now(),
-                'updated_at'=>Carbon::now()
-            ],
-            [
-                'entity_type_id'=>'1',
-                'attribute_code'=>'rp_token_created_at',
-                'backend_type'=>'datetime',
-                'frontend_input'=>'date',
-                'frontend_label'=>'',
                 'is_required'=>'0',
                 'created_at'=>Carbon::now(),
                 'updated_at'=>Carbon::now()
@@ -379,8 +236,148 @@ class EavAttributeTableSeeder extends Seeder
             ],
             [
                 'entity_type_id'=>'2',
+                'attribute_code'=>'prefix',
+                'backend_type'=>'static',
+                'frontend_input'=>'text',
+                'frontend_label'=>'Prefix',
+                'is_required'=>'0',
+                'created_at'=>Carbon::now(),
+                'updated_at'=>Carbon::now()
+            ],
+            [
+                'entity_type_id'=>'2',
+                'attribute_code'=>'firstname',
+                'backend_type'=>'static',
+                'frontend_input'=>'text',
+                'frontend_label'=>'First Name',
+                'is_required'=>'1',
+                'created_at'=>Carbon::now(),
+                'updated_at'=>Carbon::now()
+            ],
+            [
+                'entity_type_id'=>'2',
+                'attribute_code'=>'middlename',
+                'backend_type'=>'static',
+                'frontend_input'=>'text',
+                'frontend_label'=>'Middle Name/Initial',
+                'is_required'=>'0',
+                'created_at'=>Carbon::now(),
+                'updated_at'=>Carbon::now()
+            ],
+            [
+                'entity_type_id'=>'2',
+                'attribute_code'=>'lastname',
+                'backend_type'=>'static',
+                'frontend_input'=>'text',
+                'frontend_label'=>'Last Name',
+                'is_required'=>'1',
+                'created_at'=>Carbon::now(),
+                'updated_at'=>Carbon::now()
+            ],
+            [
+                'entity_type_id'=>'2',
+                'attribute_code'=>'suffix',
+                'backend_type'=>'static',
+                'frontend_input'=>'text',
+                'frontend_label'=>'Suffix',
+                'is_required'=>'0',
+                'created_at'=>Carbon::now(),
+                'updated_at'=>Carbon::now()
+            ],
+            [
+                'entity_type_id'=>'2',
+                'attribute_code'=>'company',
+                'backend_type'=>'static',
+                'frontend_input'=>'text',
+                'frontend_label'=>'Company',
+                'is_required'=>'0',
+                'created_at'=>Carbon::now(),
+                'updated_at'=>Carbon::now()
+            ],
+            [
+                'entity_type_id'=>'2',
+                'attribute_code'=>'street',
+                'backend_type'=>'static',
+                'frontend_input'=>'multiline',
+                'frontend_label'=>'Street Address',
+                'is_required'=>'1',
+                'created_at'=>Carbon::now(),
+                'updated_at'=>Carbon::now()
+            ],
+            [
+                'entity_type_id'=>'2',
+                'attribute_code'=>'city',
+                'backend_type'=>'static',
+                'frontend_input'=>'text',
+                'frontend_label'=>'City',
+                'is_required'=>'1',
+                'created_at'=>Carbon::now(),
+                'updated_at'=>Carbon::now()
+            ],
+            [
+                'entity_type_id'=>'2',
+                'attribute_code'=>'country_id',
+                'backend_type'=>'static',
+                'frontend_input'=>'select',
+                'frontend_label'=>'Country',
+                'is_required'=>'1',
+                'created_at'=>Carbon::now(),
+                'updated_at'=>Carbon::now()
+            ],
+            [
+                'entity_type_id'=>'2',
+                'attribute_code'=>'region',
+                'backend_type'=>'static',
+                'frontend_input'=>'text',
+                'frontend_label'=>'State/Province',
+                'is_required'=>'0',
+                'created_at'=>Carbon::now(),
+                'updated_at'=>Carbon::now()
+            ],
+            [
+                'entity_type_id'=>'2',
+                'attribute_code'=>'region_id',
+                'backend_type'=>'static',
+                'frontend_input'=>'hidden',
+                'frontend_label'=>'State/Province',
+                'is_required'=>'0',
+                'created_at'=>Carbon::now(),
+                'updated_at'=>Carbon::now()
+            ],
+            [
+                'entity_type_id'=>'2',
+                'attribute_code'=>'postcode',
+                'backend_type'=>'static',
+                'frontend_input'=>'text',
+                'frontend_label'=>'Zip/Postal Code',
+                'is_required'=>'0',
+                'created_at'=>Carbon::now(),
+                'updated_at'=>Carbon::now()
+            ],
+            [
+                'entity_type_id'=>'2',
+                'attribute_code'=>'telephone',
+                'backend_type'=>'static',
+                'frontend_input'=>'text',
+                'frontend_label'=>'Phone Number',
+                'is_required'=>'1',
+                'created_at'=>Carbon::now(),
+                'updated_at'=>Carbon::now()
+            ],
+            [
+                'entity_type_id'=>'2',
+                'attribute_code'=>'fax',
+                'backend_type'=>'static',
+                'frontend_input'=>'text',
+                'frontend_label'=>'Fax',
+                'is_required'=>'0',
+                'created_at'=>Carbon::now(),
+                'updated_at'=>Carbon::now()
+            ],
+            [
+                'entity_type_id'=>'2',
                 'attribute_code'=>'vat_id',
-                'backend_type'=>'varchar',
+                'backend_type'=>'static',
                 'frontend_input'=>'text',
                 'frontend_label'=>'VAT number',
                 'is_required'=>'0',
@@ -390,7 +387,7 @@ class EavAttributeTableSeeder extends Seeder
             [
                 'entity_type_id'=>'2',
                 'attribute_code'=>'vat_is_valid',
-                'backend_type'=>'int',
+                'backend_type'=>'static',
                 'frontend_input'=>'text',
                 'frontend_label'=>'VAT number validity',
                 'is_required'=>'0',
@@ -400,7 +397,7 @@ class EavAttributeTableSeeder extends Seeder
             [
                 'entity_type_id'=>'2',
                 'attribute_code'=>'vat_request_id',
-                'backend_type'=>'varchar',
+                'backend_type'=>'static',
                 'frontend_input'=>'text',
                 'frontend_label'=>'VAT number validation request ID',
                 'is_required'=>'0',
@@ -410,7 +407,7 @@ class EavAttributeTableSeeder extends Seeder
             [
                 'entity_type_id'=>'2',
                 'attribute_code'=>'vat_request_date',
-                'backend_type'=>'varchar',
+                'backend_type'=>'static',
                 'frontend_input'=>'text',
                 'frontend_label'=>'VAT number validation request date',
                 'is_required'=>'0',
@@ -420,9 +417,19 @@ class EavAttributeTableSeeder extends Seeder
             [
                 'entity_type_id'=>'2',
                 'attribute_code'=>'vat_request_success',
-                'backend_type'=>'int',
+                'backend_type'=>'static',
                 'frontend_input'=>'text',
                 'frontend_label'=>'VAT number validation request success',
+                'is_required'=>'0',
+                'created_at'=>Carbon::now(),
+                'updated_at'=>Carbon::now()
+            ],
+            [
+                'entity_type_id'=>'1',
+                'attribute_code'=>'updated_at',
+                'backend_type'=>'static',
+                'frontend_input'=>'date',
+                'frontend_label'=>'Updated At',
                 'is_required'=>'0',
                 'created_at'=>Carbon::now(),
                 'updated_at'=>Carbon::now()
@@ -444,16 +451,6 @@ class EavAttributeTableSeeder extends Seeder
                 'frontend_input'=>'select',
                 'frontend_label'=>'Is Active',
                 'is_required'=>'1',
-                'created_at'=>Carbon::now(),
-                'updated_at'=>Carbon::now()
-            ],
-            [
-                'entity_type_id'=>'3',
-                'attribute_code'=>'url_key',
-                'backend_type'=>'varchar',
-                'frontend_input'=>'text',
-                'frontend_label'=>'URL Key',
-                'is_required'=>'0',
                 'created_at'=>Carbon::now(),
                 'updated_at'=>Carbon::now()
             ],
@@ -562,8 +559,7 @@ class EavAttributeTableSeeder extends Seeder
                 'attribute_code'=>'all_children',
                 'backend_type'=>'text',
                 'frontend_input'=>'text',
-                'frontend_label'=>'',
-                'is_required'=>'0',
+                'frontend_label'=>null,'is_required'=>'0',
                 'created_at'=>Carbon::now(),
                 'updated_at'=>Carbon::now()
             ],
@@ -572,8 +568,7 @@ class EavAttributeTableSeeder extends Seeder
                 'attribute_code'=>'path_in_store',
                 'backend_type'=>'text',
                 'frontend_input'=>'text',
-                'frontend_label'=>'',
-                'is_required'=>'0',
+                'frontend_label'=>null,'is_required'=>'0',
                 'created_at'=>Carbon::now(),
                 'updated_at'=>Carbon::now()
             ],
@@ -582,18 +577,7 @@ class EavAttributeTableSeeder extends Seeder
                 'attribute_code'=>'children',
                 'backend_type'=>'text',
                 'frontend_input'=>'text',
-                'frontend_label'=>'',
-                'is_required'=>'0',
-                'created_at'=>Carbon::now(),
-                'updated_at'=>Carbon::now()
-            ],
-            [
-                'entity_type_id'=>'3',
-                'attribute_code'=>'url_path',
-                'backend_type'=>'varchar',
-                'frontend_input'=>'text',
-                'frontend_label'=>'',
-                'is_required'=>'0',
+                'frontend_label'=>null,'is_required'=>'0',
                 'created_at'=>Carbon::now(),
                 'updated_at'=>Carbon::now()
             ],
@@ -732,27 +716,7 @@ class EavAttributeTableSeeder extends Seeder
                 'attribute_code'=>'name',
                 'backend_type'=>'varchar',
                 'frontend_input'=>'text',
-                'frontend_label'=>'Name',
-                'is_required'=>'1',
-                'created_at'=>Carbon::now(),
-                'updated_at'=>Carbon::now()
-            ],
-            [
-                'entity_type_id'=>'4',
-                'attribute_code'=>'description',
-                'backend_type'=>'text',
-                'frontend_input'=>'textarea',
-                'frontend_label'=>'Description',
-                'is_required'=>'1',
-                'created_at'=>Carbon::now(),
-                'updated_at'=>Carbon::now()
-            ],
-            [
-                'entity_type_id'=>'4',
-                'attribute_code'=>'short_description',
-                'backend_type'=>'text',
-                'frontend_input'=>'textarea',
-                'frontend_label'=>'Short Description',
+                'frontend_label'=>'Product Name',
                 'is_required'=>'1',
                 'created_at'=>Carbon::now(),
                 'updated_at'=>Carbon::now()
@@ -764,6 +728,26 @@ class EavAttributeTableSeeder extends Seeder
                 'frontend_input'=>'text',
                 'frontend_label'=>'SKU',
                 'is_required'=>'1',
+                'created_at'=>Carbon::now(),
+                'updated_at'=>Carbon::now()
+            ],
+            [
+                'entity_type_id'=>'4',
+                'attribute_code'=>'description',
+                'backend_type'=>'text',
+                'frontend_input'=>'textarea',
+                'frontend_label'=>'Description',
+                'is_required'=>'0',
+                'created_at'=>Carbon::now(),
+                'updated_at'=>Carbon::now()
+            ],
+            [
+                'entity_type_id'=>'4',
+                'attribute_code'=>'short_description',
+                'backend_type'=>'text',
+                'frontend_input'=>'textarea',
+                'frontend_label'=>'Short Description',
+                'is_required'=>'0',
                 'created_at'=>Carbon::now(),
                 'updated_at'=>Carbon::now()
             ],
@@ -823,7 +807,7 @@ class EavAttributeTableSeeder extends Seeder
                 'backend_type'=>'decimal',
                 'frontend_input'=>'weight',
                 'frontend_label'=>'Weight',
-                'is_required'=>'1',
+                'is_required'=>'0',
                 'created_at'=>Carbon::now(),
                 'updated_at'=>Carbon::now()
             ],
@@ -872,7 +856,7 @@ class EavAttributeTableSeeder extends Seeder
                 'attribute_code'=>'image',
                 'backend_type'=>'varchar',
                 'frontend_input'=>'media_image',
-                'frontend_label'=>'Base Image',
+                'frontend_label'=>'Base',
                 'is_required'=>'0',
                 'created_at'=>Carbon::now(),
                 'updated_at'=>Carbon::now()
@@ -882,7 +866,7 @@ class EavAttributeTableSeeder extends Seeder
                 'attribute_code'=>'small_image',
                 'backend_type'=>'varchar',
                 'frontend_input'=>'media_image',
-                'frontend_label'=>'Small Image',
+                'frontend_label'=>'Small',
                 'is_required'=>'0',
                 'created_at'=>Carbon::now(),
                 'updated_at'=>Carbon::now()
@@ -900,7 +884,7 @@ class EavAttributeTableSeeder extends Seeder
             [
                 'entity_type_id'=>'4',
                 'attribute_code'=>'media_gallery',
-                'backend_type'=>'varchar',
+                'backend_type'=>'static',
                 'frontend_input'=>'gallery',
                 'frontend_label'=>'Media Gallery',
                 'is_required'=>'0',
@@ -912,18 +896,7 @@ class EavAttributeTableSeeder extends Seeder
                 'attribute_code'=>'old_id',
                 'backend_type'=>'int',
                 'frontend_input'=>'text',
-                'frontend_label'=>'',
-                'is_required'=>'0',
-                'created_at'=>Carbon::now(),
-                'updated_at'=>Carbon::now()
-            ],
-            [
-                'entity_type_id'=>'4',
-                'attribute_code'=>'group_price',
-                'backend_type'=>'decimal',
-                'frontend_input'=>'text',
-                'frontend_label'=>'Group Price',
-                'is_required'=>'0',
+                'frontend_label'=>null,'is_required'=>'0',
                 'created_at'=>Carbon::now(),
                 'updated_at'=>Carbon::now()
             ],
@@ -982,27 +955,7 @@ class EavAttributeTableSeeder extends Seeder
                 'attribute_code'=>'status',
                 'backend_type'=>'int',
                 'frontend_input'=>'select',
-                'frontend_label'=>'Status',
-                'is_required'=>'1',
-                'created_at'=>Carbon::now(),
-                'updated_at'=>Carbon::now()
-            ],
-            [
-                'entity_type_id'=>'4',
-                'attribute_code'=>'url_key',
-                'backend_type'=>'varchar',
-                'frontend_input'=>'text',
-                'frontend_label'=>'URL Key',
-                'is_required'=>'0',
-                'created_at'=>Carbon::now(),
-                'updated_at'=>Carbon::now()
-            ],
-            [
-                'entity_type_id'=>'4',
-                'attribute_code'=>'url_path',
-                'backend_type'=>'varchar',
-                'frontend_input'=>'text',
-                'frontend_label'=>'',
+                'frontend_label'=>'Enable Product',
                 'is_required'=>'0',
                 'created_at'=>Carbon::now(),
                 'updated_at'=>Carbon::now()
@@ -1019,31 +972,11 @@ class EavAttributeTableSeeder extends Seeder
             ],
             [
                 'entity_type_id'=>'4',
-                'attribute_code'=>'is_recurring',
-                'backend_type'=>'int',
-                'frontend_input'=>'select',
-                'frontend_label'=>'Enable Recurring Profile',
-                'is_required'=>'0',
-                'created_at'=>Carbon::now(),
-                'updated_at'=>Carbon::now()
-            ],
-            [
-                'entity_type_id'=>'4',
-                'attribute_code'=>'recurring_profile',
-                'backend_type'=>'text',
-                'frontend_input'=>'text',
-                'frontend_label'=>'Recurring Payment Profile',
-                'is_required'=>'0',
-                'created_at'=>Carbon::now(),
-                'updated_at'=>Carbon::now()
-            ],
-            [
-                'entity_type_id'=>'4',
                 'attribute_code'=>'visibility',
                 'backend_type'=>'int',
                 'frontend_input'=>'select',
                 'frontend_label'=>'Visibility',
-                'is_required'=>'1',
+                'is_required'=>'0',
                 'created_at'=>Carbon::now(),
                 'updated_at'=>Carbon::now()
             ],
@@ -1052,7 +985,7 @@ class EavAttributeTableSeeder extends Seeder
                 'attribute_code'=>'custom_design',
                 'backend_type'=>'varchar',
                 'frontend_input'=>'select',
-                'frontend_label'=>'Custom Design',
+                'frontend_label'=>'New Theme',
                 'is_required'=>'0',
                 'created_at'=>Carbon::now(),
                 'updated_at'=>Carbon::now()
@@ -1082,7 +1015,7 @@ class EavAttributeTableSeeder extends Seeder
                 'attribute_code'=>'custom_layout_update',
                 'backend_type'=>'text',
                 'frontend_input'=>'textarea',
-                'frontend_label'=>'Custom Layout Update',
+                'frontend_label'=>'Layout Update XML',
                 'is_required'=>'0',
                 'created_at'=>Carbon::now(),
                 'updated_at'=>Carbon::now()
@@ -1092,7 +1025,7 @@ class EavAttributeTableSeeder extends Seeder
                 'attribute_code'=>'page_layout',
                 'backend_type'=>'varchar',
                 'frontend_input'=>'select',
-                'frontend_label'=>'Page Layout',
+                'frontend_label'=>'Layout',
                 'is_required'=>'0',
                 'created_at'=>Carbon::now(),
                 'updated_at'=>Carbon::now()
@@ -1102,7 +1035,7 @@ class EavAttributeTableSeeder extends Seeder
                 'attribute_code'=>'category_ids',
                 'backend_type'=>'static',
                 'frontend_input'=>'text',
-                'frontend_label'=>'',
+                'frontend_label'=>'Categories',
                 'is_required'=>'0',
                 'created_at'=>Carbon::now(),
                 'updated_at'=>Carbon::now()
@@ -1122,8 +1055,7 @@ class EavAttributeTableSeeder extends Seeder
                 'attribute_code'=>'required_options',
                 'backend_type'=>'static',
                 'frontend_input'=>'text',
-                'frontend_label'=>'',
-                'is_required'=>'0',
+                'frontend_label'=>null,'is_required'=>'0',
                 'created_at'=>Carbon::now(),
                 'updated_at'=>Carbon::now()
             ],
@@ -1132,8 +1064,7 @@ class EavAttributeTableSeeder extends Seeder
                 'attribute_code'=>'has_options',
                 'backend_type'=>'static',
                 'frontend_input'=>'text',
-                'frontend_label'=>'',
-                'is_required'=>'0',
+                'frontend_label'=>null,'is_required'=>'0',
                 'created_at'=>Carbon::now(),
                 'updated_at'=>Carbon::now()
             ],
@@ -1171,9 +1102,8 @@ class EavAttributeTableSeeder extends Seeder
                 'entity_type_id'=>'4',
                 'attribute_code'=>'created_at',
                 'backend_type'=>'static',
-                'frontend_input'=>'text',
-                'frontend_label'=>'',
-                'is_required'=>'1',
+                'frontend_input'=>'date',
+                'frontend_label'=>null,'is_required'=>'1',
                 'created_at'=>Carbon::now(),
                 'updated_at'=>Carbon::now()
             ],
@@ -1181,9 +1111,8 @@ class EavAttributeTableSeeder extends Seeder
                 'entity_type_id'=>'4',
                 'attribute_code'=>'updated_at',
                 'backend_type'=>'static',
-                'frontend_input'=>'text',
-                'frontend_label'=>'',
-                'is_required'=>'1',
+                'frontend_input'=>'date',
+                'frontend_label'=>null,'is_required'=>'1',
                 'created_at'=>Carbon::now(),
                 'updated_at'=>Carbon::now()
             ],
@@ -1199,20 +1128,20 @@ class EavAttributeTableSeeder extends Seeder
             ],
             [
                 'entity_type_id'=>'4',
-                'attribute_code'=>'msrp_enabled',
-                'backend_type'=>'varchar',
+                'attribute_code'=>'quantity_and_stock_status',
+                'backend_type'=>'int',
                 'frontend_input'=>'select',
-                'frontend_label'=>'Apply MAP',
+                'frontend_label'=>'Quantity',
                 'is_required'=>'0',
                 'created_at'=>Carbon::now(),
                 'updated_at'=>Carbon::now()
             ],
             [
                 'entity_type_id'=>'4',
-                'attribute_code'=>'msrp_display_actual_price_type',
+                'attribute_code'=>'custom_layout',
                 'backend_type'=>'varchar',
                 'frontend_input'=>'select',
-                'frontend_label'=>'Display Actual Price',
+                'frontend_label'=>'New Layout',
                 'is_required'=>'0',
                 'created_at'=>Carbon::now(),
                 'updated_at'=>Carbon::now()
@@ -1229,21 +1158,84 @@ class EavAttributeTableSeeder extends Seeder
             ],
             [
                 'entity_type_id'=>'4',
-                'attribute_code'=>'tax_class_id',
-                'backend_type'=>'int',
+                'attribute_code'=>'msrp_display_actual_price_type',
+                'backend_type'=>'varchar',
                 'frontend_input'=>'select',
-                'frontend_label'=>'Tax Class',
+                'frontend_label'=>'Display Actual Price',
+                'is_required'=>'0',
+                'created_at'=>Carbon::now(),
+                'updated_at'=>Carbon::now()
+            ],
+            [
+                'entity_type_id'=>'3',
+                'attribute_code'=>'url_key',
+                'backend_type'=>'varchar',
+                'frontend_input'=>'text',
+                'frontend_label'=>'URL Key',
+                'is_required'=>'0',
+                'created_at'=>Carbon::now(),
+                'updated_at'=>Carbon::now()
+            ],
+            [
+                'entity_type_id'=>'3',
+                'attribute_code'=>'url_path',
+                'backend_type'=>'varchar',
+                'frontend_input'=>'text',
+                'frontend_label'=>null,'is_required'=>'0',
+                'created_at'=>Carbon::now(),
+                'updated_at'=>Carbon::now()
+            ],
+            [
+                'entity_type_id'=>'4',
+                'attribute_code'=>'url_key',
+                'backend_type'=>'varchar',
+                'frontend_input'=>'text',
+                'frontend_label'=>'URL Key',
+                'is_required'=>'0',
+                'created_at'=>Carbon::now(),
+                'updated_at'=>Carbon::now()
+            ],
+            [
+                'entity_type_id'=>'4',
+                'attribute_code'=>'url_path',
+                'backend_type'=>'varchar',
+                'frontend_input'=>'text',
+                'frontend_label'=>null,'is_required'=>'0',
+                'created_at'=>Carbon::now(),
+                'updated_at'=>Carbon::now()
+            ],
+            [
+                'entity_type_id'=>'4',
+                'attribute_code'=>'links_purchased_separately',
+                'backend_type'=>'int',
+                'frontend_input'=>null,'frontend_label'=>'Links can be purchased separately',
                 'is_required'=>'1',
                 'created_at'=>Carbon::now(),
                 'updated_at'=>Carbon::now()
             ],
             [
                 'entity_type_id'=>'4',
-                'attribute_code'=>'gift_message_available',
+                'attribute_code'=>'samples_title',
                 'backend_type'=>'varchar',
-                'frontend_input'=>'select',
-                'frontend_label'=>'Allow Gift Message',
-                'is_required'=>'0',
+                'frontend_input'=>null,'frontend_label'=>'Samples title',
+                'is_required'=>'1',
+                'created_at'=>Carbon::now(),
+                'updated_at'=>Carbon::now()
+            ],
+            [
+                'entity_type_id'=>'4',
+                'attribute_code'=>'links_title',
+                'backend_type'=>'varchar',
+                'frontend_input'=>null,'frontend_label'=>'Links title',
+                'is_required'=>'1',
+                'created_at'=>Carbon::now(),
+                'updated_at'=>Carbon::now()
+            ],
+            [
+                'entity_type_id'=>'4',
+                'attribute_code'=>'links_exist',
+                'backend_type'=>'int',
+                'frontend_input'=>null,'frontend_label'=>null,'is_required'=>'0',
                 'created_at'=>Carbon::now(),
                 'updated_at'=>Carbon::now()
             ],
@@ -1251,9 +1243,8 @@ class EavAttributeTableSeeder extends Seeder
                 'entity_type_id'=>'4',
                 'attribute_code'=>'price_type',
                 'backend_type'=>'int',
-                'frontend_input'=>'',
-                'frontend_label'=>'',
-                'is_required'=>'1',
+                'frontend_input'=>'boolean',
+                'frontend_label'=>null,'is_required'=>'1',
                 'created_at'=>Carbon::now(),
                 'updated_at'=>Carbon::now()
             ],
@@ -1261,9 +1252,8 @@ class EavAttributeTableSeeder extends Seeder
                 'entity_type_id'=>'4',
                 'attribute_code'=>'sku_type',
                 'backend_type'=>'int',
-                'frontend_input'=>'',
-                'frontend_label'=>'',
-                'is_required'=>'1',
+                'frontend_input'=>'boolean',
+                'frontend_label'=>null,'is_required'=>'1',
                 'created_at'=>Carbon::now(),
                 'updated_at'=>Carbon::now()
             ],
@@ -1271,9 +1261,8 @@ class EavAttributeTableSeeder extends Seeder
                 'entity_type_id'=>'4',
                 'attribute_code'=>'weight_type',
                 'backend_type'=>'int',
-                'frontend_input'=>'',
-                'frontend_label'=>'',
-                'is_required'=>'1',
+                'frontend_input'=>'boolean',
+                'frontend_label'=>null,'is_required'=>'1',
                 'created_at'=>Carbon::now(),
                 'updated_at'=>Carbon::now()
             ],
@@ -1291,73 +1280,42 @@ class EavAttributeTableSeeder extends Seeder
                 'entity_type_id'=>'4',
                 'attribute_code'=>'shipment_type',
                 'backend_type'=>'int',
-                'frontend_input'=>'',
-                'frontend_label'=>'Shipment',
+                'frontend_input'=>'select',
+                'frontend_label'=>'Ship Bundle Items',
                 'is_required'=>'1',
                 'created_at'=>Carbon::now(),
                 'updated_at'=>Carbon::now()
             ],
             [
                 'entity_type_id'=>'4',
-                'attribute_code'=>'links_purchased_separately',
-                'backend_type'=>'int',
-                'frontend_input'=>'',
-                'frontend_label'=>'Links can be purchased separately',
-                'is_required'=>'1',
-                'created_at'=>Carbon::now(),
-                'updated_at'=>Carbon::now()
-            ],
-            [
-                'entity_type_id'=>'4',
-                'attribute_code'=>'samples_title',
+                'attribute_code'=>'swatch_image',
                 'backend_type'=>'varchar',
-                'frontend_input'=>'',
-                'frontend_label'=>'Samples title',
-                'is_required'=>'1',
-                'created_at'=>Carbon::now(),
-                'updated_at'=>Carbon::now()
-            ],
-            [
-                'entity_type_id'=>'4',
-                'attribute_code'=>'links_title',
-                'backend_type'=>'varchar',
-                'frontend_input'=>'',
-                'frontend_label'=>'Links title',
-                'is_required'=>'1',
-                'created_at'=>Carbon::now(),
-                'updated_at'=>Carbon::now()
-            ],
-            [
-                'entity_type_id'=>'4',
-                'attribute_code'=>'links_exist',
-                'backend_type'=>'int',
-                'frontend_input'=>'',
-                'frontend_label'=>'',
+                'frontend_input'=>'media_image',
+                'frontend_label'=>'Swatch',
                 'is_required'=>'0',
                 'created_at'=>Carbon::now(),
                 'updated_at'=>Carbon::now()
             ],
             [
                 'entity_type_id'=>'4',
-                'attribute_code'=>'enable_googlecheckout',
+                'attribute_code'=>'tax_class_id',
                 'backend_type'=>'int',
                 'frontend_input'=>'select',
-                'frontend_label'=>'Is Product Available for Purchase with Google Checkout',
+                'frontend_label'=>'Tax Class',
                 'is_required'=>'0',
                 'created_at'=>Carbon::now(),
                 'updated_at'=>Carbon::now()
             ],
             [
-                'entity_type_id'=>'3',
-                'attribute_code'=>'thumbnail',
+                'entity_type_id'=>'4',
+                'attribute_code'=>'gift_message_available',
                 'backend_type'=>'varchar',
-                'frontend_input'=>'image',
-                'frontend_label'=>'Thumbnail Image',
+                'frontend_input'=>'select',
+                'frontend_label'=>'Allow Gift Message',
                 'is_required'=>'0',
                 'created_at'=>Carbon::now(),
                 'updated_at'=>Carbon::now()
             ]
-
         ];
 
         DB::table('eav_attribute')->insert($eav);

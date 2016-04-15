@@ -6,7 +6,7 @@ use App\Models\Access\User\User;
 use Illuminate\Support\Facades\Route;
 use Yajra\Datatables\Services\DataTable;
 
-class SearchDataTable extends DataTable
+class UserSearchDataTable extends DataTable
 {
     // protected $printPreview  = 'path.to.print.preview.view';
 

@@ -14,6 +14,7 @@ class EavTableSeeder extends Seeder
 
         $this->call(EavEntityTypeTableSeeder::class);
         $this->call(EavAttributeTableSeeder::class);
+        $this->call(CatalogEavAttributeTableSeeder::class);
 
 
         if (env('DB_CONNECTION') == 'mysql') {

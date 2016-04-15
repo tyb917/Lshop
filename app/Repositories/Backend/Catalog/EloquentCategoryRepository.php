@@ -3,7 +3,7 @@
 namespace App\Repositories\Backend\Catalog;
 
 use File;
-use App\Models\Category;
+use App\Models\Catalog\Category;
 use App\Exceptions\GeneralException;
 use App\Helper\Catalog\Image;
 

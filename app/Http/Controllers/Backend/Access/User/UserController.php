@@ -20,7 +20,7 @@ use App\Repositories\Backend\Permission\PermissionRepositoryContract;
 use App\Http\Requests\Backend\Access\User\PermanentlyDeleteUserRequest;
 use App\Repositories\Frontend\User\UserContract as FrontendUserContract;
 use App\Http\Requests\Backend\Access\User\ResendConfirmationEmailRequest;
-use App\DataTables\SearchDataTable;
+use App\DataTables\UserSearchDataTable;
 use Yajra\Datatables\Datatables;
 
 /**
@@ -69,7 +69,7 @@ class UserController extends Controller
     /**
      * @return mixed
      */
-    public function index(SearchDataTable $datatable)
+    public function index(UserSearchDataTable $datatable)
     {
         $roles = Role::all()->lists('name','id');
         return $datatable->render('backend.access.index',['roles' => $roles]);
@@ -179,7 +179,7 @@ class UserController extends Controller
     /**
      * @return mixed
      */
-    public function deactivated(SearchDataTable $datatable)
+    public function deactivated(UserSearchDataTable $datatable)
     {
         $roles = Role::all()->lists('name','id');
         return $datatable->render('backend.access.deactivated',['roles' => $roles]);

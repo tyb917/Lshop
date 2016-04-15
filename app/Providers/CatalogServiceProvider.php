@@ -34,5 +34,10 @@ class CatalogServiceProvider extends ServiceProvider
             \App\Repositories\Backend\Catalog\ProductContract::class,
             \App\Repositories\Backend\Catalog\EloquentProductRepository::class
         );
+
+        $this->app->bind(
+            \App\Repositories\Backend\Catalog\ProductEttributeContract::class,
+            \App\Repositories\Backend\Catalog\EloquentProductEttributeRepository::class
+        );
     }
 }

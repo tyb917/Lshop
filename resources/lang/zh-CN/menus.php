@@ -59,6 +59,11 @@ return [
                 'management' => '分类管理',
                 'create' => '添加分类',
             ],
+            'product_attribute' => [
+                'management' =>  '属性管理',
+                'all' => '所有属性',
+                'set' => '设置属性'
+            ]
         ],
         'system' => [
             'title' => '系统设置'
