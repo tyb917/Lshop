@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend\Catalog\Attribute;
+namespace App\Http\Controllers\Backend\Catalog\Product;
 
 use App\Http\Requests;
 use Illuminate\Http\Request;
@@ -22,7 +22,7 @@ class AttributeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(AttributeSearchDataTable $datatable)
+    public function index(ProductAttributeSearchDataTable $datatable)
     {
         $attributes = $this->attributes->getAllAttributes();
         return $datatable->render('backend.catalog.product.attribute.index',['attributes' => $attributes]);

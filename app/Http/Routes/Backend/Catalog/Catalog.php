@@ -16,13 +16,6 @@ Route::group([
     'middleware' => 'access.routeNeedsPermission:view-products-management',
 ], function() {
     Route::resource('catalog/products', 'ProductController');
-});
-
-/*属性*/
-Route::group([
-    'namespace'  => 'Catalog\Attribute',
-    'middleware' => 'access.routeNeedsPermission:view-attributes-management',
-], function() {
     Route::resource('catalog/product_attribute', 'AttributeController');
 });
 
