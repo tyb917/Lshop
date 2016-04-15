@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Catalog;
+namespace App\Models\Catalog\Category;
 
 use Baum\Node;
 

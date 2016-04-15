@@ -9,7 +9,7 @@ use App\Exceptions\GeneralException;
  * Class EloquentProductEttributeRepository
  * @package App\Repositories\Catalog
  */
-class EloquentProductEttributeRepository implements ProductEttributeContract
+class EloquentEttributeRepository implements EttributeContract
 {
     public function getAllAttributes($order_by = 'attribute_id', $sort = 'asc')
     {

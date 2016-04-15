@@ -1,7 +1,7 @@
 <?php
 /*分类*/
 Route::group([
-    'namespace'  => 'Catalog',
+    'namespace'  => 'Catalog\Category',
     'middleware' => 'access.routeNeedsPermission:view-categories-management',
 ], function() {
     Route::resource('catalog/categories', 'CategoryController',['except' => 'show']);
@@ -12,7 +12,7 @@ Route::group([
 
 /*产品*/
 Route::group([
-    'namespace'  => 'Catalog',
+    'namespace'  => 'Catalog\Product',
     'middleware' => 'access.routeNeedsPermission:view-products-management',
 ], function() {
     Route::resource('catalog/products', 'ProductController');
@@ -20,7 +20,7 @@ Route::group([
 
 /*属性*/
 Route::group([
-    'namespace'  => 'Catalog',
+    'namespace'  => 'Catalog\Attribute',
     'middleware' => 'access.routeNeedsPermission:view-attributes-management',
 ], function() {
     Route::resource('catalog/product_attribute', 'AttributeController');

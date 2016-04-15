@@ -1,21 +1,32 @@
 <?php
 
-namespace App\Http\Controllers\Backend\Catalog;
+namespace App\Http\Controllers\Backend\Catalog\Attribute;
 
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\DataTables\ProductAttributeSearchDataTable;
+use App\Repositories\Backend\Catalog\ProductEttributeContract;
 
-class ProductController extends Controller
+class AttributeController extends Controller
 {
+    protected $attributes;
+
+    public function __construct(ProductEttributeContract $attributes)
+    {
+        $this->attributes = $attributes;
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(AttributeSearchDataTable $datatable)
     {
-        dd($request);
+        $attributes = $this->attributes->getAllAttributes();
+        return $datatable->render('backend.catalog.product.attribute.index',['attributes' => $attributes]);
+
     }
 
     /**

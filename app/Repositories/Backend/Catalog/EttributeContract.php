@@ -2,7 +2,7 @@
 
 namespace App\Repositories\Backend\Catalog;
 
-interface ProductEttributeContract
+interface EttributeContract
 {
     public function getAllAttributes($order_by = 'attribute_id', $sort = 'asc');
 }

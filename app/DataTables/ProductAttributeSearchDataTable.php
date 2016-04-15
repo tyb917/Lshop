@@ -2,10 +2,10 @@
 
 namespace App\DataTables;
 
-use App\Models\Catalog\Attribute;
+use App\Models\Catalog\ProductAttribute;
 use Yajra\Datatables\Services\DataTable;
 
-class AttributeSearchDataTable extends DataTable
+class ProductAttributeSearchDataTable extends DataTable
 {
     // protected $printPreview  = 'path.to.print.preview.view';
 

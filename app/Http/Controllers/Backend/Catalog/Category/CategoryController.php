@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Backend\Catalog;
+namespace App\Http\Controllers\Backend\Catalog\Category;
 
 use File;
 use Config;
 use App\Http\Requests;
 use Illuminate\Http\Request;
-use App\Models\Catalog\Category;
 use App\Http\Controllers\Controller;
+use App\Models\Catalog\Category\Category;
 use App\Repositories\Backend\Catalog\CategoryContract;
 
 class CategoryController extends Controller
