@@ -2,7 +2,7 @@
 
 namespace App\Repositories\Backend\Catalog;
 
-use App\Models\Catalog\Attribute;
+use App\Models\Catalog\Product\ProductAttribute;
 use App\Exceptions\GeneralException;
 
 /**
@@ -13,7 +13,8 @@ class EloquentProductEttributeRepository implements ProductEttributeContract
 {
     public function getAllAttributes($order_by = 'attribute_id', $sort = 'asc')
     {
-        return Attribute::orderBy($order_by, $sort)
+        return ProductAttribute::with('attributes')
+            ->orderBy($order_by, $sort)
             ->get();
     }
 }

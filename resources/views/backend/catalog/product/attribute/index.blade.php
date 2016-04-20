@@ -17,87 +17,26 @@
                 <table class="table table-striped table-bordered table-hover" id="datatable_ajax">
                     <thead>
                     <tr role="row" class="heading">
-                        <th width="2%">
-                            <input type="checkbox" class="group-checkable">
-                        </th>
-                        <th width="5%">
-                            Record&nbsp;#
-                        </th>
-                        <th width="15%">
-                            Date
-                        </th>
-                        <th width="15%">
-                            Customer
-                        </th>
-                        <th width="10%">
-                            Ship&nbsp;To
-                        </th>
-                        <th width="10%">
-                            Price
-                        </th>
-                        <th width="10%">
-                            Amount
-                        </th>
-                        <th width="10%">
-                            Status
-                        </th>
-                        <th width="10%">
-                            Actions
-                        </th>
+                        <th>属性代码</th>
+                        <th>默认名称</th>
+                        <th>必须项</th>
+                        <th>系统</th>
+                        <th>可见的</th>
+                        <th>范围</th>
+                        <th>可搜索</th>
+                        <th>分类属性导航</th>
+                        <th>可比较的</th>
                     </tr>
                     <tr role="row" class="filter">
-                        <td>
-                        </td>
-                        <td>
-                            <input type="text" class="form-control form-filter input-sm" name="order_id">
-                        </td>
-                        <td>
-                            <div class="input-group date date-picker margin-bottom-5" data-date-format="dd/mm/yyyy">
-                                <input type="text" class="form-control form-filter input-sm" readonly name="order_date_from" placeholder="From">
-											<span class="input-group-btn">
-											<button class="btn btn-sm default" type="button"><i class="fa fa-calendar"></i></button>
-											</span>
-                            </div>
-                            <div class="input-group date date-picker" data-date-format="dd/mm/yyyy">
-                                <input type="text" class="form-control form-filter input-sm" readonly name="order_date_to" placeholder="To">
-											<span class="input-group-btn">
-											<button class="btn btn-sm default" type="button"><i class="fa fa-calendar"></i></button>
-											</span>
-                            </div>
-                        </td>
-                        <td>
-                            <input type="text" class="form-control form-filter input-sm" name="order_customer_name">
-                        </td>
-                        <td>
-                            <input type="text" class="form-control form-filter input-sm" name="order_ship_to">
-                        </td>
-                        <td>
-                            <div class="margin-bottom-5">
-                                <input type="text" class="form-control form-filter input-sm" name="order_price_from" placeholder="From"/>
-                            </div>
-                            <input type="text" class="form-control form-filter input-sm" name="order_price_to" placeholder="To"/>
-                        </td>
-                        <td>
-                            <div class="margin-bottom-5">
-                                <input type="text" class="form-control form-filter input-sm margin-bottom-5 clearfix" name="order_quantity_from" placeholder="From"/>
-                            </div>
-                            <input type="text" class="form-control form-filter input-sm" name="order_quantity_to" placeholder="To"/>
-                        </td>
-                        <td>
-                            <select name="order_status" class="form-control form-filter input-sm">
-                                <option value="">Select...</option>
-                                <option value="pending">Pending</option>
-                                <option value="closed">Closed</option>
-                                <option value="hold">On Hold</option>
-                                <option value="fraud">Fraud</option>
-                            </select>
-                        </td>
-                        <td>
-                            <div class="margin-bottom-5">
-                                <button class="btn btn-sm yellow filter-submit margin-bottom"><i class="fa fa-search"></i> Search</button>
-                            </div>
-                            <button class="btn btn-sm red filter-cancel"><i class="fa fa-times"></i> Reset</button>
-                        </td>
+                        <td>{!! Form::text('name', null, ['class' => 'form-control form-filter']) !!}</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                     </tr>
                     </thead>
                     <tbody>
@@ -111,5 +50,48 @@
 @stop
 
 @section('js')
-    @include('vendor.datatables.product_attribute')
+    @include('vendor.datatables.global')
+    <script>
+        $(function() {
+            var oTable = $('#datatable_ajax').DataTable({
+                processing: true,
+                serverSide: true,
+                "bFilter": false,
+                "bStateSave": true,
+                "language": {
+                    "url": "/plugins/datatables/language/Chinese.json"
+                },
+                "lengthMenu": [[20, 40, 100, -1], [20, 40, 100, "全部"]],
+                "ajax": {
+                    "url": "", // ajax source
+                },
+                columns: [
+                    {data: 'attribute_code', name: 'eav_attribute.attribute_code'},
+                    {data: 'frontend_label', name: 'eav_attribute.frontend_label'},
+                    {data: 'is_required', name: 'is_required'},
+                    {data: 'is_user_defined', name: 'is_user_defined'},
+                    {data: 'is_visible', name: 'is_visible'},
+                    {data: 'is_global', name: 'is_global'},
+                    {data: 'is_searchable', name: 'is_searchable'},
+                    {data: 'is_filterable', name: 'is_filterable'},
+                    {data: 'is_comparable', name: 'is_comparable'}
+                ],
+                "orderCellsTop": true,
+                "fnRowCallback": function( nRow, aData) {
+                    var id = aData.id;
+                    $(nRow).attr("data-id", id);
+                    return nRow;
+                },
+                "fnDrawCallback": function() {
+                    $('.select2').select2({
+                        minimumResultsForSearch: Infinity
+                    });
+                    $('#users-table tbody').on('click', 'tr', function () {
+                        var id = $(this).attr("data-id");
+                        window.location = id + '/edit';
+                    })
+                }
+            });
+        })
+    </script>
 @stop
