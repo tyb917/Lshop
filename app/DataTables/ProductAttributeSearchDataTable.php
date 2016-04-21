@@ -38,8 +38,9 @@ class ProductAttributeSearchDataTable extends DataTable
      */
     public function query()
     {
-        //$attributes = ProductAttribute::join('eav_attribute','.eav_attribute.attribute_id','=','catalog_eav_attribute.attribute_id');
-        $attributes = ProductAttribute::query()->with('attributes');
+        $attributes = ProductAttribute::join('eav_attribute','eav_attribute.attribute_id','=','catalog_eav_attribute.attribute_id')
+        ->where('is_visible','=',1)
+        ->where('eav_attribute.entity_type_id','=',4);
         return $this->applyScopes($attributes);
     }
 
@@ -68,7 +69,7 @@ class ProductAttributeSearchDataTable extends DataTable
             'frontend_label',
             'is_required',
             'is_user_defined',
-            'is_visible',
+            'is_visible_in_grid',
             'is_global',
             'is_searchable',
             'is_filterable',
@@ -77,8 +78,6 @@ class ProductAttributeSearchDataTable extends DataTable
     }
 
     /**
-     * Get filename for export.
-     *
      * @return string
      */
     protected function filename()

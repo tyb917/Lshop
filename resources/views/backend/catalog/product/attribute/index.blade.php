@@ -21,7 +21,7 @@
                         <th>默认名称</th>
                         <th>必须项</th>
                         <th>系统</th>
-                        <th>可见的</th>
+                        <th>网格可见</th>
                         <th>范围</th>
                         <th>可搜索</th>
                         <th>分类属性导航</th>
@@ -70,7 +70,7 @@
                     {data: 'frontend_label', name: 'eav_attribute.frontend_label'},
                     {data: 'is_required', name: 'is_required'},
                     {data: 'is_user_defined', name: 'is_user_defined'},
-                    {data: 'is_visible', name: 'is_visible'},
+                    {data: 'is_visible_in_grid', name: 'is_visible_in_grid'},
                     {data: 'is_global', name: 'is_global'},
                     {data: 'is_searchable', name: 'is_searchable'},
                     {data: 'is_filterable', name: 'is_filterable'},
