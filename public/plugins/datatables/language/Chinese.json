@@ -17,7 +17,10 @@
 		"sFirst":    "首页",
 		"sPrevious": "上页",
 		"sNext":     "下页",
-		"sLast":     "末页"
+		"sLast":     "末页",
+        "total":     "共",
+		"page":      "页",
+        "pageOf":    "到第"
 	},
 	"oAria": {
 		"sSortAscending":  ": 以升序排列此列",

@@ -23,6 +23,9 @@
   tr td .progress {
     margin-top: 5px;
   }
+  >tbody >tr.clickable{
+    cursor:pointer;
+  }
 }
 
 //Bordered Table

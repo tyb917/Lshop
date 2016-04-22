@@ -28,6 +28,59 @@ class ProductAttributeSearchDataTable extends DataTable
                     $query->where('eav_attribute.frontend_label', 'like', "%{$request->get('frontend_label')}%");
                 }
             })
+            ->editColumn('is_required',function($attributes){
+                if($attributes->is_required){
+                    return '是';
+                }else{
+                    return '否';
+                }
+            })
+            ->editColumn('is_user_defined',function($attributes){
+                if($attributes->is_user_defined){
+                    return '是';
+                }else{
+                    return '否';
+                }
+            })
+            ->editColumn('is_visible_in_grid',function($attributes){
+                if($attributes->is_visible_in_grid){
+                    return '是';
+                }else{
+                    return '否';
+                }
+            })
+            ->editColumn('is_global',function($attributes){
+                if($attributes->is_global==1){
+                    return '全局';
+                }else if($attributes->is_global==2){
+                    return '网页';
+                }else{
+                    return '商店视图';
+                }
+            })
+            ->editColumn('is_searchable',function($attributes){
+                if($attributes->is_searchable){
+                    return '是';
+                }else{
+                    return '否';
+                }
+            })
+            ->editColumn('is_filterable',function($attributes){
+                if($attributes->is_filterable==1){
+                    return '滤过性的(结果)';
+                }else if($attributes->is_filterable==1){
+                    return '滤过性的(没有结果)';
+                }else{
+                    return '否';
+                }
+            })
+            ->editColumn('is_comparable',function($attributes){
+                if($attributes->is_comparable){
+                    return '是';
+                }else{
+                    return '否';
+                }
+            })
             ->make(true);
     }
 

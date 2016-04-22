@@ -40,7 +40,7 @@
                     </div>
                     <div class="form-group col-xs-3">
                         {!! Form::label('激活') !!}
-                        {!! Form::select('confirmed', [''=>'请选择',1=>'是',0=>'否',], null, ['class' => 'select2 form-control','style'=>'width: 100%']) !!}
+                        {!! Form::select('confirmed', [''=>'请选择',1=>'是',0=>'否'], null, ['class' => 'select2 form-control','style'=>'width: 100%']) !!}
                     </div>
                     <div class="form-group col-xs-3">
                         <label>角色</label>
@@ -128,7 +128,6 @@
                 processing: true,
                 serverSide: true,
                 "bFilter": false,
-                "bStateSave": true,
                 ajax: {
                     url: '',
                     data: function (d) {
