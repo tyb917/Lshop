@@ -1,18 +1,22 @@
 @extends ('backend.layouts.master')
 
-@section ('title', trans('labels.backend.access.users.management'))
+@section ('title', trans('backend/catalog/product/attribute.labels.management'))
 
 @section('content')
     <div class="box box-success">
         <div class="box-header with-border">
-            <h3 class="box-title">{{ trans('labels.backend.access.users.active') }}</h3>
+            <h3 class="box-title">{{ trans('backend/catalog/product/attribute.labels.attribute') }}</h3>
             <div class="box-tools pull-right">
                 <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
             </div>
         </div>
         <!-- /.box-header -->
 
-        <div class="box-body form-group user-list">
+        <div class="box-body form-group attribute-list">
+            <div class="box-tools pull-right">
+                <a href="{{url('admin/catalog/product_attribute/create')}}" class="margin-bottom-10 btn btn-danger create-attribute">{{trans('backend/catalog/product/attribute.labels.create')}}</a>
+            </div>
+            <div class="clearfix"></div>
             <div class="table-container">
                 <table class="table table-striped table-bordered table-hover" id="datatable_ajax">
                     <thead>
@@ -62,6 +66,9 @@
                 },
                 "lengthMenu": [[20, 40, 100, -1], [20, 40, 100, "全部"]],
                 "pagingType": "bootstrap_extended",
+                "oLanguage": {
+                    "sProcessing": skFadingCircle()
+                },
                 "ajax": {
                     "url": "", // ajax source
                 },
@@ -79,7 +86,18 @@
                 "dom":"<'row'<'col-sm-6'l><'col-sm-6 text-right'B>>" +
                 "<'row'<'col-sm-12'tr>>" +
                 "<'row'<'col-sm-5'i><'col-sm-7'p>>",
-                "buttons": [],
+                "buttons": [{
+                    text: '重置',
+                    action: function ( e, dt, node, config ) {
+                        $('textarea.form-filter, select.form-filter, input.form-filter', '.filter').each(function() {
+                            $(this).val("");
+                            $('.select2').select2('val', '');
+                        });
+                        $('input.form-filter[type="checkbox"]', '.filter').each(function() {
+                            $(this).attr("checked", false);
+                        });
+                    }
+                }],
                 "orderCellsTop": true,
                 "fnRowCallback": function( nRow, aData) {
                     var id = aData.attribute_id;

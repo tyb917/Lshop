@@ -36,7 +36,7 @@ class AttributeController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.catalog.product.attribute.create');
     }
 
     /**
@@ -58,7 +58,7 @@ class AttributeController extends Controller
      */
     public function show($id)
     {
-        //
+        dd($id);
     }
 
     /**
@@ -69,7 +69,7 @@ class AttributeController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('backend.catalog.product.attribute.edit');
     }
 
     /**

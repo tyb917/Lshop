@@ -39,7 +39,7 @@ return [
         ],
     ],
     'user' => [
-        'profile_updated' => 'Profile successfully updated.',
-        'password_updated' => 'Password successfully updated.',
+        'profile_updated' => '个人资料更新成功。',
+        'password_updated' => '密码修改成功。',
     ],
 ];
