@@ -194,6 +194,8 @@ return [
         'Baum\Providers\BaumServiceProvider',
         /*百度UEditor*/
         Stevenyangecho\UEditor\UEditorServiceProvider::class,
+        /*jquery validate*/
+        Proengsoft\JsValidation\JsValidationServiceProvider::class,
     ],
 
     /*
@@ -253,7 +255,9 @@ return [
         /*MongonDB*/
        // 'Moloquent' => 'Jenssegers\Mongodb\Eloquent\Model',
         'Image' => Intervention\Image\Facades\Image::class,
-        'Helper' => App\Helper\Facades\Helper::class
+        'Helper' => App\Helper\Facades\Helper::class,
+        /*jquery validate*/
+        'JsValidator' => Proengsoft\JsValidation\Facades\JsValidatorFacade::class,
     ],
 
 ];

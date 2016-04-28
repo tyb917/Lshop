@@ -1,5 +1,8 @@
 @extends ('backend.layouts.master')
-
+@section('css')
+    <link rel="stylesheet" href="{!! asset('css/bootstrap-extend/bootstrap-extend.css') !!}">
+    <link rel="stylesheet" href="{!! asset('css/backend/catalog/attributes.css') !!}">
+@endsection
 @section ('title', trans('backend/catalog/product/attribute.labels.management'))
 
 @section('content')
@@ -11,13 +14,329 @@
             </div>
         </div>
         <!-- /.box-header -->
-        添加
+        <div class="box-body form-group attribute-add">
+            {!! Form::open(['route' => 'admin.catalog.product_attribute.store','id'=>'edit_form','class'=>'form-horizontal', 'method' => 'post']) !!}
+                <div class="box-tools pull-right">
+                    <a href="{{url('admin/catalog/product_attribute')}}" class="margin-bottom-10 btn btn-default">{{trans('backend/catalog/product/attribute.labels.back')}}</a>
+                    <input type="button" class="margin-bottom-10 btn btn-default reset" value="{{trans('backend/catalog/product/attribute.labels.reset')}}">
+                    <input type="button" class="margin-bottom-10 btn btn-primary save_and_continue_edit" value="{{trans('backend/catalog/product/attribute.labels.save_and_continue_edit')}}">
+                    <input type="submit" class="margin-bottom-10 btn btn-danger" value="{{trans('backend/catalog/product/attribute.labels.save')}}">
+                </div>
+                <div class="clearfix"></div>
+                <div class="nav-tabs-vertical">
+                    <ul class="nav nav-tabs margin-right-25" data-plugin="nav-tabs" role="tablist">
+                        <li class="active" ><a data-toggle="tab" href="#main">属性</a></li>
+                        <li><a data-toggle="tab" href="#labels_content">管理标签</a></li>
+                        <li><a data-toggle="tab" href="#front_content">商店属性</a></li>
+                      </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="main">
+                            <h4 class="">属性参数</h4>
+                            <hr>
+                            <div class="entry-edit">
+                                <fieldset class="fieldset">
+                                    <div class="field form-group ">
+                                        <label class="col-xs-2 control-label">默认标签</label>
+                                        <div class="col-xs-6">
+                                            {!! Form::text('frontend_label[0]',null,['id' => 'attribute_label','class' => 'form-control']) !!}
+                                        </div>
+                                    </div>
+                                    <div class="field form-group">
+                                        <label class="col-xs-2 control-label">输入类型</label>
+                                        <div class="col-xs-4">
+                                            {!! Form::select('frontend_input',['text'=>'文本框','textarea'=>'文本区域','date'=>'日期','boolean'=>'是/否','multiselect'=>'多选框','select'=>'下拉框','price'=>'价格','media_image'=>'媒体图片','swatch_visual'=>'视觉样本','swatch_text'=>'文本样本','weee'=>'固定产品税'],null,['id'=>'frontend_input','class' => 'form-control select2','title'=>'输入类型']) !!}
+                                        </div>
+                                    </div>
+                                    <div class="field form-group">
+                                        <label class="col-xs-2 control-label">是否必填项</label>
+                                        <div class="col-xs-2">
+                                            {!! Form::select('is_required',['1'=>'是','0'=>'否'],0,['id'=>'is_required','class' => 'form-control select2','title'=>'是否必填项']) !!}
+                                        </div>
+                                    </div>
+                                    <div class="field form-group" id="preview-image">
+                                        <label class="col-xs-2 control-label">更新产品预览图像</label>
+                                        <div class="col-xs-2">
+                                            {!! Form::select('update-product-preview-image',['1'=>'是','0'=>'否'],1,['id'=>'update_product_preview_image','class' => 'form-control select2','title'=>'更新产品预览图像']) !!}
+                                        </div>
+                                    </div>
+                                    <div class="field form-group" id="for-swatch">
+                                        <label class="col-xs-2 control-label">如果可能使用产品图片作为样本</label>
+                                        <div class="col-xs-2">
+                                            {!! Form::select('use-product-image-for-swatch',['1'=>'是','0'=>'否'],0,['id'=>'use_product_image_for_swatch','class' => 'form-control select2','title'=>'如果可能使用产品图片作为样本']) !!}
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <fieldset class="fieldset">
+                                <legend class="legend"><span>Manage Swatch (Values of Your Attribute)</span></legend>
+                                <div id="swatch-visual-options-panel">
+                                    <table class="data-table clearfix" cellspacing="0">
+                                        <thead>
+                                        <tr id="swatch-visual-options-table">
+                                            <th class="col-draggable"></th>
+                                            <th class="col-default">Is Default</th>
+                                            <th>Swatch</th>
+                                            <th>Default Store View</th>
+                                            <th>Admin</th>
+                                            <th class="col-delete">&nbsp;</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody data-role="swatch-visual-options-container" class="ignore-validate ui-sortable"></tbody>
+                                        <tfoot>
+                                        <tr>
+                                            <th colspan="7">
+                                                <input type="hidden" class="required-visual-swatch-entry" name="visual_swatch_validation">
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th colspan="7" class="col-actions-add">
+                                                <button id="add_new_swatch_visual_option_button" title="Add Swatch" type="button" class="action- scalable add">
+                                                    <span>Add Swatch</span>
+                                                </button>
+                                            </th>
+                                        </tr>
+                                        </tfoot>
+                                    </table>
+                                    <input type="hidden" id="swatch-visual-option-count-check" value="">
+                                </div>
+                                <script id="swatch-visual-row-template" type="text/x-magento-template">
+                                    <tr>
+                                        <td class="col-draggable">
+                                            <div data-role="draggable-handle" class="draggable-handle" title="Sort Option"></div>
+                                            <input data-role="order" type="hidden" name="optionvisual[order][<%- data.id %>]"  value="<%- data.sort_order %>" />
+                                        </td>
+                                        <td class="col-default">
+                                            <input class="input-radio" type="<%- data.intype %>" name="defaultvisual[]" value="<%- data.id %>" <%- data.checked %>/>
+                                        </td>
+                                        <td class="swatch-window-col-<%- data.id %> col-default <%- data.empty_class %>">
+                                            <input id="swatch_visual_value_<%- data.id %>" type="hidden" name="swatchvisual[value][<%- data.id %>]" value="<%- data.defaultswatch0 %>" />
+                                            <div class="swatch_window" id="swatch_window_option_<%- data.id %>" style="<%- data.swatch0 %>"></div>
+                                            <div class="swatch_sub-menu_container" id="swatch_container_option_<%- data.id %>">
+                                                <div class="swatch_row position-relative">
+                                                    <div class="swatch_row_name colorpicker_handler">
+                                                        <p>Choose a color</p>
+                                                    </div>
+                                                </div>
+                                                <div class="swatch_row">
+                                                    <div class="swatch_row_name btn_choose_file_upload" id="swatch_choose_file_option_<%- data.id %>">
+                                                        <p>Upload a file</p>
+                                                    </div>
+                                                </div>
+                                                <div class="swatch_row">
+                                                    <div class="swatch_row_name btn_remove_swatch">
+                                                        <p>Clear</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="swatch-col-<%- data.id %>">
+                                            <input name="optionvisual[value][<%- data.id %>][1]" value="<%- data.store1 %>" class="input-text" type="text" />
+                                        </td>
+                                        <td class="swatch-col-<%- data.id %>">
+                                            <input name="optionvisual[value][<%- data.id %>][0]" value="<%- data.store0 %>" class="input-text required-option" type="text" />
+                                        </td>
+                                        <td id="delete_button_swatch_container_<%- data.id %>" class="col-delete">
+                                            <input type="hidden" class="delete-flag" name="optionvisual[delete][<%- data.id %>]" value="" />
+                                            <button title="Delete" type="button"
+                                                    class="action- scalable delete delete-option"
+                                            >
+                                                <span>Delete</span>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </script>
+                            </fieldset>
+                            <fieldset class="fieldset">
+                                <legend class="legend"><span>Manage Swatch (Values of Your Attribute)</span></legend>
+                                <div id="swatch-text-options-panel">
+                                    <table class="data-table clearfix" cellspacing="0">
+                                        <thead>
+                                        <tr id="swatch-text-options-table">
+                                            <th class="col-draggable"></th>
+                                            <th class="col-default">Is Default</th>
+                                            <th class="col-swatch col-<%- data.id %>">Swatch</th>
+                                            <th>Default Store View</th>
+                                            <th class="col-swatch col-<%- data.id %>">Swatch</th>
+                                            <th>Admin</th>
+                                            <th class="col-delete">&nbsp;</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody data-role="swatch-text-options-container" class="ignore-validate ui-sortable"></tbody>
+                                        <tfoot>
+                                        <tr>
+                                            <th colspan="7">
+                                                <input type="hidden" class="required-text-swatch-entry" name="text_swatch_validation">
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th colspan="7" class="col-actions-add">
+                                                <button id="add_new_swatch_text_option_button" title="Add Swatch" type="button" class="action- scalable add">
+                                                    <span>Add Swatch</span>
+                                                </button>
+                                            </th>
+                                        </tr>
+                                        </tfoot>
+                                    </table>
+                                    <input type="hidden" id="swatch-text-option-count-check" value="">
+                                </div>
+                                <script id="swatch-text-row-template" type="text/x-magento-template">
+                                    <tr>
+                                        <td class="col-draggable">
+                                            <div data-role="draggable-handle" class="draggable-handle" title="Sort Option"></div>
+                                            <input data-role="order" type="hidden" name="optiontext[order][<%- data.id %>]"  value="<%- data.sort_order %>" />
+                                        </td>
+                                        <td class="col-default">
+                                            <input class="input-radio" type="<%- data.intype %>" name="defaulttext[]" value="<%- data.id %>" <%- data.checked %>/>
+                                        </td>
+                                        <td class="col-swatch col-<%- data.id %>">
+                                            <input class="input-text swatch-text-field-1 " name="swatchtext[value][<%- data.id %>][1]" type="text" value="<%- data.swatch1 %>" />
+                                        </td>
+                                        <td class="swatch-col-<%- data.id %>">
+                                            <input name="optiontext[value][<%- data.id %>][1]" value="<%- data.store1 %>" class="input-text" type="text" />
+                                        </td>
+                                        <td class="col-swatch col-<%- data.id %>">
+                                            <input class="input-text swatch-text-field-0 required-option" name="swatchtext[value][<%- data.id %>][0]" type="text" value="<%- data.swatch0 %>" />
+                                        </td>
+                                        <td class="swatch-col-<%- data.id %>">
+                                            <input name="optiontext[value][<%- data.id %>][0]" value="<%- data.store0 %>" class="input-text required-option" type="text" />
+                                        </td>
+                                        <td id="delete_button_swatch_container_<%- data.id %>" class="col-delete">
+                                            <input type="hidden" class="delete-flag" name="optiontext[delete][<%- data.id %>]" value="" />
+                                            <button title="Delete" type="button"
+                                                    class="action- scalable delete delete-option"
+                                            >
+                                                <span>Delete</span>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </script>
+
+                            </fieldset>
+                            <fieldset class="fieldset">
+                                <legend class="legend"><span>Manage Options (Values of Your Attribute)</span></legend>
+                                <div id="manage-options-panel">
+                                    <table class="admin__control-table">
+                                        <thead>
+                                        <tr id="attribute-options-table">
+                                            <th class="col-draggable"></th>
+                                            <th class="col-default control-table-actions-th">Is Default</th>
+                                            <th>Default Store View</th>
+                                            <th>Admin</th>
+                                            <th class="col-delete">&nbsp;</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody data-role="options-container" class="ignore-validate ui-sortable"></tbody>
+                                        <tfoot>
+                                        <tr>
+                                            <th colspan="5" class="validation">
+                                                <input type="hidden" class="required-dropdown-attribute-entry" name="dropdown_attribute_validation">
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th colspan="5" class="col-actions-add">
+                                                <button id="add_new_option_button" title="Add Option" type="button" class="action- scalable add">
+                                                    <span>Add Option</span>
+                                                </button>
+                                            </th>
+                                        </tr>
+                                        </tfoot>
+                                    </table>
+                                    <input type="hidden" id="option-count-check" value="">
+                                </div>
+                            </fieldset>
+                            <h4 class="collapsible-title" data-toggle="collapse" href="#advanced_fieldset-wrapper">高级属性参数</h4>
+                            <hr>
+                            <div id="advanced_fieldset-wrapper">
+                                <fieldset class="fieldset">
+                                    <div class="field form-group ">
+                                        <label class="col-xs-2 control-label">属性代码</label>
+                                        <div class="col-xs-6">
+                                            {!! Form::text('attribute_code',null,['id' => 'attribute_code','class' => 'form-control']) !!}
+                                            <p class="help-block">系统内部使用。确保不要使用空格或多于30个字符</p>
+                                        </div>
+                                    </div>
+                                    <div class="field form-group ">
+                                        <label class="col-xs-2 control-label">作用范围</label>
+                                        <div class="col-xs-3">
+                                            {!! Form::select('is_global',['0'=>'商店视图','2'=>'网站','1'=>'全局'],0,['id'=>'is_global','class' => 'form-control select2','title'=>'作用范围']) !!}
+                                        </div>
+                                    </div>
+                                    <div class="field form-group ">
+                                        <label class="col-xs-2 control-label">默认值</label>
+                                        <div class="col-xs-6">
+                                            {!! Form::text('default_value_text',null,['id' => 'default_value_text','class' => 'form-control']) !!}
+                                        </div>
+                                    </div>
+                                    <div class="field form-group ">
+                                        <label class="col-xs-2 control-label">默认值</label>
+                                        <div class="col-xs-3">
+                                            {!! Form::select('default_value_yesno',['1'=>'是','0'=>'否'],0,['id'=>'default_value_yesno','class' => 'form-control select2','title'=>'默认值']) !!}
+                                        </div>
+                                    </div>
+                                    <div class="field form-group ">
+                                        <label class="col-xs-2 control-label">默认值</label>
+                                        <div class="col-xs-6">
+                                            {!! Form::text('default_value_date',null,['id' => 'default_value_date','class' => 'form-control datepicker']) !!}
+                                            <div class="fa fa-calculator"></div>
+                                        </div>
+                                    </div>
+                                    <div class="field form-group ">
+                                        <label class="col-xs-2 control-label">默认值</label>
+                                        <div class="col-xs-6">
+                                            {!! Form::textarea('default_value_textarea',null,['id' => 'default_value_textarea','class' => 'form-control','rows'=>'5']) !!}
+                                        </div>
+                                    </div>
+                                    <div class="field form-group ">
+                                        <label class="col-xs-2 control-label">唯一的值</label>
+                                        <div class="col-xs-3">
+                                            {!! Form::select('is_unique',['1'=>'是','0'=>'否'],0,['id'=>'is_unique','class' => 'form-control select2','title'=>'唯一的值（不与其他产品共享）']) !!}
+                                        </div>
+                                    </div>
+                                    <div class="field form-group ">
+                                        <label class="col-xs-2 control-label">输入验证</label>
+                                        <div class="col-xs-3">
+                                            {!! Form::select('frontend_class',[''=>'无','validate-number'=>'十进制数','validate-digits'=>'整数','validate-email'=>'邮箱','validate-url'=>'Url链接','validate-alpha'=>'字母','validate-alphanum'=>'字母(a - z、A - Z)或数字(0 - 9)'],null,['id'=>'frontend_class','class' => 'form-control select2','title'=>'输入验证']) !!}
+                                        </div>
+                                    </div>
+                                    <div class="field form-group ">
+                                        <label class="col-xs-2 control-label">添加到列选项</label>
+                                        <div class="col-xs-3">
+                                            {!! Form::select('is_used_in_grid',['1'=>'是','0'=>'否'],1,['id'=>'is_used_in_grid','class' => 'form-control select2','title'=>'添加到列选项']) !!}
+                                        </div>
+                                    </div>
+                                    <div class="field form-group ">
+                                        <label class="col-xs-2 control-label">用在过滤选项</label>
+                                        <div class="col-xs-3">
+                                            {!! Form::select('is_filterable_in_grid',['1'=>'是','0'=>'否'],1,['id'=>'is_filterable_in_grid','class' => 'form-control select2','title'=>'用在过滤选项']) !!}
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="labels_content">
+                            <h4 class="">Basic Form</h4>
+                        </div>
+                        <div class="tab-pane" id="front_content">
+                            <h4 class="">Basic Form</h4>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {!! Form::close() !!}
+        </div>
     </div><!--box-->
 @stop
 
 @section('js')
-    @include('vendor.datatables.global')
+    <script src="{!! asset('js/backend/catalog/product-attribute.js') !!}"></script>
+    <script src="{!! asset('js/backend/catalog/options.js') !!}"></script>
+    <script src="{!! asset('js/backend/plugin/sortable/sortable.min.js') !!}"></script>
+    <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
+    {{--{!! JsValidator::formRequest('App\Http\Requests\MyFormRequest') !!}--}}
     <script>
-
+        $().ready(function(){
+            $('#advanced_fieldset-wrapper').addClass('collapse').collapse('hide');
+        })
     </script>
 @stop
