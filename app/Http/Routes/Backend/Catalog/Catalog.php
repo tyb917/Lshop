@@ -19,3 +19,11 @@ Route::group([
     Route::resource('catalog/product_attribute', 'AttributeController');
 });
 
+/*样本*/
+Route::group([
+    'namespace'  => 'Swatch',
+    'middleware' => 'access.routeNeedsPermission:create-swatch',
+], function() {
+    Route::resource('swatch', 'SwatchController');
+});
+

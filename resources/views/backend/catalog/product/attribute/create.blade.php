@@ -2,6 +2,7 @@
 @section('css')
     <link rel="stylesheet" href="{!! asset('css/bootstrap-extend/bootstrap-extend.css') !!}">
     <link rel="stylesheet" href="{!! asset('css/backend/catalog/attributes.css') !!}">
+    <link rel="stylesheet" href="{!! asset('js/backend/plugin/colorpicker/css/colorpicker.css') !!}">
 @endsection
 @section ('title', trans('backend/catalog/product/attribute.labels.management'))
 
@@ -68,16 +69,16 @@
                                 </fieldset>
                             </div>
                             <fieldset class="fieldset">
-                                <legend class="legend"><span>Manage Swatch (Values of Your Attribute)</span></legend>
+                                <legend class="legend"><span>管理样本（你的属性值）</span></legend>
                                 <div id="swatch-visual-options-panel">
                                     <table class="data-table clearfix" cellspacing="0">
                                         <thead>
                                         <tr id="swatch-visual-options-table">
                                             <th class="col-draggable"></th>
-                                            <th class="col-default">Is Default</th>
-                                            <th>Swatch</th>
-                                            <th>Default Store View</th>
-                                            <th>Admin</th>
+                                            <th class="col-default">是否默认</th>
+                                            <th>样本</th>
+                                            <th>默认存储视图</th>
+                                            <th>管理员</th>
                                             <th class="col-delete">&nbsp;</th>
                                         </tr>
                                         </thead>
@@ -90,8 +91,8 @@
                                         </tr>
                                         <tr>
                                             <th colspan="7" class="col-actions-add">
-                                                <button id="add_new_swatch_visual_option_button" title="Add Swatch" type="button" class="action- scalable add">
-                                                    <span>Add Swatch</span>
+                                                <button id="add_new_swatch_visual_option_button" title="添加样本" type="button" class="btn action- scalable add">
+                                                    <span>添加样本</span>
                                                 </button>
                                             </th>
                                         </tr>
@@ -114,32 +115,30 @@
                                             <div class="swatch_sub-menu_container" id="swatch_container_option_<%- data.id %>">
                                                 <div class="swatch_row position-relative">
                                                     <div class="swatch_row_name colorpicker_handler">
-                                                        <p>Choose a color</p>
+                                                        <p>选择颜色</p>
                                                     </div>
                                                 </div>
                                                 <div class="swatch_row">
                                                     <div class="swatch_row_name btn_choose_file_upload" id="swatch_choose_file_option_<%- data.id %>">
-                                                        <p>Upload a file</p>
+                                                        <p>上传文件</p>
                                                     </div>
                                                 </div>
                                                 <div class="swatch_row">
                                                     <div class="swatch_row_name btn_remove_swatch">
-                                                        <p>Clear</p>
+                                                        <P>清除</p>
                                                     </div>
                                                 </div>
                                             </div>
                                         </td>
                                         <td class="swatch-col-<%- data.id %>">
-                                            <input name="optionvisual[value][<%- data.id %>][1]" value="<%- data.store1 %>" class="input-text" type="text" />
+                                            <input name="optionvisual[value][<%- data.id %>][1]" value="<%- data.store1 %>" class="form-control" type="text" />
                                         </td>
                                         <td class="swatch-col-<%- data.id %>">
-                                            <input name="optionvisual[value][<%- data.id %>][0]" value="<%- data.store0 %>" class="input-text required-option" type="text" />
+                                            <input name="optionvisual[value][<%- data.id %>][0]" value="<%- data.store0 %>" class="form-control required-option" type="text" />
                                         </td>
                                         <td id="delete_button_swatch_container_<%- data.id %>" class="col-delete">
                                             <input type="hidden" class="delete-flag" name="optionvisual[delete][<%- data.id %>]" value="" />
-                                            <button title="Delete" type="button"
-                                                    class="action- scalable delete delete-option"
-                                            >
+                                            <button title="Delete" type="button" class="action- scalable delete delete-option">
                                                 <span>Delete</span>
                                             </button>
                                         </td>
@@ -147,17 +146,17 @@
                                 </script>
                             </fieldset>
                             <fieldset class="fieldset">
-                                <legend class="legend"><span>Manage Swatch (Values of Your Attribute)</span></legend>
+                                <legend class="legend"><span>管理样本（你的属性值）</span></legend>
                                 <div id="swatch-text-options-panel">
                                     <table class="data-table clearfix" cellspacing="0">
                                         <thead>
                                         <tr id="swatch-text-options-table">
                                             <th class="col-draggable"></th>
-                                            <th class="col-default">Is Default</th>
-                                            <th class="col-swatch col-<%- data.id %>">Swatch</th>
-                                            <th>Default Store View</th>
-                                            <th class="col-swatch col-<%- data.id %>">Swatch</th>
-                                            <th>Admin</th>
+                                            <th class="col-default">是否默认</th>
+                                            <th class="col-swatch col-<%- data.id %>">样本</th>
+                                            <th>默认存储视图</th>
+                                            <th class="col-swatch col-<%- data.id %>">样本</th>
+                                            <th>管理员</th>
                                             <th class="col-delete">&nbsp;</th>
                                         </tr>
                                         </thead>
@@ -170,8 +169,8 @@
                                         </tr>
                                         <tr>
                                             <th colspan="7" class="col-actions-add">
-                                                <button id="add_new_swatch_text_option_button" title="Add Swatch" type="button" class="action- scalable add">
-                                                    <span>Add Swatch</span>
+                                                <button id="add_new_swatch_text_option_button" title="添加样本" type="button" class="btn action- scalable add">
+                                                    <span>添加样本</span>
                                                 </button>
                                             </th>
                                         </tr>
@@ -189,23 +188,21 @@
                                             <input class="input-radio" type="<%- data.intype %>" name="defaulttext[]" value="<%- data.id %>" <%- data.checked %>/>
                                         </td>
                                         <td class="col-swatch col-<%- data.id %>">
-                                            <input class="input-text swatch-text-field-1 " name="swatchtext[value][<%- data.id %>][1]" type="text" value="<%- data.swatch1 %>" />
+                                            <input class="form-control swatch-text-field-1 " name="swatchtext[value][<%- data.id %>][1]" type="text" value="<%- data.swatch1 %>" />
                                         </td>
                                         <td class="swatch-col-<%- data.id %>">
-                                            <input name="optiontext[value][<%- data.id %>][1]" value="<%- data.store1 %>" class="input-text" type="text" />
+                                            <input name="optiontext[value][<%- data.id %>][1]" value="<%- data.store1 %>" class="form-control" type="text" />
                                         </td>
                                         <td class="col-swatch col-<%- data.id %>">
-                                            <input class="input-text swatch-text-field-0 required-option" name="swatchtext[value][<%- data.id %>][0]" type="text" value="<%- data.swatch0 %>" />
+                                            <input class="form-control swatch-text-field-0 required-option" name="swatchtext[value][<%- data.id %>][0]" type="text" value="<%- data.swatch0 %>" />
                                         </td>
                                         <td class="swatch-col-<%- data.id %>">
-                                            <input name="optiontext[value][<%- data.id %>][0]" value="<%- data.store0 %>" class="input-text required-option" type="text" />
+                                            <input name="optiontext[value][<%- data.id %>][0]" value="<%- data.store0 %>" class="form-control required-option" type="text" />
                                         </td>
                                         <td id="delete_button_swatch_container_<%- data.id %>" class="col-delete">
                                             <input type="hidden" class="delete-flag" name="optiontext[delete][<%- data.id %>]" value="" />
-                                            <button title="Delete" type="button"
-                                                    class="action- scalable delete delete-option"
-                                            >
-                                                <span>Delete</span>
+                                            <button title="Delete" type="button" class="action- scalable delete delete-option">
+                                                <span>删除</span>
                                             </button>
                                         </td>
                                     </tr>
@@ -213,15 +210,15 @@
 
                             </fieldset>
                             <fieldset class="fieldset">
-                                <legend class="legend"><span>Manage Options (Values of Your Attribute)</span></legend>
+                                <legend class="legend"><span>管理选项（你的属性值）</span></legend>
                                 <div id="manage-options-panel">
                                     <table class="admin__control-table">
                                         <thead>
                                         <tr id="attribute-options-table">
                                             <th class="col-draggable"></th>
-                                            <th class="col-default control-table-actions-th">Is Default</th>
-                                            <th>Default Store View</th>
-                                            <th>Admin</th>
+                                            <th class="col-default control-table-actions-th">是否默认</th>
+                                            <th>默认存储视图</th>
+                                            <th>管理员</th>
                                             <th class="col-delete">&nbsp;</th>
                                         </tr>
                                         </thead>
@@ -234,8 +231,8 @@
                                         </tr>
                                         <tr>
                                             <th colspan="5" class="col-actions-add">
-                                                <button id="add_new_option_button" title="Add Option" type="button" class="action- scalable add">
-                                                    <span>Add Option</span>
+                                                <button id="add_new_option_button" title="添加选项" type="button" class="btn action- scalable add">
+                                                    <span>添加选项</span>
                                                 </button>
                                             </th>
                                         </tr>
@@ -243,6 +240,25 @@
                                     </table>
                                     <input type="hidden" id="option-count-check" value="">
                                 </div>
+                                <script id="row-template" type="text/x-magento-template">
+                                    <tr>
+                                        <td class="col-draggable">
+                                            <div data-role="draggable-handle" class="draggable-handle" title="Sort Option"></div>
+                                            <input data-role="order" type="hidden" name="option[order][<%- data.id %>]"  value="<%- data.sort_order %>" />
+                                        </td>
+                                        <td class="col-default control-table-actions-cell">
+                                            <input class="input-radio" type="<%- data.intype %>" name="default[]" value="<%- data.id %>" <%- data.checked %>/>
+                                        </td>
+                                        <td class="col-<%- data.id %>"><input name="option[value][<%- data.id %>][1]" value="<%- data.store1 %>" class="form-control" type="text" /></td>
+                                        <td class="col-<%- data.id %>"><input name="option[value][<%- data.id %>][0]" value="<%- data.store0 %>" class="form-control required-option" type="text" /></td>
+                                        <td id="delete_button_container_<%- data.id %>" class="col-delete">
+                                            <input type="hidden" class="delete-flag" name="option[delete][<%- data.id %>]" value="" />
+                                            <button id="delete_button_<%- data.id %>" title="Delete" type="button" class="action- scalable delete delete-option">
+                                                <span>删除</span>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </script>
                             </fieldset>
                             <h4 class="collapsible-title" data-toggle="collapse" href="#advanced_fieldset-wrapper">高级属性参数</h4>
                             <hr>
@@ -329,14 +345,27 @@
 @stop
 
 @section('js')
-    <script src="{!! asset('js/backend/catalog/product-attribute.js') !!}"></script>
-    <script src="{!! asset('js/backend/catalog/options.js') !!}"></script>
-    <script src="{!! asset('js/backend/plugin/sortable/sortable.min.js') !!}"></script>
     <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
-    {{--{!! JsValidator::formRequest('App\Http\Requests\MyFormRequest') !!}--}}
+    <script type="text/javascript" src="{{ asset('js/backend/plugin/colorpicker/js/colorpicker.js')}}"></script>
     <script>
         $().ready(function(){
             $('#advanced_fieldset-wrapper').addClass('collapse').collapse('hide');
         })
+        var config = {
+            attributesData:[],
+            isSortable:1,
+            isReadOnly:0,
+            FORM_KEY:'{{csrf_token()}}',
+            uploadActionUrl:"{{url('admin/catalog/product_attribute/swatches')}}",
+        }
     </script>
+    <script src="{!! asset('js/backend/catalog/underscore.js') !!}"></script>
+    <script src="{!! asset('js/backend/catalog/attribute.js') !!}"></script>
+    <script src="{!! asset('js/backend/catalog/text.js') !!}"></script>
+    <script src="{!! asset('js/backend/catalog/visual.js') !!}"></script>
+    <script src="{!! asset('js/backend/catalog/options.js') !!}"></script>
+    <script src="{!! asset('js/backend/catalog/type-change.js') !!}"></script>
+    <script src="{!! asset('js/backend/catalog/product-attribute.js') !!}"></script>
+    <script src="{!! asset('js/backend/plugin/sortable/sortable.min.js') !!}"></script>
+    {{--{!! JsValidator::formRequest('App\Http\Requests\MyFormRequest') !!}--}}
 @stop
