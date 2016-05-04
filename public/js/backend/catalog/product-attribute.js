@@ -236,8 +236,8 @@ var swatchProductAttributes = {
             this.setRowVisibility(this.isRequired, false);
             this.setRowVisibility(this.isUnique, false);
             this.setRowVisibility(this.frontendClass, false);
-        } else if (types.currentValue) {
-            $.each(types.currentValue, function (key, option) {
+        } else if (types[currentValue]) {
+            $.each(types[currentValue], function (key, option) {
                 switch (option) {
                     case '_front_fieldset':
                         thing.tabsFront.hide();

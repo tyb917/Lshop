@@ -26,9 +26,9 @@
                 <div class="clearfix"></div>
                 <div class="nav-tabs-vertical">
                     <ul class="nav nav-tabs margin-right-25" data-plugin="nav-tabs" role="tablist">
-                        <li class="active" ><a data-toggle="tab" href="#main">属性</a></li>
-                        <li><a data-toggle="tab" href="#labels_content">管理标签</a></li>
-                        <li><a data-toggle="tab" href="#front_content">商店属性</a></li>
+                        <li class="active" ><a data-toggle="tab" href="#main" id="product_attribute_tabs_main">属性</a></li>
+                        <li><a data-toggle="tab" href="#labels_content" id="product_attribute_tabs_labels">管理标签</a></li>
+                        <li><a data-toggle="tab" href="#front_content" id="product_attribute_tabs_front">商店属性</a></li>
                       </ul>
                     <div class="tab-content">
                         <div class="tab-pane active" id="main">
