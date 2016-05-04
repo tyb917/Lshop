@@ -16,8 +16,10 @@ elixir(function (mix) {
             'node_modules/bootstrap-sass/assets/fonts/bootstrap',
             'public/build/fonts/bootstrap'
         )
-        .copy(
+        .copy([
             'node_modules/bootstrap-sass/assets/javascripts/bootstrap.min.js',
+            'node_modules/twitter-bootstrap-wizard/jquery.bootstrap.wizard.min.js'
+        ],
             'public/js/vendor/bootstrap'
         )
 
