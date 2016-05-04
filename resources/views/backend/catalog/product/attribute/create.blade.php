@@ -346,10 +346,47 @@
 
 @section('js')
     <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
+    @if(session()->get('locale'))<script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/'.session()->get('locale').'.js')}}"></script>
+    @else
+        <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/zh-CN.js')}}"></script>
+    @endif
     <script type="text/javascript" src="{{ asset('js/backend/plugin/colorpicker/js/colorpicker.js')}}"></script>
     <script>
         $().ready(function(){
             $('#advanced_fieldset-wrapper').addClass('collapse').collapse('hide');
+            var $validator = $("#edit_form").validate({
+                errorElement: 'span',
+                errorClass: 'help-block error-help-block',
+
+                errorPlacement: function(error, element) {
+                    if (element.parent('.input-group').length ||
+                            element.prop('type') === 'checkbox' || element.prop('type') === 'radio') {
+                        error.insertAfter(element.parent());
+                        // else just place the validation message immediatly after the input
+                    } else {
+                        error.insertAfter(element);
+                    }
+                },
+                highlight: function(element) {
+                    $(element).closest('.form-group').addClass('has-error'); // add the Bootstrap error class to the control group
+                },
+                success: function(element) {
+                    $(element).closest('.form-group').removeClass('has-error').addClass('has-success'); // remove the Boostrap error class from the control group
+                },
+                rules: {
+                    'frontend_label[0]': {
+                        required: true,
+                        email: true,
+                        minlength: 3
+                    }
+                }
+                ,
+                ignore:[],
+                invalidHandler: function(e, validator){
+                    if(validator.errorList.length)
+                        $('.nav-tabs a[href="#' + jQuery(validator.errorList[0].element).closest(".tab-pane").attr('id') + '"]').tab('show')
+                }
+            });
         })
         var config = {
             attributesData:[],
