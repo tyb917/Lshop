@@ -8,6 +8,7 @@
   .nav > li{
     > a {
       color: $font-color;
+      height:$navbar-height;
     }
     &.active > a{
       background-color: #36a3ff;

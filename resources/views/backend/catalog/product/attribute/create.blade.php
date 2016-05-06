@@ -26,14 +26,15 @@
                 <div class="clearfix"></div>
                 <div class="nav-tabs-vertical">
                     <ul class="nav nav-tabs margin-right-25" data-plugin="nav-tabs" role="tablist">
-                        <li class="active" ><a data-toggle="tab" href="#main">属性</a></li>
-                        <li><a data-toggle="tab" href="#labels_content">管理标签</a></li>
-                        <li><a data-toggle="tab" href="#front_content">商店属性</a></li>
+                        <li class="active" ><a data-toggle="tab" href="#main" id="product_attribute_tabs_main">属性</a></li>
+                        <li><a data-toggle="tab" href="#labels_content" id="product_attribute_tabs_labels">管理标签</a></li>
+                        <li><a data-toggle="tab" href="#front_content" id="product_attribute_tabs_front">商店属性</a></li>
                       </ul>
                     <div class="tab-content">
                         <div class="tab-pane active" id="main">
-                            <h4 class="">属性参数</h4>
-                            <hr>
+                            <legend class="admin__legend legend">
+                                <h4 class="collapsible-title">属性参数</h4>
+                            </legend>
                             <div class="entry-edit">
                                 <fieldset class="fieldset">
                                     <div class="field form-group ">
@@ -69,7 +70,7 @@
                                 </fieldset>
                             </div>
                             <fieldset class="fieldset">
-                                <legend class="legend"><span>管理样本（你的属性值）</span></legend>
+                                <legend class="legend"><h4 class="collapsible-title">管理样本（你的属性值）</h4></legend>
                                 <div id="swatch-visual-options-panel">
                                     <table class="data-table clearfix" cellspacing="0">
                                         <thead>
@@ -260,8 +261,9 @@
                                     </tr>
                                 </script>
                             </fieldset>
-                            <h4 class="collapsible-title" data-toggle="collapse" href="#advanced_fieldset-wrapper">高级属性参数</h4>
-                            <hr>
+                            <legend class="admin__legend legend">
+                                <h4 class="collapsible-title" data-toggle="collapse" href="#advanced_fieldset-wrapper">高级属性参数</h4>
+                            </legend>
                             <div id="advanced_fieldset-wrapper">
                                 <fieldset class="fieldset">
                                     <div class="field form-group ">
@@ -330,11 +332,119 @@
                             </div>
                         </div>
                         <div class="tab-pane" id="labels_content">
-                            <h4 class="">Basic Form</h4>
+                            <h4 class="collapsible-title margin-bottom-20" data-toggle="collapse" href="#manage-titles-content" aria-expanded="true">管理标题(大小、颜色等)</h4>
+                            <div id="manage-titles-content" class="collapse in" aria-expanded="true">
+                                <fieldset class="fieldset">
+                                    <table class="admin__control-table" id="attribute-labels-table">
+                                        <thead>
+                                        <tr>
+                                            <th class="col-store-view">默认存储视图</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td class="col-store-view">
+                                                <input class="form-control" type="text" name="frontend_label[1]" value="">
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </fieldset>
+                            </div>
+                            <hr>
                         </div>
                         <div class="tab-pane" id="front_content">
-                            <h4 class="">Basic Form</h4>
 
+                            <fieldset class="fieldset admin__fieldset" id="front_fieldset">
+                                <legend class="admin__legend legend">
+                                    <h4 class="collapsible-title">店面属性</h4>
+                                </legend>
+                                <div class="messages">
+                                </div>
+                                <div class="field form-group">
+                                    <label class="col-xs-2 control-label">使用搜索</label>
+                                    <div class="col-xs-6">
+                                        {!! Form::select('is_searchable',['1'=>'是','0'=>'否'],0,['id'=>'is_searchable','class' => 'form-control select2','title'=>'使用搜索']) !!}
+                                    </div>
+                                </div>
+                                <div class="field form-group" style="display: none;">
+                                    <label class="col-xs-2 control-label">搜索权重</label>
+                                    <div class="col-xs-6">
+                                        {!! Form::select('search_weight',['1'=>'1','2'=>'2','3'=>'3','4'=>'4','5'=>'5','6'=>'6','7'=>'7','8'=>'8','9'=>'9','10'=>'10'],null,['id'=>'search_weight','class' => 'form-control select2','style'=>'display:none','disabled'=>'','title'=>'搜索权重']) !!}
+                                    </div>
+                                </div>
+                                <div class="field form-group" style="display: none;">
+                                    <label class="col-xs-2 control-label">高级搜索可见</label>
+                                    <div class="col-xs-6">
+                                        {!! Form::select('is_visible_in_advanced_search',['1'=>'是','0'=>'否'],0,['id'=>'is_visible_in_advanced_search','class' => 'form-control select2','style'=>'display:none','disabled'=>'','title'=>'高级搜索可见']) !!}
+                                    </div>
+                                </div>
+                                <div class="field form-group">
+                                    <label class="col-xs-2 control-label">在店面可比较</label>
+                                    <div class="col-xs-6">
+                                        {!! Form::select('is_comparable',['1'=>'是','0'=>'否'],0,['id'=>'is_comparable','class' => 'form-control select2','title'=>'在店面可比较']) !!}
+                                    </div>
+                                </div>
+                                <div class="field form-group">
+                                    <label class="col-xs-2 control-label">使用分层导航</label>
+                                    <div class="col-xs-6">
+                                        {!! Form::select('is_filterable',['0'=>'否','1'=>'可过滤的（有结果）','2'=>'可过滤的 （没有结果）'],0,['id'=>'is_filterable','class' => 'form-control select2','title'=>'只能使用在分类输入下拉框,多选框和价格吗']) !!}
+                                        <p class="help-block">只能使用在分类输入下拉框,多选框和价格吗</p>
+                                    </div>
+                                </div>
+                                <div class="field form-group">
+                                    <label class="col-xs-2 control-label">在搜索结果中使用分层导航</label>
+                                    <div class="col-xs-6">
+                                        {!! Form::select('is_filterable_in_search',['1'=>'是','0'=>'否'],0,['id'=>'is_filterable_in_search','class' => 'form-control select2','title'=>'只能使用在分类输入下拉框,多选框和价格吗']) !!}
+                                        <p class="help-block">只能使用在分类输入下拉框,多选框和价格吗</p>
+                                    </div>
+                                </div>
+                                <div class="field form-group">
+                                    <label class="col-xs-2 control-label">位置</label>
+                                    <div class="col-xs-6">
+                                        <input id="position" name="position" value="" title="分层导航的位置" class="form-control" type="text" disabled="disabled">
+                                        <p class="help-block">在分层导航块的位置属性</p>
+                                    </div>
+                                </div>
+                                <div class="field form-group">
+                                    <label class="col-xs-2 control-label">使用促销规则条件</label>
+                                    <div class="col-xs-6">
+                                        {!! Form::select('is_used_for_promo_rules',['1'=>'是','0'=>'否'],0,['id'=>'is_used_for_promo_rules','class' => 'form-control select2','title'=>'使用促销规则条件']) !!}
+                                    </div>
+                                </div>
+                                <div class="field form-group" style="display: none;">
+                                    <label class="col-xs-2 control-label">支持所见即所得</label>
+                                    <div class="col-xs-6">
+                                        {!! Form::select('is_wysiwyg_enabled',['1'=>'是','0'=>'否'],0,['id'=>'is_wysiwyg_enabled','class' => 'form-control select2','style'=>'display: none;','title'=>'支持所见即所得']) !!}
+                                    </div>
+                                </div>
+                                <div class="field form-group" style="display: none;">
+                                    <label class="col-xs-2 control-label">在店面允许HTML标记</label>
+                                    <div class="col-xs-6">
+                                        {!! Form::select('is_html_allowed_on_front',['1'=>'是','0'=>'否'],1,['id'=>'is_html_allowed_on_front','class' => 'form-control select2','style'=>'display: none;','title'=>'在店面允许HTML标记']) !!}
+                                    </div>
+                                </div>
+                                <div class="field form-group field-is_visible_on_front">
+                                    <label class="col-xs-2 control-label">在店面的目录页可见</label>
+                                    <div class="col-xs-6">
+                                        {!! Form::select('is_visible_on_front',['1'=>'是','0'=>'否'],0,['id'=>'is_visible_on_front','class' => 'form-control select2','style'=>'display: none;','title'=>'在店面的目录页可见']) !!}
+                                    </div>
+                                </div>
+                                <div class="field form-group">
+                                    <label class="col-xs-2 control-label">在产品列表中使用</label>
+                                    <div class="col-xs-6">
+                                        {!! Form::select('used_in_product_listing',['1'=>'是','0'=>'否'],0,['id'=>'used_in_product_listing','class' => 'form-control select2','title'=>'在产品列表中使用']) !!}
+                                        <p class="help-block"> 依赖于主题设计</p>
+                                    </div>
+                                </div>
+                                <div class="field form-group">
+                                    <label class="col-xs-2 control-label">在产品列表排序中使用</label>
+                                    <div class="col-xs-6">
+                                        {!! Form::select('used_for_sort_by',['1'=>'是','0'=>'否'],0,['id'=>'used_for_sort_by','class' => 'form-control select2','title'=>'在产品列表中使用']) !!}
+                                        <p class="help-block"> 依赖于主题设计</p>
+                                    </div>
+                                </div>
+                            </fieldset>
                         </div>
                     </div>
                 </div>
@@ -346,10 +456,47 @@
 
 @section('js')
     <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
+    @if(session()->get('locale'))<script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/'.session()->get('locale').'.js')}}"></script>
+    @else
+        <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/zh-CN.js')}}"></script>
+    @endif
     <script type="text/javascript" src="{{ asset('js/backend/plugin/colorpicker/js/colorpicker.js')}}"></script>
     <script>
         $().ready(function(){
             $('#advanced_fieldset-wrapper').addClass('collapse').collapse('hide');
+            var $validator = $("#edit_form").validate({
+                errorElement: 'span',
+                errorClass: 'help-block error-help-block',
+
+                errorPlacement: function(error, element) {
+                    if (element.parent('.input-group').length ||
+                            element.prop('type') === 'checkbox' || element.prop('type') === 'radio') {
+                        error.insertAfter(element.parent());
+                        // else just place the validation message immediatly after the input
+                    } else {
+                        error.insertAfter(element);
+                    }
+                },
+                highlight: function(element) {
+                    $(element).closest('.form-group').addClass('has-error'); // add the Bootstrap error class to the control group
+                },
+                success: function(element) {
+                    $(element).closest('.form-group').removeClass('has-error').addClass('has-success'); // remove the Boostrap error class from the control group
+                },
+                rules: {
+                    'frontend_label[0]': {
+                        required: true,
+                        email: true,
+                        minlength: 3
+                    }
+                }
+                ,
+                ignore:[],
+                invalidHandler: function(e, validator){
+                    if(validator.errorList.length)
+                        $('.nav-tabs a[href="#' + jQuery(validator.errorList[0].element).closest(".tab-pane").attr('id') + '"]').tab('show')
+                }
+            });
         })
         var config = {
             attributesData:[],

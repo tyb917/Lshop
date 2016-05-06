@@ -35,7 +35,7 @@ class AvatarController extends Controller
         if($avatar->state=='200'){
             $oldavatar = access()->user()->avatar;
             $updateavatar = $user->updateAvatar(access()->id(), ['avatar'=>$avatar->avatar]);
-            if($updateavatar){
+            if($updateavatar && $oldavatar && $oldavatar !=$avatar->avatar){
                 $image->deleteAvatar($oldavatar);
             }
         }
