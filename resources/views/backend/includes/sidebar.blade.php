@@ -70,8 +70,18 @@
                     <li class="{{ Active::pattern(['admin/catalog/product_attribute/set']) }}">
                         <a href="{!!url('admin/catalog/product_attribute/set')!!}"><span>{{ trans('menus.backend.catalog.product_attribute.set') }}</span></a>
                     </li>
-                    <li class="{{ Active::pattern(['admin/catalog/product_attribute/set']) }}">
-                        <a href="{!!url('admin/catalog/product_attribute/set')!!}"><span>{{ trans('menus.backend.catalog.product_attribute.set') }}</span></a>
+                </ul>
+            </li>
+            @endauth
+            @permission(['view-store-management'])
+            <li class="{{ Active::pattern(['admin/store/*']) }} treeview">
+                <a href="#">
+                    <i class="fa fa-users"></i><span>{{ trans('menus.backend.catalog.product_attribute.management') }}</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu {{ Active::pattern(['admin/store/**'], 'menu-open') }}" style="display: none; {{ Active::pattern(['admin/products*','admin/categories*'], 'display: block;') }}">
+                    <li class="{{ Active::pattern(['admin/store/index']) }}">
+                        <a href="{!!url('admin/store/index')!!}"><span>{{ trans('menus.backend.catalog.product_attribute.set') }}</span></a>
                     </li>
                 </ul>
             </li>

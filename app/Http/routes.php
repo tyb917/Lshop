@@ -2,48 +2,33 @@
 
 Route::group(['middleware' => 'web'], function() {
     /**
-     * Switch between the included languages
+     * 语言选择路由
      */
     Route::group(['namespace' => 'Language'], function () {
         require (__DIR__ . '/Routes/Language/Language.php');
     });
 
     /**
-     * Frontend Routes
-     * Namespaces indicate folder structure
+     * 前台路由
      */
     Route::group(['namespace' => 'Frontend'], function () {
-        require(__DIR__ . '/Routes/Frontend/Frontend.php');
-        require(__DIR__ . '/Routes/Frontend/Access.php');
+        require(__DIR__ . '/Routes/Frontend/Collection.php');
     });
-
+    /**
+     * 会员中心路由
+     */
     Route::group(['namespace' => 'Member'], function () {
         Route::group(['middleware' => 'auth'], function () {
-            require(__DIR__ . '/Routes/Member/Access.php');
+            require(__DIR__ . '/Routes/Member/Collection.php');
         });
     });
 
     /**
-     * Backend Routes
-     * Namespaces indicate folder structure
+     * 后台路由
      */
     Route::group(['namespace' => 'Backend'], function () {
         Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
-
-            /**
-             * These routes need view-backend permission
-             * (good if you want to allow more than one group in the backend,
-             * then limit the backend features by different roles or permissions)
-             *
-             * Note: Administrator has all permissions so you do not have to specify the administrator role everywhere.
-             */
-            Route::group(['middleware' => 'access.routeNeedsPermission:view-backend'], function () {
-                require (__DIR__ . '/Routes/Backend/Dashboard.php');
-                require (__DIR__ . '/Routes/Backend/Access.php');
-                require (__DIR__ . '/Routes/Backend/LogViewer.php');
-                require (__DIR__ . '/Routes/Backend/Catalog.php');
-                require (__DIR__ . '/Routes/Backend/Store.php');
-            });
+            require(__DIR__ . '/Routes/Backend/Collection.php');
         });
     });
 });
