@@ -81,15 +81,6 @@ return [
         ],
     ],
 
-    'language-picker' => [
-        'language' => '语言',
-        'langs' => [
-            'en' => 'English',
-            'fr-FR' => 'Français (France)',
-            'zh-CN' => '中文',
-        ],
-    ],
-
     'fronted' => [
         'dashboard' => '首页'
     ]
