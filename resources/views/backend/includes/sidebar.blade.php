@@ -70,6 +70,9 @@
                     <li class="{{ Active::pattern(['admin/catalog/product_attribute/set']) }}">
                         <a href="{!!url('admin/catalog/product_attribute/set')!!}"><span>{{ trans('menus.backend.catalog.product_attribute.set') }}</span></a>
                     </li>
+                    <li class="{{ Active::pattern(['admin/catalog/product_attribute/set']) }}">
+                        <a href="{!!url('admin/catalog/product_attribute/set')!!}"><span>{{ trans('menus.backend.catalog.product_attribute.set') }}</span></a>
+                    </li>
                 </ul>
             </li>
             @endauth

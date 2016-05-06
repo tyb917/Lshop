@@ -1,11 +1,11 @@
-.attribute-add .select2{width:auto}
+.attribute-add .select2{width:auto;min-width:80px}
 .collapsible-title{
     position:relative;
     cursor: pointer;
     margin:0;
     padding:10px 0;
 }
-.collapsible-title:after{
+.collapsible-title.collapsed:after{
     display: inline-block;
     font: normal normal normal 14px / 1 FontAwesome;
     font-size: inherit;

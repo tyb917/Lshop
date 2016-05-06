@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('telephone')->unique()->nullable();
             $table->string('password', 60)->nullable();
             $table->string('payword', 60)->nullable();
-            $table->string('aratar');
+            $table->string('avatar');
             $table->timestamp('last_login')->default('0000-00-00 00:00');
             $table->boolean('login_num')->default(false);
             $table->boolean('is_active')->default(false);
