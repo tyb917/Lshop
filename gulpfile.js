@@ -95,6 +95,7 @@ elixir(function (mix) {
          */
         .styles([
             'backend/app.css',
+            'bootstrap-extend/bootstrap-extend.min.css',
         ], 'public/css/backend.css')
 
         /**
