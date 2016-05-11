@@ -6,17 +6,27 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\DataTables\StoreDataTable;
+use App\Repositories\Backend\Store\StoreRepositoryContract;
 
 class StoreController extends Controller
 {
+
+    protected $stores;
+
+    public function __construct(StoreRepositoryContract $stores)
+    {
+        $this->stores = $stores;
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(StoreDataTable $datatable)
     {
-        return view('backend.store.index');
+        $stores = $this->stores->getAllStores();
+        return $datatable->render('backend.store.index',['stores' => $stores]);
     }
 
     /**

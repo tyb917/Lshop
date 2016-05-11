@@ -12,9 +12,9 @@ class EavTableSeeder extends Seeder
             DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         }
 
-        $this->call(EavEntityTypeTableSeeder::class);
+        //$this->call(EavEntityTypeTableSeeder::class);
         $this->call(EavAttributeTableSeeder::class);
-        $this->call(CatalogEavAttributeTableSeeder::class);
+        //$this->call(CatalogEavAttributeTableSeeder::class);
 
 
         if (env('DB_CONNECTION') == 'mysql') {

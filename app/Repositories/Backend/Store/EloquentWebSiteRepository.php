@@ -8,7 +8,7 @@ use App\Exceptions\GeneralException;
  * Class EloquentWebSiteRepository
  * @package App\Repositories\WebSite
  */
-class EloquentWebSiteRepository implements WebSiteRepositoryContract
+class EloquentWebSiteRepository implements WebsiteRepositoryContract
 {
 
     public function getWebSitesPaginated($per_page, $order_by = 'sort', $sort = 'asc')

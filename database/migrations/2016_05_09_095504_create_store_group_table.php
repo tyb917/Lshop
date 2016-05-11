@@ -19,7 +19,8 @@ class CreateStoreGroupTable extends Migration
             $table->char('name')->comment('商店分组名称');
             $table->unsignedInteger('root_category_id')->default(0)->comment('根目录ID');
             $table->unsignedSmallInteger('default_store_id')->default(0)->comment('默认商店ID');
-            $table->index(['website_id','default_store_id']);
+            $table->index(['website_id']);
+            $table->index(['default_store_id']);
         });
     }
 

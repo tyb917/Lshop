@@ -19,7 +19,9 @@ class CreateStoreWebsiteTable extends Migration
             $table->unsignedSmallInteger('sort_order')->default(0)->comment('网站排序');
             $table->unsignedSmallInteger('default_group_id')->default(0)->comment('默认分组ID');
             $table->unsignedSmallInteger('is_default')->nullable()->default(0)->comment('定义为默认网站');
-            $table->index(['code','sort_order','default_group_id']);
+            $table->index('code');
+            $table->index('sort_order');
+            $table->index('default_group_id');
         });
     }
 

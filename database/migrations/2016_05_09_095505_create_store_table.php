@@ -22,8 +22,10 @@ class CreateStoreTable extends Migration
             $table->char('name')->comment('名称');
             $table->unsignedSmallInteger('sort_order')->default(0)->comment('商店排序');
             $table->unsignedSmallInteger('is_active')->default(0)->comment('商店激活');
-            $table->unique(['is_active','sort_order']);
-            $table->index(['code','website_id','group_id']);
+            $table->unique(['code']);
+            $table->index(['website_id']);
+            $table->index(['is_active','sort_order']);
+            $table->index(['group_id']);
         });
     }
 

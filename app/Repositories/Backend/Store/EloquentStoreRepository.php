@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Backend\Store;
 
+use App\Models\Store\Store;
 use App\Exceptions\GeneralException;
 
 /**
@@ -11,14 +12,15 @@ use App\Exceptions\GeneralException;
 class EloquentStoreRepository implements StoreRepositoryContract
 {
 
-    public function getStoresPaginated($per_page, $order_by = 'sort', $sort = 'asc')
+    public function getStoresPaginated($per_page, $order_by = 'store_id', $sort = 'asc')
     {
 
     }
 
-    public function getAllStores($order_by = 'sort', $sort = 'asc', $withPermissions = false)
+    public function getAllStores($order_by = 'store_id', $sort = 'asc')
     {
-
+        return Store::orderBy($order_by, $sort)
+            ->get();
     }
 
     /**
