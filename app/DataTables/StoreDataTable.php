@@ -53,11 +53,14 @@ class StoreDataTable extends DataTable
      */
     public function query()
     {
-        $stores = Store::join('store_group','store.group_id','=','store_group.group_id')
-            ->join('store_website','store.website_id','=','store_website.website_id')
-            ->select('store.*', 'store_group.id as group_id', 'store_group.name as group_name', 'store_website.id as website_id', 'store_website.name as website_name')
-            ->where('store_id','>',0)
-            ->orderBy('store_id');
+        $stores = Store::select('store_website.*', 'store_group.group_id', 'store_group.name AS group_title', 'store.store_id', 'store.name AS store_title')
+        ->join('store_group AS store_group','store_website.website_id','=','store_group.website_id')
+        ->join('store AS store','store_group.group_id','=','store.group_id')
+        ->where('store_website.website_id','>',0)
+        ->orderBy('store_group.name','ASC')
+        ->orderBy('CASE WHEN store.store_id = 0 THEN 0 ELSE 1 END','ASC')
+        ->orderBy('store.sort_order','ASC')
+        ->orderBy('store.name','ASC');
         return $this->applyScopes($stores);
     }
 
