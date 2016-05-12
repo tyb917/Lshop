@@ -59,7 +59,7 @@
                     "sProcessing": skFadingCircle()
                 },
                 "ajax": {
-                    "url": "",
+                    "url": "", // ajax source
                 },
                 columns: [
                     {data: 'website_name', name: 'store_website.name',orderable: false},
