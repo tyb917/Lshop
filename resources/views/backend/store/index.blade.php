@@ -62,9 +62,9 @@
                     "url": "", // ajax source
                 },
                 columns: [
-                    {data: 'website_name', name: 'store_website.name',orderable: false},
-                    {data: 'group_name', name: 'store_group.name',orderable: false},
-                    {data: 'name', name: 'name',orderable: false}
+                    {data: 'website_title', name: 'name',orderable: false},
+                    {data: 'group_title', name: 'group_title',orderable: false},
+                    {data: 'store_title', name: 'store_title',orderable: false}
                 ],
                 "orderCellsTop": true,
                 "initComplete": function () {
