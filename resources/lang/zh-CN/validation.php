@@ -106,53 +106,49 @@ return [
     */
 
     'attributes' => [
+        /*权限验证*/
+        'access' => [
+            'permissions' => [
+                'associated_roles' => '相关角色',
+                'dependencies' => '相关性',
+                'display_name' => '显示名',
+                'group' => '组',
+                'group_sort' => '组排序',
 
-        'backend' => [
-            'access' => [
-                'permissions' => [
-                    'associated_roles' => '相关角色',
-                    'dependencies' => '相关性',
-                    'display_name' => '显示名',
-                    'group' => '组',
-                    'group_sort' => '组排序',
-
-                    'groups' => [
-                        'name' => '组名',
-                    ],
-
-                    'name' => '名称',
-                    'system' => '系统?',
+                'groups' => [
+                    'name' => '组名',
                 ],
 
-                'roles' => [
-                    'associated_permissions' => '相关权限',
-                    'name' => '名称',
-                    'sort' => '排序',
-                ],
+                'name' => '名称',
+                'system' => '系统?',
+            ],
 
-                'users' => [
-                    'active' => '活跃的',
-                    'associated_roles' => '相关角色',
-                    'confirmed' => '激活',
-                    'email' => '邮箱地址',
-                    'name' => '用户名',
-                    'other_permissions' => '其他权限',
-                    'password' => '密码',
-                    'password_confirmation' => '确认密码',
-                    'send_confirmation_email' => '发送激活邮件',
-                ],
+            'roles' => [
+                'associated_permissions' => '相关权限',
+                'name' => '名称',
+                'sort' => '排序',
+            ],
+
+            'users' => [
+                'active' => '活跃的',
+                'associated_roles' => '相关角色',
+                'confirmed' => '激活',
+                'email' => '邮箱地址',
+                'name' => '用户名',
+                'other_permissions' => '其他权限',
+                'password' => '密码',
+                'password_confirmation' => '确认密码',
+                'send_confirmation_email' => '发送激活邮件',
             ],
         ],
-
-        'frontend' => [
-            'email' => '邮箱地址',
-            'name' => '用户名',
-            'password' => '密码',
-            'password_confirmation' => '确认密码',
-            'old_password' => '旧密码',
-            'new_password' => '新密码',
-            'new_password_confirmation' => '确认新密码',
-        ],
+        /*auth 验证*/
+        'email' => '邮箱',
+        'name' => '用户名',
+        'password' => '密码',
+        'password_confirmation' => '确认密码',
+        'old_password' => '旧密码',
+        'new_password' => '新密码',
+        'new_password_confirmation' => '确认新密码',
     ],
 
 ];

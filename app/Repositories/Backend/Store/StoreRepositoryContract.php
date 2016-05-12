@@ -16,7 +16,7 @@ interface StoreRepositoryContract
      * @param  bool    $withPermissions
      * @return mixed
      */
-    public function getAllStores($order_by = 'id', $sort = 'asc', $withPermissions = false);
+    public function getAllStores($order_by = 'id', $sort = 'asc');
 
     /**
      * @param  $input

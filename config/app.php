@@ -168,6 +168,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         /*helper*/
         App\Providers\HelperServiceProvider::class,
+        App\Providers\StoreServiceProvider::class,
 
         /*
          * Third Party Providers
