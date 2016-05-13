@@ -87,7 +87,8 @@ elixir(function (mix) {
             'plugin/toastr/toastr.scss',
             'plugin/select2/select2.scss',
             'plugin/sweetalert/sweetalert.scss',
-            'plugin/datapicker/datepicker3.scss'
+            'plugin/datapicker/datepicker3.scss',
+            'bootstrap-extend/bootstrap-extend.min.css'
         ], 'resources/assets/css/backend/app.css')
 
         /**
@@ -95,7 +96,6 @@ elixir(function (mix) {
          */
         .styles([
             'backend/app.css',
-            'bootstrap-extend/bootstrap-extend.min.css',
         ], 'public/css/backend.css')
 
         /**
