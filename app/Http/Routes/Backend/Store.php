@@ -11,7 +11,7 @@ Route::group([
     /*商店信息*/
     Route::resource('group', 'GroupController');
     /*网页信息*/
-    Route::resource('website', 'WebSiteController');
+    Route::resource('website', 'WebsiteController');
 });
 
 

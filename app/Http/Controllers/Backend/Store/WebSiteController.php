@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class WebSiteController extends Controller
+class WebsiteController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -59,7 +59,7 @@ class WebSiteController extends Controller
      */
     public function edit($id)
     {
-        //
+        dd($id);
     }
 
     /**

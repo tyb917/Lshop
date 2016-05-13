@@ -37,10 +37,6 @@
                         @permission('create-permissions')
                         <li><a href="{{ route('admin.access.roles.permissions.create') }}">{{ trans('menus.backend.access.permissions.create') }}</a></li>
                         @endauth
-
-                        @permission(['create-roles','create-permission-groups', 'create-permissions'])
-                        <li class="divider"></li>
-                        @endauth
                     </ul>
                 </div><!--btn group-->
             </div>

@@ -2,23 +2,25 @@
 
 namespace App\Repositories\Backend\Store;
 
+use App\Models\Store\Website;
 use App\Exceptions\GeneralException;
 
 /**
- * Class EloquentWebSiteRepository
- * @package App\Repositories\WebSite
+ * Class EloquentWebsiteRepository
+ * @package App\Repositories\Website
  */
-class EloquentWebSiteRepository implements WebsiteRepositoryContract
+class EloquentWebsiteRepository implements WebsiteRepositoryContract
 {
 
-    public function getWebSitesPaginated($per_page, $order_by = 'sort', $sort = 'asc')
+    public function getWebsitesPaginated($per_page, $order_by = 'sort_order', $sort = 'asc')
     {
 
     }
 
-    public function getAllWebSites($order_by = 'sort', $sort = 'asc', $withPermissions = false)
+    public function getAllWebsites($order_by = 'sort_order', $sort = 'asc')
     {
-
+        return Website::orderBy($order_by, $sort)
+            ->get();
     }
 
     /**
@@ -56,7 +58,7 @@ class EloquentWebSiteRepository implements WebsiteRepositoryContract
     /**
      * @return mixed
      */
-    public function getDefaultWebSite()
+    public function getDefaultWebsite()
     {
 
     }

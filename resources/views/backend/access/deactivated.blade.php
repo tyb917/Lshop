@@ -120,5 +120,62 @@
     </div><!--box-->
 @stop
 @section('js')
-    @include('vendor.datatables.customer')
+    @include('vendor.datatables.global')
+    <script>
+        $(function() {
+            var oTable = $('#users-table').DataTable({
+                processing: true,
+                serverSide: true,
+                "bFilter": false,
+                ajax: {
+                    url: '',
+                    data: function (d) {
+                        d.name = $('input[name=name]').val();
+                        d.email = $('input[name=email]').val();
+                        d.confirmed = $('select[name=confirmed]').val();
+                        d.roles = $('select[name=roles]').val();
+                        d.userid_from = $("input[name='userid[from]']").val();
+                        d.userid_to = $("input[name='userid[to]']").val();
+                        d.created_from = $("input[name='created_at[from]']").val();
+                        d.created_to = $("input[name='created_at[to]']").val();
+                        d.updated_from = $("input[name='updated_at[from]']").val();
+                        d.updated_to = $("input[name='updated_at[to]']").val();
+                    }
+                },
+                columns: [
+                    {data: 'id', name: 'users.id',"orderable": true,"searchable": true},
+                    {data: 'name', name: 'users.name',"orderable": true,"searchable": true},
+                    {data: 'email', name: 'users.email',"orderable": true,"searchable": true},
+                    {data: 'confirmed', name: 'users.confirmed',"orderable": true,"searchable": true},
+                    {data: 'roles', name: 'roles.id',"orderable": true,"searchable": true},
+                    {data: 'other_permissions', name: 'permissions_id',"orderable": false,"searchable": false},
+                    {data: 'created_at', name: 'users.created_at',"orderable": true,"searchable": true},
+                    {data: 'updated_at', name: 'users.updated_at',"orderable": true,"searchable": true},
+                    {data: 'action', name: 'action', orderable: false, searchable: false}
+                ],
+                "dom":"<'row'<'col-sm-6'l><'col-sm-6 text-right'B>>" +
+                "<'row'<'col-sm-12'tr>>" +
+                "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+                "buttons": ["csv", "excel"],
+                "language": {
+                    "url": "/js/plugins/datatables/language/Chinese.json"
+                },
+                "lengthMenu": [[20, 40, 100, -1], [20, 40, 100, "全部"]],
+                "fnDrawCallback": function() {
+                    $('.select2').select2({
+                        minimumResultsForSearch: Infinity
+                    });
+                    addDeleteForms();
+                }
+            });
+            $('#user-search').on('submit', function(e) {
+                oTable.draw();
+                e.preventDefault();
+            });
+            $('.clearFilter').on('click', function(e){
+                $('#user-search')[0].reset();
+                oTable.ajax.reload();
+            });
+        })
+    </script>
 @stop

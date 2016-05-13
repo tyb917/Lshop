@@ -3,12 +3,12 @@
 namespace App\Repositories\Backend\Store;
 
 /**
- * Interface WebSiteRepositoryContract
- * @package App\Repositories\WebSite
+ * Interface WebsiteRepositoryContract
+ * @package App\Repositories\Website
  */
-interface WebSiteRepositoryContract
+interface WebsiteRepositoryContract
 {
-    public function getWebSitesPaginated($per_page, $order_by = 'id', $sort = 'asc');
+    public function getWebsitesPaginated($per_page, $order_by = 'sort_order', $sort = 'asc');
 
     /**
      * @param  string  $order_by
@@ -16,7 +16,7 @@ interface WebSiteRepositoryContract
      * @param  bool    $withPermissions
      * @return mixed
      */
-    public function getAllWebSites($order_by = 'id', $sort = 'asc', $withPermissions = false);
+    public function getAllWebsites($order_by = 'sort_order', $sort = 'asc');
 
     /**
      * @param  $input
@@ -40,5 +40,5 @@ interface WebSiteRepositoryContract
     /**
      * @return mixed
      */
-    public function getDefaultWebSite();
+    public function getDefaultWebsite();
 }

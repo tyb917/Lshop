@@ -2,31 +2,30 @@
 
 namespace App\Http\Controllers\Backend\Store;
 
-use Illuminate\Http\Request;
-
 use App\Http\Requests;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\DataTables\StoreDataTable;
-use App\Repositories\Backend\Store\StoreRepositoryContract;
+use App\DataTables\WebsiteDataTable;
+use App\Repositories\Backend\Store\WebsiteRepositoryContract;
 
 class StoreController extends Controller
 {
 
-    protected $stores;
+    protected $websites;
 
-    public function __construct(StoreRepositoryContract $stores)
+    public function __construct(WebsiteRepositoryContract $websites)
     {
-        $this->stores = $stores;
+        $this->websites = $websites;
     }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(StoreDataTable $datatable)
+    public function index(WebsiteDataTable $datatable)
     {
-        $stores = $this->stores->getAllStores();
-        return $datatable->render('backend.store.index',['stores' => $stores]);
+        $websites = $this->websites->getAllWebsites();
+        return $datatable->render('backend.store.index',['websites' => $websites]);
     }
 
     /**
@@ -36,7 +35,7 @@ class StoreController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.store.create');
     }
 
     /**
@@ -58,7 +57,7 @@ class StoreController extends Controller
      */
     public function show($id)
     {
-        //
+        dd($id);
     }
 
     /**

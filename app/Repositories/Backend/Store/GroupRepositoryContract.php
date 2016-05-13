@@ -8,7 +8,7 @@ namespace App\Repositories\Backend\Store;
  */
 interface GroupRepositoryContract
 {
-    public function getStoresPaginated($per_page, $order_by = 'id', $sort = 'asc');
+    public function getGroupsPaginated($per_page, $order_by = 'group_id', $sort = 'asc');
 
     /**
      * @param  string  $order_by
@@ -16,7 +16,7 @@ interface GroupRepositoryContract
      * @param  bool    $withPermissions
      * @return mixed
      */
-    public function getAllStores($order_by = 'id', $sort = 'asc', $withPermissions = false);
+    public function getAllGroups($order_by = 'group_id', $sort = 'asc');
 
     /**
      * @param  $input
@@ -40,5 +40,5 @@ interface GroupRepositoryContract
     /**
      * @return mixed
      */
-    public function getDefaultUserStore();
+    public function getDefaultGroup();
 }

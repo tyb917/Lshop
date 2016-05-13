@@ -12,12 +12,12 @@ use App\Exceptions\GeneralException;
 class EloquentStoreRepository implements StoreRepositoryContract
 {
 
-    public function getStoresPaginated($per_page, $order_by = 'store_id', $sort = 'asc')
+    public function getStoresPaginated($per_page, $order_by = 'sort_order', $sort = 'asc')
     {
 
     }
 
-    public function getAllStores($order_by = 'store_id', $sort = 'asc')
+    public function getAllStores($order_by = 'sort_order', $sort = 'asc')
     {
         return Store::orderBy($order_by, $sort)
             ->get();

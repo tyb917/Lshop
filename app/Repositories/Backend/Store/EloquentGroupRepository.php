@@ -11,12 +11,12 @@ use App\Exceptions\GeneralException;
 class EloquentGroupRepository implements GroupRepositoryContract
 {
 
-    public function getGroupsPaginated($per_page, $order_by = 'sort', $sort = 'asc')
+    public function getGroupsPaginated($per_page, $order_by = 'group_id', $sort = 'asc')
     {
 
     }
 
-    public function getAllGroups($order_by = 'sort', $sort = 'asc', $withPermissions = false)
+    public function getAllGroups($order_by = 'group_id', $sort = 'asc')
     {
 
     }

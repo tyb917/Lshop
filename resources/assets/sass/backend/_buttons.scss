@@ -58,9 +58,9 @@
 
 //Button color variations
 .btn-default {
-  background-color: #fff;
-  color: #444;
-  border-color: #ddd;
+  background-color: #e4eaec;
+  color: #76838f;
+  border-color: #e4eaec;
   &:hover, &:active, &.hover {
     background-color:darken(#f4f4f4, 5%)!important;
   }

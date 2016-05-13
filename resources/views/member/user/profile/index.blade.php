@@ -148,9 +148,9 @@
     </div>
     @endif
 @stop
-<link rel="stylesheet" href="/plugins/cropper/cropper.min.css">
-<link rel="stylesheet" href="/plugins/cropper/main.css">
+<link rel="stylesheet" href="/js/plugins/cropper/cropper.min.css">
+<link rel="stylesheet" href="/js/plugins/cropper/main.css">
 @section('js')
-    <script src="/plugins/cropper/cropper.min.js"></script>
-    <script src="/plugins/cropper/main.js"></script>
+    <script src="/js/plugins/cropper/cropper.min.js"></script>
+    <script src="/js/plugins/cropper/main.js"></script>
 @stop

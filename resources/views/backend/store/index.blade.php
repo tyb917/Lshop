@@ -14,9 +14,9 @@
 
         <div class="box-body form-group attribute-list">
             <div class="box-tools pull-right">
-                <a href="{{url('admin/store/store/create')}}" class="margin-bottom-10 btn btn-danger create-attribute">{{trans('backend/store/store.labels.store.create')}}</a>
-                <a href="{{url('admin/store/group/create')}}" class="margin-bottom-10 btn btn-danger create-attribute">{{trans('backend/store/store.labels.group.create')}}</a>
-                <a href="{{url('admin/store/website/create')}}" class="margin-bottom-10 btn btn-danger create-attribute">{{trans('backend/store/store.labels.website.create')}}</a>
+                <a href="{{route('admin.store.store.create')}}" class="margin-bottom-10 btn btn-danger">{{trans('backend/store/store.labels.create')}}</a>
+                <a href="{{route('admin.store.group.create')}}" class="margin-bottom-10 btn btn-danger">{{trans('backend/store/group.labels.create')}}</a>
+                <a href="{{route('admin.store.website.create')}}" class="margin-bottom-10 btn btn-danger">{{trans('backend/store/website.labels.create')}}</a>
             </div>
             <div class="clearfix"></div>
             <div class="table-container">
@@ -50,6 +50,7 @@
             var oTable = $('#datatable_ajax').DataTable({
                 processing: true,
                 serverSide: true,
+                bFilter:false,
                 "language": {
                     "url": "/plugins/datatables/language/Chinese.json"
                 },
@@ -62,9 +63,9 @@
                     "url": "", // ajax source
                 },
                 columns: [
-                    {data: 'website_title', name: 'name',orderable: false},
-                    {data: 'group_title', name: 'group_title',orderable: false},
-                    {data: 'store_title', name: 'store_title',orderable: false}
+                    {data: 'website_title', name: 'name'},
+                    {data: 'group_title', name: 'group_title'},
+                    {data: 'store_title', name: 'store_title'}
                 ],
                 "orderCellsTop": true,
                 "initComplete": function () {

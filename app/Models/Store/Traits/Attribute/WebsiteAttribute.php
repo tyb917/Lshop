@@ -6,16 +6,19 @@ trait WebsiteAttribute
 {
     public function getWebsiteButtonAttribute()
     {
-        return '<a href="'.$this->website_id.'">'.$this->name.'</a>';
+        if($this->website_id)
+        return link_to('admin/store/website/'.$this->website_id.'/edit/',$this->name);
     }
 
     public function getGroupButtonAttribute()
     {
-        return '<a href="'.$this->group_id.'">'.$this->group_title.'</a>';
+        if($this->group_id)
+        return link_to('admin/store/group/'.$this->group_id.'/edit/',$this->group_title);
     }
 
     public function getStoreButtonAttribute()
     {
-        return '<a href="'.$this->store_id.'">'.$this->store_title.'</a>';
+        if($this->store_id)
+        return link_to('admin/store/store/'.$this->store_id.'/edit/',$this->store_title);
     }
 }

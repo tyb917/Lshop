@@ -18,7 +18,7 @@
         <div class="box-body form-group attribute-add">
             {!! Form::open(['route' => 'admin.catalog.product_attribute.store','id'=>'edit_form','class'=>'form-horizontal', 'method' => 'post']) !!}
                 <div class="box-tools pull-right">
-                    <a href="{{url('admin/catalog/product_attribute')}}" class="margin-bottom-10 btn btn-default">{{trans('backend/catalog/product/attribute.labels.back')}}</a>
+                    <a href="{{URL::previous()}}" class="margin-bottom-10 btn btn-default">{{trans('backend/catalog/product/attribute.labels.back')}}</a>
                     <input type="button" class="margin-bottom-10 btn btn-default reset" value="{{trans('backend/catalog/product/attribute.labels.reset')}}">
                     <input type="button" class="margin-bottom-10 btn btn-primary save_and_continue_edit" value="{{trans('backend/catalog/product/attribute.labels.save_and_continue_edit')}}">
                     <input type="submit" class="margin-bottom-10 btn btn-danger" value="{{trans('backend/catalog/product/attribute.labels.save')}}">

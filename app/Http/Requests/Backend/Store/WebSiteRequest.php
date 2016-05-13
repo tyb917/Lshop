@@ -4,7 +4,7 @@ namespace App\Http\Requests\Backend\Store;
 
 use App\Http\Requests\Request;
 
-class WebSiteRequest extends Request
+class WebsiteRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.

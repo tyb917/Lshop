@@ -8,7 +8,7 @@ namespace App\Repositories\Backend\Store;
  */
 interface StoreRepositoryContract
 {
-    public function getStoresPaginated($per_page, $order_by = 'id', $sort = 'asc');
+    public function getStoresPaginated($per_page, $order_by = 'sort_order', $sort = 'asc');
 
     /**
      * @param  string  $order_by
@@ -16,7 +16,7 @@ interface StoreRepositoryContract
      * @param  bool    $withPermissions
      * @return mixed
      */
-    public function getAllStores($order_by = 'id', $sort = 'asc');
+    public function getAllStores($order_by = 'sort_order', $sort = 'asc');
 
     /**
      * @param  $input

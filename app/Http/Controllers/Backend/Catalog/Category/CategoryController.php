@@ -30,7 +30,7 @@ class CategoryController extends Controller
     public function index(Request $request)
     {
 //        生成示例数据
-//        $root = Category::create(['name' => 'Root category']);
+//        $root = Category::create(['name' => '默认分类']);
 //        $children = [
 //            ['name' => 'TV & Home Theather'],
 //            ['name' => 'Tablets & E-Readers'],
@@ -53,8 +53,10 @@ class CategoryController extends Controller
         }else{
             $categories = Category::root();
         }
-        if($categories->image){
-            $categories->imageUrl = asset(Config::get('image.category').DS.$categories->id.DS.$categories->image);
+        if($categories){
+            if($categories->image){
+                $categories->imageUrl = asset(Config::get('image.category').DS.$categories->id.DS.$categories->image);
+            }
         }
         return view('backend.catalog.category.index',compact('categories'));
     }

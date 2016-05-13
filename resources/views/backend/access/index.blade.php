@@ -159,7 +159,7 @@
                 "<'row'<'col-sm-5'i><'col-sm-7'p>>",
                 "buttons": ["csv", "excel"],
                 "language": {
-                    "url": "/plugins/datatables/language/Chinese.json"
+                    "url": "/js/plugins/datatables/language/Chinese.json"
                 },
                 "lengthMenu": [[20, 40, 100, -1], [20, 40, 100, "全部"]],
                 "fnDrawCallback": function() {
