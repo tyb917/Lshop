@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Validator;
 use Illuminate\Support\ServiceProvider;
 use App\Repositories\Backend\Store\EloquentCategoryRepository;
 use App\Repositories\Backend\Store\EloquentProductRepository;
@@ -15,7 +16,13 @@ class StoreServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Validator::extend('alpha_dash_first', function ($attribute, $value, $parameters)
+        {
+            if (!preg_match('/^[a-z]+[a-z0-9_]*$/',$value)) {
+                return false;
+            }
+            return true;
+        });
     }
 
     /**

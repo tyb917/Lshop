@@ -20,6 +20,7 @@ class EloquentWebsiteRepository implements WebsiteRepositoryContract
     public function getAllWebsites($order_by = 'sort_order', $sort = 'asc')
     {
         return Website::orderBy($order_by, $sort)
+            ->where('website_id','>',0)
             ->get();
     }
 

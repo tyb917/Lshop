@@ -6,16 +6,24 @@ use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\DataTables\WebsiteDataTable;
+use App\Http\Requests\Backend\Store\StoreRequest;
 use App\Repositories\Backend\Store\WebsiteRepositoryContract;
+use App\Repositories\Backend\Store\GroupRepositoryContract;
 
 class StoreController extends Controller
 {
 
     protected $websites;
+    protected $groups;
 
-    public function __construct(WebsiteRepositoryContract $websites)
+    public function __construct(
+        WebsiteRepositoryContract $websites,
+        GroupRepositoryContract $groups
+
+    )
     {
         $this->websites = $websites;
+        $this->groups = $groups;
     }
     /**
      * Display a listing of the resource.
@@ -35,7 +43,19 @@ class StoreController extends Controller
      */
     public function create()
     {
-        return view('backend.store.create');
+        $allwebsites = $this->websites->getAllWebsites();
+        $allgroups = $this->groups->getAllGroups();
+        $group_ids = [];
+        foreach ($allwebsites as $singletonwebsite) {
+            $values = [];
+            foreach ($allgroups as $singletongroup) {
+                if ($singletongroup->website_id == $singletonwebsite->website_id) {
+                    $values[$singletongroup->group_id] = $singletongroup->name;
+                }
+            }
+            $group_ids[$singletonwebsite->name] = $values;
+        }
+        return view('backend.store.create',compact('group_ids'));
     }
 
     /**
@@ -44,9 +64,9 @@ class StoreController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
-        //
+
     }
 
     /**

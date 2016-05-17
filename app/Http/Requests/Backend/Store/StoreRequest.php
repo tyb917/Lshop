@@ -13,7 +13,7 @@ class StoreRequest extends Request
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,11 @@ class StoreRequest extends Request
     public function rules()
     {
         return [
-            //
+            'group_id'    => 'required',
+            'name' => 'required',
+            'code' => 'required|alpha_dash_first',
+            'is_active' => 'required'
         ];
     }
+
 }

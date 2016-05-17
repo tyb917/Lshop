@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Backend\Store;
 
+use App\Models\Store\Group;
 use App\Exceptions\GeneralException;
 
 /**
@@ -18,7 +19,9 @@ class EloquentGroupRepository implements GroupRepositoryContract
 
     public function getAllGroups($order_by = 'group_id', $sort = 'asc')
     {
-
+        return Group::orderBy($order_by, $sort)
+            ->where('website_id','>',0)
+            ->get();
     }
 
     /**

@@ -27,7 +27,7 @@
                     <span class="required">*</span>
                 </label>
                 <div class="col-xs-2">
-                    {!! Form::select('group_id',['1'=>'是','0'=>'否'],0,['id'=>'store_group_id','class' => 'form-control select2','title'=>'商店']) !!}
+                    {!! Form::select('group_id',$group_ids,null,['id'=>'store_group_id','class' => 'form-control select2','title'=>'商店','required'=>true]) !!}
                 </div>
             </div>
             <div class="field form-group ">
@@ -37,7 +37,7 @@
                     <span class="required">*</span>
                 </label>
                 <div class="col-xs-6">
-                    {!! Form::text('name',null,['id' => 'store_name','class' => 'form-control']) !!}
+                    {!! Form::text('name',null,['id' => 'store_name','class' => 'form-control','required'=>true]) !!}
                 </div>
             </div>
             <div class="field form-group ">
@@ -46,7 +46,7 @@
                     <span class="required">*</span>
                 </label>
                 <div class="col-xs-6">
-                    {!! Form::text('code',null,['id' => 'store_code','class' => 'form-control']) !!}
+                    {!! Form::text('code',null,['id' => 'store_code','class' => 'form-control','required'=>true]) !!}
                 </div>
             </div>
             <div class="field form-group">
@@ -55,7 +55,7 @@
                     <span class="required">*</span>
                 </label>
                 <div class="col-xs-2">
-                    {!! Form::select('is_active',['1'=>'是','0'=>'否'],0,['id'=>'store_is_active','class' => 'form-control select2']) !!}
+                    {!! Form::select('is_active',['1'=>'是','0'=>'否'],0,['id'=>'store_is_active','class' => 'form-control select2','required'=>true]) !!}
                 </div>
             </div>
             <div class="field form-group ">
@@ -72,9 +72,6 @@
 @stop
 
 @section('js')
-    @include('vendor.datatables.global')
-    <script>
-        $(function() {
-        })
-    </script>
+    @include('vendor.jsvalidation.global')
+    {!! JsValidator::formRequest('App\Http\Requests\Backend\Store\StoreRequest') !!}
 @stop
