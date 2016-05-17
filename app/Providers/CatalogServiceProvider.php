@@ -3,8 +3,6 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use App\Repositories\Backend\Catalog\EloquentCategoryRepository;
-use App\Repositories\Backend\Catalog\EloquentProductRepository;
 
 class CatalogServiceProvider extends ServiceProvider
 {

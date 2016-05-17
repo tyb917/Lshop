@@ -4,8 +4,6 @@ namespace App\Providers;
 
 use Validator;
 use Illuminate\Support\ServiceProvider;
-use App\Repositories\Backend\Store\EloquentCategoryRepository;
-use App\Repositories\Backend\Store\EloquentProductRepository;
 
 class StoreServiceProvider extends ServiceProvider
 {
