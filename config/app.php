@@ -163,12 +163,8 @@ return [
         App\Providers\AccessServiceProvider::class,
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
-        App\Providers\CatalogServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        /*helper*/
-        App\Providers\HelperServiceProvider::class,
-        App\Providers\StoreServiceProvider::class,
 
         /*
          * Third Party Providers
@@ -182,7 +178,6 @@ return [
         Laracasts\Utilities\JavaScript\JavaScriptServiceProvider::class,
         HieuLe\Active\ActiveServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
-
         /*
          * Has to override the Collective\Html\HtmlServiceProvider form singleton
          */
@@ -197,6 +192,13 @@ return [
         Stevenyangecho\UEditor\UEditorServiceProvider::class,
         /*jquery validate*/
         Proengsoft\JsValidation\JsValidationServiceProvider::class,
+        /*Laravel Exceptions*/
+        GrahamCampbell\Exceptions\ExceptionsServiceProvider::class,
+
+        /*custom Service Provider*/
+        App\Providers\CatalogServiceProvider::class,
+        App\Providers\HelperServiceProvider::class,
+        App\Providers\StoreServiceProvider::class,
     ],
 
     /*
@@ -255,10 +257,11 @@ return [
         'Socialite'   => Laravel\Socialite\Facades\Socialite::class,
         /*MongonDB*/
        // 'Moloquent' => 'Jenssegers\Mongodb\Eloquent\Model',
-        'Image' => Intervention\Image\Facades\Image::class,
-        'Helper' => App\Helper\Facades\Helper::class,
         /*jquery validate*/
         'JsValidator' => Proengsoft\JsValidation\Facades\JsValidatorFacade::class,
+        /*Custom Aliases*/
+        'Image' => Intervention\Image\Facades\Image::class,
+        'Helper' => App\Helper\Facades\Helper::class,
     ],
 
 ];

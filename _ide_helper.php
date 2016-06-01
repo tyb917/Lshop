@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.2.24 on 2016-04-28.
+ * Generated for Laravel 5.2.24 on 2016-05-18.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -12835,6 +12835,50 @@ namespace {
          */
         public static function model($name){
             return \App\Helper\Helper::model($name);
+        }
+        
+    }
+
+
+    class JsValidator extends \Proengsoft\JsValidation\Facades\JsValidatorFacade{
+        
+        /**
+         * Creates JsValidator instance based on rules and message arrays.
+         *
+         * @param array $rules
+         * @param array $messages
+         * @param array $customAttributes
+         * @param null|string $selector
+         * @return \Proengsoft\JsValidation\JavascriptValidator 
+         * @static 
+         */
+        public static function make($rules, $messages = array(), $customAttributes = array(), $selector = null){
+            return \Proengsoft\JsValidation\JsValidatorFactory::make($rules, $messages, $customAttributes, $selector);
+        }
+        
+        /**
+         * Creates JsValidator instance based on FormRequest.
+         *
+         * @param $formRequest
+         * @param null $selector
+         * @return \Proengsoft\JsValidation\JavascriptValidator 
+         * @throws FormRequestArgumentException
+         * @static 
+         */
+        public static function formRequest($formRequest, $selector = null){
+            return \Proengsoft\JsValidation\JsValidatorFactory::formRequest($formRequest, $selector);
+        }
+        
+        /**
+         * Creates JsValidator instance based on Validator.
+         *
+         * @param \Illuminate\Validation\Validator $validator
+         * @param string|null $selector
+         * @return \Proengsoft\JsValidation\JavascriptValidator 
+         * @static 
+         */
+        public static function validator($validator, $selector = null){
+            return \Proengsoft\JsValidation\JsValidatorFactory::validator($validator, $selector);
         }
         
     }

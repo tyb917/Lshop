@@ -7,7 +7,7 @@ use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Illuminate\Foundation\Validation\ValidationException;
-use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use GrahamCampbell\Exceptions\ExceptionHandler as ExceptionHandler;
 
 /**
  * Class Handler
@@ -62,11 +62,11 @@ class Handler extends ExceptionHandler
         if ($e instanceof Backend\Access\User\UserNeedsRolesException) {
             return redirect()->route('admin.access.users.edit', $e->userID())->withInput()->withFlashDanger($e->validationErrors());
         }
-
-        if (config('app.debug'))
-        {
-            return $this->renderExceptionWithWhoops($e);
-        }
+//Whoops开启导致Request 验证失败
+//        if (config('app.debug') && ! $request->ajax())
+//        {
+//            return $this->renderExceptionWithWhoops($e);
+//        }
 
         return parent::render($request, $e);
     }
